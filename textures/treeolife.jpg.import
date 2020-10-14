@@ -1,0 +1,13 @@
+[remap]
+
+importer="image"
+type="Image"
+path="res://.import/treeolife.jpg-0c5bc49f585fbf9f0bc3a1c9a73a515e.image"
+
+[deps]
+
+source_file="res://textures/treeolife.jpg"
+dest_files=[ "res://.import/treeolife.jpg-0c5bc49f585fbf9f0bc3a1c9a73a515e.image" ]
+
+[params]
+
