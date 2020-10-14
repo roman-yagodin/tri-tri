@@ -1,28 +1,20 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Game.cs" type="Script" id=1]
-[ext_resource path="res://Sphere1.cs" type="Script" id=2]
+[ext_resource path="res://Card.tscn" type="PackedScene" id=2]
 
-[sub_resource type="SpatialMaterial" id=1]
-
-[sub_resource type="SpatialMaterial" id=2]
-
-[sub_resource type="QuadMesh" id=3]
-material = SubResource( 2 )
-size = Vector2( 3, 4 )
-
-[node name="Spatial" type="Spatial"]
+[node name="Game" type="Spatial"]
 script = ExtResource( 1 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( -0.987833, -0.100928, 0.118318, -0.147192, 0.852352, -0.501827, -0.0502005, -0.513137, -0.856838, 0.143537, -0.7558, -1.19199 )
-fov = 70.3125
+transform = Transform( -0.998585, 0.0408658, 0.0340318, 0.0421661, 0.998372, 0.0384101, -0.0324067, 0.0397907, -0.998682, 0.143537, 0.0896978, -1.19199 )
+fov = 86.1797
 
-[node name="Sphere1" type="ImmediateGeometry" parent="."]
-material_override = SubResource( 1 )
-script = ExtResource( 2 )
+[node name="Card1" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 10 )
 
-[node name="Mesh1" type="MeshInstance" parent="."]
-transform = Transform( 0.831702, -0.555222, 0, -0.555118, -0.831546, -0.0193716, 0.0107556, 0.0161114, -0.999812, -1.05659, 1.30555, 8.73101 )
-mesh = SubResource( 3 )
-material/0 = null
+[node name="Card2" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10 )
+
+[node name="Card3" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 10 )
