@@ -15,7 +15,10 @@
    version="1.1"
    id="svg8"
    inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
-   sodipodi:docname="d1.svg">
+   sodipodi:docname="d9.svg"
+   inkscape:export-filename="/mnt/hdd/home/redhound/Projects/tri-tri/textures/d2.png"
+   inkscape:export-xdpi="96.000008"
+   inkscape:export-ydpi="96.000008">
   <defs
      id="defs2" />
   <sodipodi:namedview
@@ -26,8 +29,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.35"
-     inkscape:cx="-1302.8571"
-     inkscape:cy="560"
+     inkscape:cx="-1110.1298"
+     inkscape:cy="-274.21356"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -53,17 +56,23 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(0,-161.53332)">
+     transform="translate(0,-161.53332)"
+     style="opacity:0.95">
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.28888893px;line-height:1.25;font-family:'Open Sans';-inkscape-font-specification:'Open Sans';letter-spacing:0px;word-spacing:0px;fill:#800000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="36.624119"
-       y="279.63394"
+       x="27.529068"
+       y="279.6684"
        id="text814"><tspan
          sodipodi:role="line"
-         id="tspan812"
-         x="36.624119"
-         y="279.63394"
-         style="font-size:141.1111145px;fill:#800000;stroke-width:0.26458332">1</tspan></text>
+         x="27.529068"
+         y="279.6684"
+         style="font-size:141.1111145px;fill:#800000;stroke-width:0.26458332"
+         id="tspan814">9</tspan><tspan
+         sodipodi:role="line"
+         x="27.529068"
+         y="341.02844"
+         style="font-size:141.1111145px;fill:#800000;stroke-width:0.26458332"
+         id="tspan815" /></text>
   </g>
 </svg>

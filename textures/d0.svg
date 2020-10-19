@@ -15,7 +15,7 @@
    version="1.1"
    id="svg8"
    inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
-   sodipodi:docname="d1.svg">
+   sodipodi:docname="d0.svg">
   <defs
      id="defs2" />
   <sodipodi:namedview
@@ -25,9 +25,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.35"
-     inkscape:cx="-1302.8571"
-     inkscape:cy="560"
+     inkscape:zoom="0.0875"
+     inkscape:cx="-3478.2853"
+     inkscape:cy="2454.2305"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -57,13 +57,13 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.28888893px;line-height:1.25;font-family:'Open Sans';-inkscape-font-specification:'Open Sans';letter-spacing:0px;word-spacing:0px;fill:#800000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="36.624119"
-       y="279.63394"
+       x="27.391264"
+       y="279.7373"
        id="text814"><tspan
          sodipodi:role="line"
          id="tspan812"
-         x="36.624119"
-         y="279.63394"
-         style="font-size:141.1111145px;fill:#800000;stroke-width:0.26458332">1</tspan></text>
+         x="27.391264"
+         y="279.7373"
+         style="font-size:141.1111145px;fill:#800000;stroke-width:0.26458332">0</tspan></text>
   </g>
 </svg>
