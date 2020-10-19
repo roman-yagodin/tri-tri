@@ -10,7 +10,11 @@ public class TexturedQuadMesh : Spatial
 	[Export]
 	public Texture Texture {
 		get { return Material.AlbedoTexture; }
-		set { Material.AlbedoTexture = value; }
+		set {
+			var material = new SpatialMaterial ();
+			material.AlbedoTexture = value;
+			QuadMesh.SetSurfaceMaterial (0, material);
+		}
 	}
 
 	// Called when the node enters the scene tree for the first time.
