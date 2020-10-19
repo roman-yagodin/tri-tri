@@ -3,6 +3,14 @@ using System;
 
 public class Card : Spatial
 {
+	protected TexturedQuadMesh TexturedQuadMesh => GetNode<TexturedQuadMesh> (nameof (TexturedQuadMesh));
+
+	[Export]
+	public Texture Texture1 {
+		get { return TexturedQuadMesh.Texture; }
+		set { TexturedQuadMesh.Texture = value; }
+	}
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
