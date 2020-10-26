@@ -3,12 +3,36 @@ using System;
 
 public class Card : Spatial
 {
-	protected TexturedQuadMesh TexturedQuadMesh => GetNode<TexturedQuadMesh> (nameof (TexturedQuadMesh));
+	protected DigitPlate DigitPlate1 => GetNode<DigitPlate> (nameof (DigitPlate1));
+
+	protected DigitPlate DigitPlate2 => GetNode<DigitPlate> (nameof (DigitPlate2));
+	
+	protected DigitPlate DigitPlate3 => GetNode<DigitPlate> (nameof (DigitPlate3));
+	
+	protected DigitPlate DigitPlate4 => GetNode<DigitPlate> (nameof (DigitPlate4));
 
 	[Export]
-	public Texture Texture1 {
-		get { return TexturedQuadMesh.Texture; }
-		set { TexturedQuadMesh.Texture = value; }
+	public int Digit1 {
+		get { return DigitPlate1.Digit; }
+		set { DigitPlate1.Digit = value; }
+	}
+
+	[Export]
+	public int Digit2 {
+		get { return DigitPlate2.Digit; }
+		set { DigitPlate2.Digit = value; }
+	}
+
+	[Export]
+	public int Digit3 {
+		get { return DigitPlate3.Digit; }
+		set { DigitPlate3.Digit = value; }
+	}
+
+	[Export]
+	public int Digit4 {
+		get { return DigitPlate4.Digit; }
+		set { DigitPlate4.Digit = value; }
 	}
 	
 	// Called when the node enters the scene tree for the first time.
