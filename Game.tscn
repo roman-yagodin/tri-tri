@@ -10,19 +10,21 @@ script = ExtResource( 1 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8 )
 fov = 86.1797
 
-[node name="Card1" parent="." instance=ExtResource( 2 )]
+[node name="Board" type="Spatial" parent="."]
+
+[node name="Card1" parent="Board" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0 )
 Digit2 = 1
 Digit3 = 2
 Digit4 = 3
 
-[node name="Card2" parent="." instance=ExtResource( 2 )]
+[node name="Card2" parent="Board" instance=ExtResource( 2 )]
 Digit1 = 1
 Digit2 = 2
 Digit3 = 3
 Digit4 = 4
 
-[node name="Card3" parent="." instance=ExtResource( 2 )]
+[node name="Card3" parent="Board" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0 )
 Digit1 = 2
 Digit2 = 3
