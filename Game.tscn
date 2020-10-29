@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Game.cs" type="Script" id=1]
 [ext_resource path="res://Card.tscn" type="PackedScene" id=2]
+[ext_resource path="res://textures/image_003.png" type="Texture" id=3]
+[ext_resource path="res://textures/image_001.png" type="Texture" id=4]
+[ext_resource path="res://textures/image_002.png" type="Texture" id=5]
 
 [node name="Game" type="Spatial"]
 script = ExtResource( 1 )
@@ -17,12 +20,14 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0 )
 Digit2 = 1
 Digit3 = 2
 Digit4 = 3
+Texture = ExtResource( 4 )
 
 [node name="Card2" parent="Board" instance=ExtResource( 2 )]
 Digit1 = 1
 Digit2 = 2
 Digit3 = 3
 Digit4 = 4
+Texture = ExtResource( 5 )
 
 [node name="Card3" parent="Board" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0 )
@@ -30,3 +35,4 @@ Digit1 = 2
 Digit2 = 3
 Digit3 = 4
 Digit4 = 5
+Texture = ExtResource( 3 )

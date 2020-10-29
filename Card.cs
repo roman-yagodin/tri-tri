@@ -11,6 +11,8 @@ public class Card : Spatial
 	
 	protected DigitPlate DigitPlate4 => GetNode<DigitPlate> (nameof (DigitPlate4));
 
+	protected TexturedQuadMesh TexturedQuadMesh => GetNode<TexturedQuadMesh> (nameof (TexturedQuadMesh));
+
 	[Export]
 	public int Digit1 {
 		get { return DigitPlate1.Digit; }
@@ -33,6 +35,12 @@ public class Card : Spatial
 	public int Digit4 {
 		get { return DigitPlate4.Digit; }
 		set { DigitPlate4.Digit = value; }
+	}
+
+	[Export]
+	public Texture Texture {
+		get { return TexturedQuadMesh.Texture; }
+		set { TexturedQuadMesh.Texture = value; }
 	}
 	
 	// Called when the node enters the scene tree for the first time.
