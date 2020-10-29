@@ -1,0 +1,13 @@
+[remap]
+
+importer="image"
+type="Image"
+path="res://.import/card_back.jpg-43f601aa40fdc6b54318da27398225ea.image"
+
+[deps]
+
+source_file="res://textures/card_back.jpg"
+dest_files=[ "res://.import/card_back.jpg-43f601aa40fdc6b54318da27398225ea.image" ]
+
+[params]
+
