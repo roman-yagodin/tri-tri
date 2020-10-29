@@ -11,10 +11,11 @@ public class TexturedQuadMesh : Spatial
 	public Texture Texture {
 		get { return Material.AlbedoTexture; }
 		set {
+			var templateMaterial = (SpatialMaterial) QuadMesh.GetSurfaceMaterial (0);
 			var material = new SpatialMaterial ();
 			material.AlbedoTexture = value;
-			material.ParamsUseAlphaScissor = true;
-			material.ParamsAlphaScissorThreshold = 0.5f;
+			material.ParamsUseAlphaScissor = templateMaterial.ParamsUseAlphaScissor;
+			material.ParamsAlphaScissorThreshold = templateMaterial.ParamsAlphaScissorThreshold;
 			QuadMesh.SetSurfaceMaterial (0, material);
 		}
 	}
