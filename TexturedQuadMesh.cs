@@ -13,6 +13,8 @@ public class TexturedQuadMesh : Spatial
 		set {
 			var material = new SpatialMaterial ();
 			material.AlbedoTexture = value;
+			material.ParamsUseAlphaScissor = true;
+			material.ParamsAlphaScissorThreshold = 0.5f;
 			QuadMesh.SetSurfaceMaterial (0, material);
 		}
 	}
