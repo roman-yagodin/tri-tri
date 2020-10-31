@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class Game : Spatial
+public class GameScene : Spatial
 {
 	protected Camera Camera => GetNode<Camera> (nameof (Camera));
 
