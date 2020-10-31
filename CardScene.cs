@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class Card : Spatial
+public class CardScene : Spatial
 {
 	protected DigitPlate DigitPlate1 => GetNode<DigitPlate> (nameof (DigitPlate1));
 
