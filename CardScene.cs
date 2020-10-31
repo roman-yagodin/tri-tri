@@ -33,7 +33,13 @@ public class CardScene : Spatial
 		DigitPlate2.Digit = Card.Values [1];
 		DigitPlate3.Digit = Card.Values [2];
 		DigitPlate4.Digit = Card.Values [3];
-		TexturedQuadMesh.Texture = GD.Load<StreamTexture> (Card.GetTextureFilename ());
+
+		if (Card.Name != "none") {
+			TexturedQuadMesh.Texture = GD.Load<StreamTexture> (Card.GetTextureFilename ());
+		}
+		else {
+			TexturedQuadMesh.Texture = null;
+		}
 	}
 	
 	// Called when the node enters the scene tree for the first time.
