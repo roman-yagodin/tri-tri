@@ -2,9 +2,9 @@
 
 [ext_resource path="res://Game.cs" type="Script" id=1]
 [ext_resource path="res://CardScene.tscn" type="PackedScene" id=2]
-[ext_resource path="res://textures/image_003.png" type="Texture" id=3]
-[ext_resource path="res://textures/image_001.png" type="Texture" id=4]
-[ext_resource path="res://textures/image_002.png" type="Texture" id=5]
+[ext_resource path="res://textures/cards/red_drake.png" type="Texture" id=3]
+[ext_resource path="res://textures/cards/green_drake.png" type="Texture" id=4]
+[ext_resource path="res://textures/cards/blue_drake.png" type="Texture" id=5]
 
 [node name="Game" type="Spatial"]
 script = ExtResource( 1 )

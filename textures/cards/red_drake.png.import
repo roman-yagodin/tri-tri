@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/image_001.png-0be8f7bec2b9a63b1a2777d0af152ce0.s3tc.stex"
-path.etc="res://.import/image_001.png-0be8f7bec2b9a63b1a2777d0af152ce0.etc.stex"
+path.s3tc="res://.import/red_drake.png-8afa8e1ceb0bbad26dab331d54f8413b.s3tc.stex"
+path.etc="res://.import/red_drake.png-8afa8e1ceb0bbad26dab331d54f8413b.etc.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://textures/image_001.png"
-dest_files=[ "res://.import/image_001.png-0be8f7bec2b9a63b1a2777d0af152ce0.s3tc.stex", "res://.import/image_001.png-0be8f7bec2b9a63b1a2777d0af152ce0.etc.stex" ]
+source_file="res://textures/cards/red_drake.png"
+dest_files=[ "res://.import/red_drake.png-8afa8e1ceb0bbad26dab331d54f8413b.s3tc.stex", "res://.import/red_drake.png-8afa8e1ceb0bbad26dab331d54f8413b.etc.stex" ]
 
 [params]
 
