@@ -13,40 +13,33 @@ public class CardScene : Spatial
 
 	protected TexturedQuadMesh TexturedQuadMesh => GetNode<TexturedQuadMesh> (nameof (TexturedQuadMesh));
 
-	[Export]
-	public int Digit1 {
-		get { return DigitPlate1.Digit; }
-		set { DigitPlate1.Digit = value; }
-	}
+	protected ICard Card;
+
+	string _cardName;
 
 	[Export]
-	public int Digit2 {
-		get { return DigitPlate2.Digit; }
-		set { DigitPlate2.Digit = value; }
+	public string CardName {
+		get { return Card?.Name ?? _cardName; }
+		set {
+			_cardName = value;
+			LoadCard ();
+		}
 	}
 
-	[Export]
-	public int Digit3 {
-		get { return DigitPlate3.Digit; }
-		set { DigitPlate3.Digit = value; }
-	}
-
-	[Export]
-	public int Digit4 {
-		get { return DigitPlate4.Digit; }
-		set { DigitPlate4.Digit = value; }
-	}
-
-	[Export]
-	public Texture Texture {
-		get { return TexturedQuadMesh.Texture; }
-		set { TexturedQuadMesh.Texture = value; }
+	void LoadCard ()
+	{
+		Card = CardDatabase.GetCard (_cardName);
+		DigitPlate1.Digit = Card.Values [0];
+		DigitPlate2.Digit = Card.Values [1];
+		DigitPlate3.Digit = Card.Values [2];
+		DigitPlate4.Digit = Card.Values [3];
+		TexturedQuadMesh.Texture = GD.Load<StreamTexture> (Card.GetTextureFilename ());
 	}
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		
+		LoadCard ();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

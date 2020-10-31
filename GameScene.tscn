@@ -1,10 +1,7 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://CardScene.tscn" type="PackedScene" id=1]
-[ext_resource path="res://textures/cards/green_drake.png" type="Texture" id=2]
-[ext_resource path="res://textures/cards/red_drake.png" type="Texture" id=3]
 [ext_resource path="res://GameScene.cs" type="Script" id=4]
-[ext_resource path="res://textures/cards/blue_drake.png" type="Texture" id=5]
 
 [node name="GameScene" type="Spatial"]
 script = ExtResource( 4 )
@@ -17,22 +14,11 @@ fov = 86.1797
 
 [node name="Card1" parent="Board" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0 )
-Digit2 = 1
-Digit3 = 2
-Digit4 = 3
-Texture = ExtResource( 2 )
+CardName = "green_drake"
 
 [node name="Card2" parent="Board" instance=ExtResource( 1 )]
-Digit1 = 1
-Digit2 = 2
-Digit3 = 3
-Digit4 = 4
-Texture = ExtResource( 5 )
+CardName = "blue_drake"
 
 [node name="Card3" parent="Board" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0 )
-Digit1 = 2
-Digit2 = 3
-Digit3 = 4
-Digit4 = 5
-Texture = ExtResource( 3 )
+CardName = "red_drake"
