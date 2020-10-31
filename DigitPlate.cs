@@ -16,7 +16,7 @@ public class DigitPlate : TexturedQuadMesh
 
     void LoadTexture ()
     {
-        base.Texture = GD.Load<StreamTexture> ($"res://textures/d{_digit}.png");
+        base.Texture = GD.Load<StreamTexture> ($"res://textures/digits/d{_digit}.png");
     }
 
     // replace base class exported prop with non-exported

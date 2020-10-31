@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/d7.svg-77031dae1108a3ba39bc1e75b5e29d92.stex"
+path="res://.import/d0.svg-c4fd416de4c20085ca30f27310f3262e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/d7.svg"
-dest_files=[ "res://.import/d7.svg-77031dae1108a3ba39bc1e75b5e29d92.stex" ]
+source_file="res://textures/digits/d0.svg"
+dest_files=[ "res://.import/d0.svg-c4fd416de4c20085ca30f27310f3262e.stex" ]
 
 [params]
 
