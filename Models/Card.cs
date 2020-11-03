@@ -9,6 +9,8 @@ public interface ICard
 
     int [] Values { get; set; }
 
+    float Rarity { get; set; }
+
     int Owner { get; set; }
 
     string GetTextureFilename ();
@@ -22,14 +24,21 @@ public class Card : ICard
     
     public int[] Values { get; set; }
 
+    public float Rarity { get; set; }
+
     public int Owner { get; set; }
 
     public string GetTextureFilename () => $"res://textures/cards/{TextureName}.png";
+
+    public Card ()
+    {
+    }
 
     public Card (string name, params int [] values)
     {
         Name = name;
         TextureName = name;
         Values = values;
+        Rarity = 1f;
     }
 }
