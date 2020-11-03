@@ -3,6 +3,8 @@ using System;
 
 public class CardScene : Spatial
 {
+	protected MeshInstance Front => GetNode<MeshInstance> (nameof (Front));
+
 	protected DigitPlate DigitPlate1 => GetNode<DigitPlate> (nameof (DigitPlate1));
 
 	protected DigitPlate DigitPlate2 => GetNode<DigitPlate> (nameof (DigitPlate2));
@@ -33,9 +35,7 @@ public class CardScene : Spatial
 		get { return Card?.Owner ?? _cardOwner; }
 		set {
 			_cardOwner = value;
-			if (Card != null) {
-				Card.Owner = value;
-			}
+			LoadCard ();
 		}
 	}
 
@@ -56,6 +56,17 @@ public class CardScene : Spatial
 			DigitPlate3.Digit = Card.Values [2];
 			DigitPlate4.Digit = Card.Values [3];
 			TexturedQuadMesh.Texture = GD.Load<StreamTexture> (Card.GetTextureFilename ());
+		}
+
+		if (Card.Owner != CardOwner.Neutral) {
+			var material = new SpatialMaterial ();
+			if (Card.Owner == CardOwner.Red) {
+				material.AlbedoColor = new Color (1f, .75f, .75f);
+			}
+			else if (Card.Owner == CardOwner.Blue) {
+				material.AlbedoColor = new Color (.75f, .75f, 1f);
+			}
+			Front.SetSurfaceMaterial (0, material);
 		}
 	}
 	

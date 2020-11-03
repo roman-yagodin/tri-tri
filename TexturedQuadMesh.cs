@@ -5,11 +5,9 @@ public class TexturedQuadMesh : Spatial
 {
 	protected MeshInstance QuadMesh => GetNode<MeshInstance> (nameof (QuadMesh));
 	
-	protected SpatialMaterial Material => (SpatialMaterial) QuadMesh.GetSurfaceMaterial (0);
-	
 	[Export]
 	public Texture Texture {
-		get { return Material.AlbedoTexture; }
+		get { return ((SpatialMaterial) QuadMesh.GetSurfaceMaterial (0)).AlbedoTexture; }
 		set {
 			var templateMaterial = (SpatialMaterial) QuadMesh.GetSurfaceMaterial (0);
 			var material = new SpatialMaterial ();
