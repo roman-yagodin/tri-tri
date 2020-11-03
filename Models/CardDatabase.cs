@@ -12,9 +12,14 @@ public static class CardDatabase
 
         Cards.Add ("none", new Card ("none", 0, 0, 0, 0));
 
-        Cards.Add ("green_drake", new Card ("green_drake", 0, 1, 2, 3));
-        Cards.Add ("blue_drake", new Card ("blue_drake", 1, 2, 3, 4));
-        Cards.Add ("red_drake", new Card ("red_drake", 2, 3, 4, 5));
+        AddCard ("green_drake", 0, 1, 2, 3);
+        AddCard ("blue_drake", 1, 2, 3, 4);
+        AddCard ("red_drake", 2, 3, 4, 5);
+    }
+
+    static void AddCard (string cardName, params int [] values)
+    {
+        Cards.Add (cardName, new Card (cardName, values));
     }
 
     public static ICard GetCard (string cardName)
