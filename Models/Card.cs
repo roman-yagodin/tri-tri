@@ -11,7 +11,7 @@ public interface ICard
 
     float Rarity { get; set; }
 
-    int Owner { get; set; }
+    CardOwner Owner { get; set; }
 
     bool IsBlank { get; set; }
 
@@ -30,7 +30,7 @@ public class Card : ICard
 
     public float Rarity { get; set; }
 
-    public int Owner { get; set; }
+    public CardOwner Owner { get; set; } = CardOwner.Neutral;
 
     public bool IsBlank { get; set; }
 

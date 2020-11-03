@@ -26,9 +26,23 @@ public class CardScene : Spatial
 		}
 	}
 
+	CardOwner _cardOwner;
+
+	[Export]
+	public CardOwner CardOwner {
+		get { return Card?.Owner ?? _cardOwner; }
+		set {
+			_cardOwner = value;
+			if (Card != null) {
+				Card.Owner = value;
+			}
+		}
+	}
+
 	void LoadCard ()
 	{
 		Card = CardDatabase.GetCard (_cardName);
+		Card.Owner = _cardOwner;
 
 		DigitPlate1.Visible = !Card.IsBlank;
 		DigitPlate2.Visible = !Card.IsBlank;
