@@ -29,16 +29,19 @@ public class CardScene : Spatial
 	void LoadCard ()
 	{
 		Card = CardDatabase.GetCard (_cardName);
-		DigitPlate1.Digit = Card.Values [0];
-		DigitPlate2.Digit = Card.Values [1];
-		DigitPlate3.Digit = Card.Values [2];
-		DigitPlate4.Digit = Card.Values [3];
 
-		if (Card.Name != "none") {
+		DigitPlate1.Visible = !Card.IsBlank;
+		DigitPlate2.Visible = !Card.IsBlank;
+		DigitPlate3.Visible = !Card.IsBlank;
+		DigitPlate4.Visible = !Card.IsBlank;
+		TexturedQuadMesh.Visible = !Card.IsBlank;
+
+		if (!Card.IsBlank) {
+			DigitPlate1.Digit = Card.Values [0];
+			DigitPlate2.Digit = Card.Values [1];
+			DigitPlate3.Digit = Card.Values [2];
+			DigitPlate4.Digit = Card.Values [3];
 			TexturedQuadMesh.Texture = GD.Load<StreamTexture> (Card.GetTextureFilename ());
-		}
-		else {
-			TexturedQuadMesh.Texture = null;
 		}
 	}
 	

@@ -13,6 +13,8 @@ public interface ICard
 
     int Owner { get; set; }
 
+    bool IsBlank { get; set; }
+
     string GetTextureFilename ();
 }
 
@@ -27,6 +29,8 @@ public class Card : ICard
     public float Rarity { get; set; }
 
     public int Owner { get; set; }
+
+    public bool IsBlank { get; set; }
 
     public string GetTextureFilename () => $"res://textures/cards/{TextureName}.png";
 

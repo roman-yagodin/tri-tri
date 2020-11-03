@@ -22,3 +22,6 @@ CardName = "blue_drake"
 [node name="Card3" parent="Board" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0 )
 CardName = "red_drake"
+
+[node name="Card4" parent="Board" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0 )
