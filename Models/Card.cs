@@ -16,6 +16,8 @@ public interface ICard
     bool IsBlank { get; set; }
 
     string GetTextureFilename ();
+
+    ICard Clone ();
 }
 
 public class Card : ICard
@@ -44,5 +46,10 @@ public class Card : ICard
         TextureName = name;
         Values = values;
         Rarity = 1f;
+    }
+
+    public ICard Clone ()
+    {
+        return (ICard) this.MemberwiseClone ();
     }
 }

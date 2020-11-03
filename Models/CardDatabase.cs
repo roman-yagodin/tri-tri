@@ -25,7 +25,7 @@ public static class CardDatabase
     public static ICard GetCard (string cardName)
     {
         if (cardName != null && Cards.TryGetValue (cardName, out ICard card)) {
-            return card;
+            return ((Card) card).Clone ();
         }
         return BlankCard;
     }
