@@ -6,8 +6,6 @@ public static class CardDatabase
 {
     public static IDictionary<string, ICard> Cards;
 
-    public static readonly ICard BlankCard = new Card { IsBlank = true };
-
     static CardDatabase ()
     {
         Cards = new Dictionary<string, ICard> ();
@@ -27,6 +25,6 @@ public static class CardDatabase
         if (cardName != null && Cards.TryGetValue (cardName, out ICard card)) {
             return ((Card) card).Clone ();
         }
-        return BlankCard;
+        return null;
     }
 }

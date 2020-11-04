@@ -15,55 +15,50 @@ public class CardScene : Spatial
 
 	protected TexturedQuadMesh TexturedQuadMesh => GetNode<TexturedQuadMesh> (nameof (TexturedQuadMesh));
 
-	protected ICard Card;
+	ICard _card;
 
-	string _cardName;
-
-	[Export]
-	public string CardName {
-		get { return Card?.Name ?? _cardName; }
+	public ICard Card {
+		get { return _card; }
 		set {
-			_cardName = value;
-			LoadCard ();
+			_card = value;
+			BindCard (_card);
 		}
 	}
 
-	CardOwner _cardOwner;
+	string _cardSampleName;
 
 	[Export]
-	public CardOwner CardOwner {
-		get { return Card?.Owner ?? _cardOwner; }
+	public string CardSampleName {
+		get { return _cardSampleName; }
 		set {
-			_cardOwner = value;
-			LoadCard ();
+			_cardSampleName = value;
+			_card = CardSamples.GetCard (_cardSampleName);
+			BindCard (_card);
 		}
 	}
 
-	void LoadCard ()
+	void BindCard (ICard card)
 	{
-		Card = CardDatabase.GetCard (_cardName);
-		Card.Owner = _cardOwner;
+		DigitPlate1.Visible = !card.IsBlank;
+		DigitPlate2.Visible = !card.IsBlank;
+		DigitPlate3.Visible = !card.IsBlank;
+		DigitPlate4.Visible = !card.IsBlank;
+		TexturedQuadMesh.Visible = !card.IsBlank;
 
-		DigitPlate1.Visible = !Card.IsBlank;
-		DigitPlate2.Visible = !Card.IsBlank;
-		DigitPlate3.Visible = !Card.IsBlank;
-		DigitPlate4.Visible = !Card.IsBlank;
-		TexturedQuadMesh.Visible = !Card.IsBlank;
-
-		if (!Card.IsBlank) {
-			DigitPlate1.Digit = Card.Values [0];
-			DigitPlate2.Digit = Card.Values [1];
-			DigitPlate3.Digit = Card.Values [2];
-			DigitPlate4.Digit = Card.Values [3];
-			TexturedQuadMesh.Texture = GD.Load<StreamTexture> (Card.GetTextureFilename ());
+		if (!card.IsBlank) {
+			DigitPlate1.Digit = card.Values [0];
+			DigitPlate2.Digit = card.Values [1];
+			DigitPlate3.Digit = card.Values [2];
+			DigitPlate4.Digit = card.Values [3];
+			TexturedQuadMesh.Texture = GD.Load<StreamTexture> (card.GetTextureFilename ());
 		}
 
-		if (Card.Owner != CardOwner.Neutral) {
+		if (card.Owner != CardOwner.Neutral) {
 			var material = new SpatialMaterial ();
-			if (Card.Owner == CardOwner.Red) {
+			if (card.Owner == CardOwner.Red) {
 				material.AlbedoColor = new Color (1f, .75f, .75f);
 			}
-			else if (Card.Owner == CardOwner.Blue) {
+			else if (card.Owner == CardOwner.Blue) {
 				material.AlbedoColor = new Color (.75f, .75f, 1f);
 			}
 			Front.SetSurfaceMaterial (0, material);
@@ -73,12 +68,7 @@ public class CardScene : Spatial
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		LoadCard ();
-	}
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(float delta)
-	{
-	
+		_card = CardSamples.GetCard (_cardSampleName);
+		BindCard (_card);
 	}
 }
