@@ -1,7 +1,6 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://CardScene.cs" type="Script" id=1]
-[ext_resource path="res://TexturedQuadMesh.tscn" type="PackedScene" id=3]
 [ext_resource path="res://DigitPlate.tscn" type="PackedScene" id=4]
 
 [sub_resource type="SpatialMaterial" id=1]
@@ -43,9 +42,6 @@ material_override = SubResource( 6 )
 mesh = SubResource( 2 )
 material/0 = null
 
-[node name="TexturedQuadMesh" parent="." instance=ExtResource( 3 )]
-transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0.01 )
-
 [node name="DigitPlate1" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0.01 )
 
@@ -57,3 +53,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0.01 )
 
 [node name="DigitPlate4" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0.01 )
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0.01 )

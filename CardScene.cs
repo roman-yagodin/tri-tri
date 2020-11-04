@@ -13,7 +13,7 @@ public class CardScene : Spatial
 	
 	protected DigitPlate DigitPlate4 => GetNode<DigitPlate> (nameof (DigitPlate4));
 
-	protected TexturedQuadMesh TexturedQuadMesh => GetNode<TexturedQuadMesh> (nameof (TexturedQuadMesh));
+	protected Sprite3D Sprite3D => GetNode<Sprite3D> (nameof (Sprite3D));
 
 	ICard _card;
 
@@ -43,14 +43,14 @@ public class CardScene : Spatial
 		DigitPlate2.Visible = !card.IsBlank;
 		DigitPlate3.Visible = !card.IsBlank;
 		DigitPlate4.Visible = !card.IsBlank;
-		TexturedQuadMesh.Visible = !card.IsBlank;
+		Sprite3D.Visible = !card.IsBlank;
 
 		if (!card.IsBlank) {
 			DigitPlate1.Digit = card.Values [0];
 			DigitPlate2.Digit = card.Values [1];
 			DigitPlate3.Digit = card.Values [2];
 			DigitPlate4.Digit = card.Values [3];
-			TexturedQuadMesh.Texture = GD.Load<StreamTexture> (card.GetTextureFilename ());
+			Sprite3D.Texture = GD.Load<StreamTexture> (card.GetTextureFilename ());
 		}
 
 		if (card.Owner != CardOwner.Neutral) {
