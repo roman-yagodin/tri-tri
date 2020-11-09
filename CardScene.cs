@@ -15,6 +15,8 @@ public class CardScene : Spatial
 
 	protected Sprite3D Sprite3D => GetNode<Sprite3D> (nameof (Sprite3D));
 
+	public AnimationPlayer AnimationPlayer => GetNode<AnimationPlayer> (nameof (AnimationPlayer));
+
 	ICard _card;
 
 	public ICard Card {
