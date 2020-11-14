@@ -15,7 +15,7 @@ public class CardScene : Spatial
 
 	protected Sprite3D Sprite3D => GetNode<Sprite3D> (nameof (Sprite3D));
 
-	public AnimationPlayer AnimationPlayer => GetNode<AnimationPlayer> (nameof (AnimationPlayer));
+	protected AnimationPlayer AnimationPlayer => GetNode<AnimationPlayer> (nameof (AnimationPlayer));
 
 	ICard _card;
 
@@ -37,6 +37,11 @@ public class CardScene : Spatial
 			_card = CardSamples.GetCard (_cardSampleName);
 			BindCard (_card);
 		}
+	}
+
+	void BindCard ()
+	{
+		BindCard (_card);
 	}
 
 	void BindCard (ICard card)
@@ -72,5 +77,19 @@ public class CardScene : Spatial
 	{
 		_card = CardSamples.GetCard (_cardSampleName);
 		BindCard (_card);
+	}
+
+	public void StartRotate ()
+	{
+		AnimationPlayer.Play ("CardRotate_LR_0_180");
+	}
+
+	private void _on_AnimationPlayer_animation_finished (String anim_name)
+	{
+		if (anim_name == "CardRotate_LR_0_180") {
+			Card.ToggleOwner ();
+			BindCard ();
+			AnimationPlayer.Play ("CardRotate_LR_180_360");
+		}
 	}
 }

@@ -30,7 +30,7 @@ public class GameScene : Spatial
 			Board.Rotate (new Vector3 (0, 1, 0), -(float) Math.PI / 16);
 		}
 		else if (inputEvent.IsActionPressed("ui_select")) {
-			Card2.AnimationPlayer.Play ("CardFlip1");
+			Card2.StartRotate ();
 		}
 	}
 }

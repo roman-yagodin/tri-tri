@@ -19,6 +19,10 @@ config/name="tri-tri"
 run/main_scene="res://GameScene.tscn"
 config/icon="res://icon.png"
 
+[global]
+
+Editor=false
+
 [importer_defaults]
 
 texture={

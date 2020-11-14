@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://CardScene.cs" type="Script" id=1]
-[ext_resource path="res://animations/CardFlip1.tres" type="Animation" id=2]
+[ext_resource path="res://animations/CardRotate_LR_180_360.tres" type="Animation" id=2]
+[ext_resource path="res://animations/CardRotate_LR_0_180.tres" type="Animation" id=3]
 [ext_resource path="res://DigitPlate.tscn" type="PackedScene" id=4]
 
 [sub_resource type="SpatialMaterial" id=1]
@@ -31,6 +32,7 @@ size = Vector2( 512, 512 )
 albedo_texture = SubResource( 5 )
 
 [node name="CardScene" type="Spatial"]
+transform = Transform( 1, 0, 6.51683e-07, 0, 1, 0, -6.51683e-07, 0, 1, 0, 0, 0 )
 script = ExtResource( 1 )
 
 [node name="Front" type="MeshInstance" parent="."]
@@ -59,4 +61,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0.01 )
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0.01 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/CardFlip1 = ExtResource( 2 )
+anims/CardRotate_LR_0_180 = ExtResource( 3 )
+anims/CardRotate_LR_180_360 = ExtResource( 2 )
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
