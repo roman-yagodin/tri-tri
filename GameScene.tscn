@@ -26,3 +26,11 @@ CardSampleName = "red_drake_01"
 [node name="Card4" parent="Board" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0 )
 CardSampleName = "blank"
+
+[node name="CardScene" parent="Board" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0 )
+CardSampleName = "gray_drake_01"
+
+[node name="CardScene2" parent="Board" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 5, 0 )
+CardSampleName = "brown_drake_01"
