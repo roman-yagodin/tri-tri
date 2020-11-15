@@ -81,15 +81,15 @@ public class CardScene : Spatial
 
 	public void StartRotate ()
 	{
-		AnimationPlayer.Play ("CardRotate_LR_0_180");
+		AnimationPlayer.Play ("CardRotate_H_Cw_Part1");
 	}
 
 	private void _on_AnimationPlayer_animation_finished (String anim_name)
 	{
-		if (anim_name == "CardRotate_LR_0_180") {
+		if (anim_name == "CardRotate_H_Cw_Part1") {
 			Card.ToggleOwner ();
 			BindCard ();
-			AnimationPlayer.Play ("CardRotate_LR_180_360");
+			AnimationPlayer.Play ("CardRotate_H_Cw_Part2");
 		}
 	}
 }
