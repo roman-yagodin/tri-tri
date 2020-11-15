@@ -8,7 +8,9 @@ public class GameScene : Spatial
 	protected Spatial Board => GetNode<Spatial> (nameof (Board));
 
 	protected CardScene Card2 => Board.GetNode<CardScene> (nameof (Card2));
-
+	
+	protected CardScene Card3 => Board.GetNode<CardScene> (nameof (Card3));
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -29,8 +31,11 @@ public class GameScene : Spatial
 		else if (inputEvent.IsActionPressed("ui_right")) {
 			Board.Rotate (new Vector3 (0, 1, 0), -(float) Math.PI / 16);
 		}
-		else if (inputEvent.IsActionPressed("ui_select")) {
-			Card2.StartRotate ();
+		else if (inputEvent.IsActionPressed("ui_page_up")) {
+			Card2.Rotate_H_Cw ();
+		}
+		else if (inputEvent.IsActionPressed("ui_page_down")) {
+			Card3.Rotate_V_Cw ();
 		}
 	}
 }

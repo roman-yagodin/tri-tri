@@ -17,6 +17,8 @@ public class CardScene : Spatial
 
 	protected AnimationPlayer AnimationPlayer => GetNode<AnimationPlayer> (nameof (AnimationPlayer));
 
+	protected Timer Timer => GetNode<Timer> (nameof (Timer));
+
 	ICard _card;
 
 	public ICard Card {
@@ -79,9 +81,15 @@ public class CardScene : Spatial
 		BindCard (_card);
 	}
 
-	public void StartRotate ()
+	public void Rotate_H_Cw ()
 	{
 		AnimationPlayer.Play ("CardRotate_H_Cw_Part1");
+	}
+	
+	public void Rotate_V_Cw ()
+	{
+		AnimationPlayer.Play ("CardRotate_V_Cw");
+		Timer.Start ();
 	}
 
 	private void _on_AnimationPlayer_animation_finished (String anim_name)
@@ -91,5 +99,11 @@ public class CardScene : Spatial
 			BindCard ();
 			AnimationPlayer.Play ("CardRotate_H_Cw_Part2");
 		}
+	}
+		
+	private void _on_Timer_timeout()
+	{
+		Card.ToggleOwner ();
+		BindCard ();
 	}
 }
