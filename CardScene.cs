@@ -91,14 +91,15 @@ public class CardScene : Spatial
 		AnimationPlayer.AddAnimation ("CardRotate_D2_Cw", CreateQuatAnimation (axis2));	
 	}
 	
+	// FIXME: Animation should be re-created every time CardScene is moved?
 	Animation CreateQuatAnimation (Vector3 axis)
 	{
 		var anim = new Animation ();
 		var trackIdx = anim.AddTrack (Animation.TrackType.Transform);
 		anim.TrackSetPath (trackIdx, ".");
-		anim.TransformTrackInsertKey (trackIdx, 0f, Vector3.Zero, new Quat (0f, 0f, 0f, 1f).Normalized (), Vector3.One);
-		anim.TransformTrackInsertKey (trackIdx, 0.5f, Vector3.Zero, new Quat (axis, Mathf.Pi).Normalized (), Vector3.One);
-		anim.TransformTrackInsertKey (trackIdx, 1f, Vector3.Zero, new Quat (axis, 2 * Mathf.Pi).Normalized (), Vector3.One);
+		anim.TransformTrackInsertKey (trackIdx, 0f, Translation, new Quat (0f, 0f, 0f, 1f).Normalized (), Vector3.One);
+		anim.TransformTrackInsertKey (trackIdx, 0.5f, Translation, new Quat (axis, Mathf.Pi).Normalized (), Vector3.One);
+		anim.TransformTrackInsertKey (trackIdx, 1f, Translation, new Quat (axis, 2 * Mathf.Pi).Normalized (), Vector3.One);
 		return anim;	
 	}
 
