@@ -83,7 +83,8 @@ public class CardScene : Spatial
 
 	public void Rotate_H_Cw ()
 	{
-		AnimationPlayer.Play ("CardRotate_H_Cw_Part1");
+		AnimationPlayer.Play ("CardRotate_H_Cw");
+		Timer.Start ();
 	}
 	
 	public void Rotate_V_Cw ()
@@ -91,16 +92,7 @@ public class CardScene : Spatial
 		AnimationPlayer.Play ("CardRotate_V_Cw");
 		Timer.Start ();
 	}
-
-	private void _on_AnimationPlayer_animation_finished (String anim_name)
-	{
-		if (anim_name == "CardRotate_H_Cw_Part1") {
-			Card.ToggleOwner ();
-			BindCard ();
-			AnimationPlayer.Play ("CardRotate_H_Cw_Part2");
-		}
-	}
-		
+	
 	private void _on_Timer_timeout()
 	{
 		Card.ToggleOwner ();
