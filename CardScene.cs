@@ -79,17 +79,50 @@ public class CardScene : Spatial
 	{
 		_card = CardSamples.GetCard (_cardSampleName);
 		BindCard (_card);
+		InitAnimation ();
+	}
+	
+	void InitAnimation ()
+	{
+		var axis1 = new Vector3 (3f, 4f, 0).Normalized ();
+		AnimationPlayer.AddAnimation ("CardRotate_D1_Cw", CreateQuatAnimation (axis1));
+		
+		var axis2 = new Vector3 (-3f, 4f, 0).Normalized ();
+		AnimationPlayer.AddAnimation ("CardRotate_D2_Cw", CreateQuatAnimation (axis2));	
+	}
+	
+	Animation CreateQuatAnimation (Vector3 axis)
+	{
+		var anim = new Animation ();
+		var trackIdx = anim.AddTrack (Animation.TrackType.Transform);
+		anim.TrackSetPath (trackIdx, ".");
+		anim.TransformTrackInsertKey (trackIdx, 0f, Vector3.Zero, new Quat (0f, 0f, 0f, 1f).Normalized (), Vector3.One);
+		anim.TransformTrackInsertKey (trackIdx, 0.5f, Vector3.Zero, new Quat (axis, Mathf.Pi).Normalized (), Vector3.One);
+		anim.TransformTrackInsertKey (trackIdx, 1f, Vector3.Zero, new Quat (axis, 2 * Mathf.Pi).Normalized (), Vector3.One);
+		return anim;	
 	}
 
-	public void Rotate_H_Cw ()
+	public void Rotate_H ()
 	{
 		AnimationPlayer.Play ("CardRotate_H_Cw");
 		Timer.Start ();
 	}
 	
-	public void Rotate_V_Cw ()
+	public void Rotate_V ()
 	{
 		AnimationPlayer.Play ("CardRotate_V_Cw");
+		Timer.Start ();
+	}
+	
+	public void Rotate_D1 ()
+	{
+		AnimationPlayer.Play ("CardRotate_D1_Cw");
+		Timer.Start ();
+	}
+	
+	public void Rotate_D2 ()
+	{
+		AnimationPlayer.Play ("CardRotate_D2_Cw");
 		Timer.Start ();
 	}
 	

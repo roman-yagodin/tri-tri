@@ -46,6 +46,29 @@ texture={
 "svg/scale": 1.0
 }
 
+[input]
+
+test_rotate1={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":49,"unicode":0,"echo":false,"script":null)
+ ]
+}
+test_rotate2={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":50,"unicode":0,"echo":false,"script":null)
+ ]
+}
+test_rotate3={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":51,"unicode":0,"echo":false,"script":null)
+ ]
+}
+test_rotate4={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":52,"unicode":0,"echo":false,"script":null)
+ ]
+}
+
 [rendering]
 
 quality/driver/driver_name="GLES2"
