@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Linq;
 
 public class CardScene : Spatial
 {
@@ -79,27 +80,37 @@ public class CardScene : Spatial
 	{
 		_card = CardSamples.GetCard (_cardSampleName);
 		BindCard (_card);
-		InitAnimation ();
+		UpdateDiagonalRotationAnimation ("CardRotate_D1");
+		UpdateDiagonalRotationAnimation ("CardRotate_D2");
 	}
 	
-	void InitAnimation ()
+	Vector3 GetDiagonalRotationAxis (string animName)
 	{
-		var axis1 = new Vector3 (3f, 4f, 0).Normalized ();
-		AnimationPlayer.AddAnimation ("CardRotate_D1_Cw", CreateQuatAnimation (axis1));
-		
-		var axis2 = new Vector3 (-3f, 4f, 0).Normalized ();
-		AnimationPlayer.AddAnimation ("CardRotate_D2_Cw", CreateQuatAnimation (axis2));	
+		if (animName == "CardRotate_D1") {
+			return new Vector3 (3f, 4f, 0).Normalized ();
+		}
+		else if (animName == "CardRotate_D2") {
+			return new Vector3 (-3f, 4f, 0).Normalized ();
+		}
+		throw new ArgumentException ("Unsupported animation name!");
 	}
-	
-	// FIXME: Animation should be re-created every time CardScene is moved?
-	Animation CreateQuatAnimation (Vector3 axis)
+
+	void UpdateDiagonalRotationAnimation (string name)
+	{
+		if (AnimationPlayer.GetAnimationList ().FirstOrDefault (n => n == name) != null) {
+			AnimationPlayer.RemoveAnimation (name);
+		}
+		AnimationPlayer.AddAnimation (name, CreateDiagonalRotationAnimation (Translation, GetDiagonalRotationAxis (name)));
+	}
+
+	Animation CreateDiagonalRotationAnimation (Vector3 translation, Vector3 axis)
 	{
 		var anim = new Animation ();
 		var trackIdx = anim.AddTrack (Animation.TrackType.Transform);
 		anim.TrackSetPath (trackIdx, ".");
-		anim.TransformTrackInsertKey (trackIdx, 0f, Translation, new Quat (0f, 0f, 0f, 1f).Normalized (), Vector3.One);
-		anim.TransformTrackInsertKey (trackIdx, 0.5f, Translation, new Quat (axis, Mathf.Pi).Normalized (), Vector3.One);
-		anim.TransformTrackInsertKey (trackIdx, 1f, Translation, new Quat (axis, 2 * Mathf.Pi).Normalized (), Vector3.One);
+		anim.TransformTrackInsertKey (trackIdx, 0f, translation, new Quat (0f, 0f, 0f, 1f).Normalized (), Vector3.One);
+		anim.TransformTrackInsertKey (trackIdx, 0.5f, translation, new Quat (axis, Mathf.Pi).Normalized (), Vector3.One);
+		anim.TransformTrackInsertKey (trackIdx, 1f, translation, new Quat (axis, 2 * Mathf.Pi).Normalized (), Vector3.One);
 		return anim;	
 	}
 
@@ -117,13 +128,15 @@ public class CardScene : Spatial
 	
 	public void Rotate_D1 ()
 	{
-		AnimationPlayer.Play ("CardRotate_D1_Cw");
+		//UpdateDiagonalRotationAnimation ("CardRotate_D1");
+		AnimationPlayer.Play ("CardRotate_D1");
 		Timer.Start ();
 	}
 	
 	public void Rotate_D2 ()
 	{
-		AnimationPlayer.Play ("CardRotate_D2_Cw");
+		//UpdateDiagonalRotationAnimation ("CardRotate_D2");
+		AnimationPlayer.Play ("CardRotate_D2");
 		Timer.Start ();
 	}
 	
