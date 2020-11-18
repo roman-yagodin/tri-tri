@@ -116,13 +116,13 @@ public class CardScene : Spatial
 
 	public void Rotate_H ()
 	{
-		AnimationPlayer.Play ("CardRotate_H_Cw");
+		AnimationPlayer.Play ("CardRotate_H");
 		Timer.Start ();
 	}
 	
 	public void Rotate_V ()
 	{
-		AnimationPlayer.Play ("CardRotate_V_Cw");
+		AnimationPlayer.Play ("CardRotate_V");
 		Timer.Start ();
 	}
 	

@@ -1,9 +1,9 @@
 [gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://CardScene.cs" type="Script" id=1]
-[ext_resource path="res://animations/CardRotate_H_Cw.tres" type="Animation" id=3]
+[ext_resource path="res://animations/CardRotate_H.tres" type="Animation" id=3]
 [ext_resource path="res://DigitPlate.tscn" type="PackedScene" id=4]
-[ext_resource path="res://animations/CardRotate_V_Cw.tres" type="Animation" id=5]
+[ext_resource path="res://animations/CardRotate_V.tres" type="Animation" id=5]
 
 [sub_resource type="SpatialMaterial" id=1]
 
@@ -60,8 +60,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0.01 )
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0.01 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/CardRotate_H_Cw = ExtResource( 3 )
-anims/CardRotate_V_Cw = ExtResource( 5 )
+anims/CardRotate_H = ExtResource( 3 )
+anims/CardRotate_V = ExtResource( 5 )
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5
