@@ -116,28 +116,36 @@ public class CardScene : Spatial
 
 	public void Rotate_H ()
 	{
-		AnimationPlayer.Play ("CardRotate_H");
-		Timer.Start ();
+		if (!AnimationPlayer.IsPlaying ()) {
+			AnimationPlayer.Play ("CardRotate_H");
+			Timer.Start ();
+		}
 	}
 	
 	public void Rotate_V ()
 	{
-		AnimationPlayer.Play ("CardRotate_V");
-		Timer.Start ();
+		if (!AnimationPlayer.IsPlaying ()) {
+			AnimationPlayer.Play ("CardRotate_V");
+			Timer.Start ();
+		}
 	}
 	
 	public void Rotate_D1 ()
 	{
-		//UpdateDiagonalRotationAnimation ("CardRotate_D1");
-		AnimationPlayer.Play ("CardRotate_D1");
-		Timer.Start ();
+		if (!AnimationPlayer.IsPlaying ()) {
+			UpdateDiagonalRotationAnimation ("CardRotate_D1");
+			AnimationPlayer.Play ("CardRotate_D1");
+			Timer.Start ();
+		}
 	}
 	
 	public void Rotate_D2 ()
 	{
-		//UpdateDiagonalRotationAnimation ("CardRotate_D2");
-		AnimationPlayer.Play ("CardRotate_D2");
-		Timer.Start ();
+		if (!AnimationPlayer.IsPlaying ()) {
+			UpdateDiagonalRotationAnimation ("CardRotate_D2");
+			AnimationPlayer.Play ("CardRotate_D2");
+			Timer.Start ();
+		}
 	}
 	
 	private void _on_Timer_timeout()
