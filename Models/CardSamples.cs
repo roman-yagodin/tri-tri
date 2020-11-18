@@ -32,6 +32,18 @@ public static class CardSamples
 		card5.Owner = CardOwner.Red;
 		Cards.Add ("brown_drake_01", card5);
 		
+		var card6 = CardDatabase.GetCard ("lime_hatchling");
+		card6.Owner = CardOwner.Neutral;
+		Cards.Add ("lime_hatchling_01", card6);
+		
+		var card7 = CardDatabase.GetCard ("violet_hatchling");
+		card7.Owner = CardOwner.Neutral;
+		Cards.Add ("violet_hatchling_01", card7);
+		
+		var card8 = CardDatabase.GetCard ("green_dragon");
+		card8.Owner = CardOwner.Neutral;
+		Cards.Add ("green_dragon_01", card8);
+		
 		var blank = new Card { IsBlank = true };
 		Cards.Add ("blank", blank);
 	}

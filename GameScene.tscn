@@ -13,24 +13,36 @@ fov = 86.1797
 [node name="Board" type="Spatial" parent="."]
 
 [node name="Card1" parent="Board" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 5, 0 )
 CardSampleName = "green_drake_01"
 
 [node name="Card2" parent="Board" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0 )
 CardSampleName = "blue_drake_01"
 
 [node name="Card3" parent="Board" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 5, 0 )
 CardSampleName = "red_drake_01"
 
 [node name="Card4" parent="Board" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 5, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0 )
 CardSampleName = "brown_drake_01"
 
 [node name="Card5" parent="Board" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0 )
 CardSampleName = "gray_drake_01"
 
-[node name="BlankCard" parent="Board" instance=ExtResource( 1 )]
+[node name="Card6" parent="Board" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0 )
+CardSampleName = "lime_hatchling_01"
+
+[node name="Card7" parent="Board" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -5, 0 )
+CardSampleName = "violet_hatchling_01"
+
+[node name="Card8" parent="Board" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0 )
+CardSampleName = "green_dragon_01"
+
+[node name="BlankCard" parent="Board" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -5, 0 )
 CardSampleName = "blank"
