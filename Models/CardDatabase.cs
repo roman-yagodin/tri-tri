@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 
 public static class CardDatabase
@@ -15,10 +16,8 @@ public static class CardDatabase
 		AddCard ("gray_drake", 3, 4, 2, 5);
 		AddCard ("green_drake", 5, 3, 4, 2);
 		AddCard ("red_drake", 2, 4, 5, 3);
-
 		AddCard ("lime_hatchling", 3, 2, 1, 1);
 		AddCard ("violet_hatchling", 1, 2, 3, 1);
-		
 		AddCard ("green_dragon", 3, 7, 6, 4);
 	}
 
@@ -33,5 +32,12 @@ public static class CardDatabase
 			return ((Card) card).Clone ();
 		}
 		return null;
+	}
+
+	public static IDeck CreateFullUniqueDeck ()
+	{
+		return new Deck {
+			Cards = Cards.Values.Select (c => c.Clone ()).ToList ()
+		};
 	}
 }
