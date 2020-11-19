@@ -24,10 +24,10 @@ public class GameScene : Spatial
 	{
 		var dealer = new Dealer ();
 	
-		var leftDeck = CardDatabase.CreateFullUniqueDeck ();
+		var leftDeck = CardFactory.CreateFullUniqueDeck ();
 		LeftDeal.Deal = dealer.Deal (leftDeck, 5, CardOwner.Red);
 		
-		var rightDeck = CardDatabase.CreateFullUniqueDeck ();
+		var rightDeck = CardFactory.CreateFullUniqueDeck ();
 		RightDeal.Deal = dealer.Deal (rightDeck, 5, CardOwner.Blue);
 	}
 
