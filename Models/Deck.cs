@@ -9,5 +9,5 @@ public interface IDeck
 
 public class Deck: IDeck
 {
-    public IList<ICard> Cards { get; set; }
+    public IList<ICard> Cards { get; set; } = new List<ICard> ();
 }

@@ -9,5 +9,5 @@ public interface IDeal
 
 public class Deal: IDeal
 {
-	public IList<ICard> Cards { get; set; }
+	public IList<ICard> Cards { get; set; } = new List<ICard> ();
 }

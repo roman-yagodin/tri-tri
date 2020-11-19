@@ -3,7 +3,7 @@ using System;
 
 public class Dealer
 {
-	public IDeal Deal (IDeck deck, int numOfCards)
+	public IDeal Deal (IDeck deck, int numOfCards, CardOwner cardOwner)
 	{
 		var deal = new Deal ();
 		var cards = deck.Cards;
@@ -12,6 +12,7 @@ public class Dealer
 
 		for (var i = 0; i < numOfCards; i++) {
 			var idx = rnd.Next (0, cards.Count);
+			cards [idx].Owner = cardOwner;
 			deal.Cards.Add (cards [idx]);
 			cards.RemoveAt (idx);
 		}

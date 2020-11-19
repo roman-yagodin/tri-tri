@@ -15,9 +15,20 @@ public class GameScene : Spatial
 	
 	protected CardScene Card4 => Board.GetNode<CardScene> (nameof (Card4));
 	
+	protected DealScene LeftDeal => GetNode<DealScene> (nameof (LeftDeal));
+
+	protected DealScene RightDeal => GetNode<DealScene> (nameof (RightDeal));
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		var dealer = new Dealer ();
+	
+		var leftDeck = CardDatabase.CreateFullUniqueDeck ();
+		LeftDeal.Deal = dealer.Deal (leftDeck, 5, CardOwner.Red);
+		
+		var rightDeck = CardDatabase.CreateFullUniqueDeck ();
+		RightDeal.Deal = dealer.Deal (rightDeck, 5, CardOwner.Blue);
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

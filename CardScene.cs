@@ -49,6 +49,10 @@ public class CardScene : Spatial
 
 	void BindCard (ICard card)
 	{
+		if (card == null) {
+			return;
+		}
+
 		DigitPlate1.Visible = !card.IsBlank;
 		DigitPlate2.Visible = !card.IsBlank;
 		DigitPlate3.Visible = !card.IsBlank;
