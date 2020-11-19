@@ -5,11 +5,11 @@ using System.Collections.Generic;
 /// <summary>
 /// Contains pre-configured cards to use in editor
 /// </summary>
-public static class CardSamples
+public static class CardSampleFactory
 {
 	public static IDictionary<string, ICard> Cards;
 
-	static CardSamples ()
+	static CardSampleFactory ()
 	{
 		Cards = new Dictionary<string, ICard> ();
 		
@@ -48,7 +48,7 @@ public static class CardSamples
 		Cards.Add ("blank", blank);
 	}
 
-	public static ICard GetCard (string cardSampleName)
+	public static ICard CreateCard (string cardSampleName)
 	{
 		if (cardSampleName != null && Cards.TryGetValue (cardSampleName, out ICard card)) {
 			return ((Card) card).Clone ();

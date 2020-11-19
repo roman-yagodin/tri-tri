@@ -37,7 +37,7 @@ public class CardScene : Spatial
 		get { return _cardSampleName; }
 		set {
 			_cardSampleName = value;
-			_card = CardSamples.GetCard (_cardSampleName);
+			_card = CardSampleFactory.CreateCard (_cardSampleName);
 			BindCard (_card);
 		}
 	}
@@ -82,7 +82,7 @@ public class CardScene : Spatial
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		_card = CardSamples.GetCard (_cardSampleName);
+		_card = CardSampleFactory.CreateCard (_cardSampleName);
 		BindCard (_card);
 		UpdateDiagonalRotationAnimation ("CardRotate_D1");
 		UpdateDiagonalRotationAnimation ("CardRotate_D2");
