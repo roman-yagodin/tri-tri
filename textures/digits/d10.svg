@@ -15,8 +15,8 @@
    version="1.1"
    id="svg8"
    inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
-   sodipodi:docname="d2.svg"
-   inkscape:export-filename="/mnt/hdd/home/redhound/Projects/tri-tri/textures/digits/d2.png"
+   sodipodi:docname="d10.svg"
+   inkscape:export-filename="/mnt/hdd/home/redhound/Projects/tri-tri/textures/digits/d9.png"
    inkscape:export-xdpi="96.000008"
    inkscape:export-ydpi="96.000008">
   <defs
@@ -29,8 +29,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.5"
-     inkscape:cx="-398.40077"
-     inkscape:cy="560"
+     inkscape:cx="-208.677"
+     inkscape:cy="-274.21356"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -48,7 +48,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -56,17 +56,33 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(0,-161.53332)">
+     transform="translate(0,-161.53332)"
+     style="opacity:0.95">
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.28888893px;line-height:1.25;font-family:'Open Sans';-inkscape-font-specification:'Open Sans';letter-spacing:0px;word-spacing:0px;fill:#800000;fill-opacity:1;stroke:none;stroke-width:6.3499999;stroke-miterlimit:4;stroke-dasharray:none"
-       x="27.529068"
-       y="280.35742"
+       x="1.2567744"
+       y="269.58804"
        id="text814"><tspan
          sodipodi:role="line"
-         id="tspan812"
-         x="27.529068"
-         y="280.35742"
-         style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:141.1111145px;font-family:'Open Sans';-inkscape-font-specification:'Open Sans Ultra-Bold';fill:#ffffff;stroke:#000000;stroke-width:6.3499999;stroke-miterlimit:4;stroke-dasharray:none">2</tspan></text>
-  </g>
+         x="1.2567744"
+         y="269.58804"
+         style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:112.8888855px;font-family:'Open Sans';-inkscape-font-specification:'Open Sans Ultra-Bold';fill:#ffffff;stroke:#000000;stroke-width:6.3499999;stroke-miterlimit:4;stroke-dasharray:none"
+         id="tspan814">10</tspan><tspan
+         sodipodi:role="line"
+         x="1.2567744"
+         y="320.67657"
+         style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:112.8888855px;font-family:'Open Sans';-inkscape-font-specification:'Open Sans Ultra-Bold';fill:#ffffff;stroke:#000000;stroke-width:6.3499999;stroke-miterlimit:4;stroke-dasharray:none"
+         id="tspan815" /></text>
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot834"
+       style="fill:black;fill-opacity:1;stroke:none;font-family:'Open Sans';font-style:normal;font-weight:normal;font-size:42.66666667px;line-height:1.25;letter-spacing:0px;word-spacing:0px;-inkscape-font-specification:'Open Sans';font-stretch:normal;font-variant:normal"><flowRegion
+         id="flowRegion836"><rect
+           id="rect838"
+           width="254"
+           height="268"
+           x="348"
+           y="288" /></flowRegion><flowPara
+         id="flowPara840"></flowPara></flowRoot>  </g>
 </svg>

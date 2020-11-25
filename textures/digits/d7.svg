@@ -16,7 +16,7 @@
    id="svg8"
    inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
    sodipodi:docname="d7.svg"
-   inkscape:export-filename="/mnt/hdd/home/redhound/Projects/tri-tri/textures/d2.png"
+   inkscape:export-filename="/mnt/hdd/home/redhound/Projects/tri-tri/textures/digits/d7.png"
    inkscape:export-xdpi="96.000008"
    inkscape:export-ydpi="96.000008">
   <defs
@@ -29,7 +29,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.35"
-     inkscape:cx="44.155956"
+     inkscape:cx="-532.9869"
      inkscape:cy="-274.21356"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
@@ -60,19 +60,19 @@
      style="opacity:0.95">
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.28888893px;line-height:1.25;font-family:'Open Sans';-inkscape-font-specification:'Open Sans';letter-spacing:0px;word-spacing:0px;fill:#800000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="27.735773"
-       y="279.63394"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.28888893px;line-height:1.25;font-family:'Open Sans';-inkscape-font-specification:'Open Sans';letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:6.3499999;stroke-miterlimit:4;stroke-dasharray:none"
+       x="26.013226"
+       y="279.56506"
        id="text814"><tspan
          sodipodi:role="line"
          id="tspan812"
-         x="27.735773"
-         y="279.63394"
-         style="font-size:141.1111145px;fill:#800000;stroke-width:0.26458332">7</tspan><tspan
+         x="26.013226"
+         y="279.56506"
+         style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:141.1111145px;font-family:'Open Sans';-inkscape-font-specification:'Open Sans Ultra-Bold';fill:#ffffff;stroke:#000000;stroke-width:6.3499999;stroke-miterlimit:4;stroke-dasharray:none">7</tspan><tspan
          sodipodi:role="line"
-         x="27.735773"
-         y="340.99399"
-         style="font-size:141.1111145px;fill:#800000;stroke-width:0.26458332"
+         x="26.013226"
+         y="340.92511"
+         style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:141.1111145px;font-family:'Open Sans';-inkscape-font-specification:'Open Sans Ultra-Bold';fill:#ffffff;stroke:#000000;stroke-width:6.3499999;stroke-miterlimit:4;stroke-dasharray:none"
          id="tspan814" /></text>
   </g>
 </svg>
