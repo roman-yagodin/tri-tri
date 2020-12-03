@@ -6,13 +6,15 @@ public class CardScene : Spatial
 {
 	protected MeshInstance Front => GetNode<MeshInstance> (nameof (Front));
 
-	protected DigitPlate DigitPlate1 => GetNode<DigitPlate> (nameof (DigitPlate1));
+	protected Spatial Digits => GetNode<Spatial> (nameof (Digits));
 
-	protected DigitPlate DigitPlate2 => GetNode<DigitPlate> (nameof (DigitPlate2));
+	protected DigitPlate DigitPlate1 => Digits.GetNode<DigitPlate> (nameof (DigitPlate1));
+
+	protected DigitPlate DigitPlate2 => Digits.GetNode<DigitPlate> (nameof (DigitPlate2));
 	
-	protected DigitPlate DigitPlate3 => GetNode<DigitPlate> (nameof (DigitPlate3));
+	protected DigitPlate DigitPlate3 => Digits.GetNode<DigitPlate> (nameof (DigitPlate3));
 	
-	protected DigitPlate DigitPlate4 => GetNode<DigitPlate> (nameof (DigitPlate4));
+	protected DigitPlate DigitPlate4 => Digits.GetNode<DigitPlate> (nameof (DigitPlate4));
 
 	protected Sprite3D Sprite3D => GetNode<Sprite3D> (nameof (Sprite3D));
 

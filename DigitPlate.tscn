@@ -6,4 +6,4 @@
 script = ExtResource( 2 )
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-pixel_size = 0.0015
+pixel_size = 0.001
