@@ -32,6 +32,11 @@ public class DealScene : Spatial
 			cardScene.Card = card;
 			cardScene.Name = "Card" + idx;
 			cardScene.Translation = new Vector3 (0f, (deal.Cards.Count - 1) * CardSpacing / 2f - (idx * CardSpacing), 0f);
+
+			if (!deal.IsOpen) {
+				cardScene.Rotate (new Vector3 (0, 1, 0), Mathf.Pi);
+			}
+
 			cardScene.Rotate (new Vector3 (1f, 0f, 0f), Mathf.Deg2Rad (CardRotation));
 			AddChild (cardScene);
 			idx++;

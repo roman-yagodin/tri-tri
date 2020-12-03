@@ -25,10 +25,14 @@ public class GameScene : Spatial
 		var dealer = new Dealer ();
 	
 		var leftDeck = CardFactory.CreateFullUniqueDeck ();
-		LeftDeal.Deal = dealer.Deal (leftDeck, 5, CardOwner.Red);
+		var leftDeal = dealer.Deal (leftDeck, 5, CardOwner.Red);
+		leftDeal.IsOpen = false;
+		LeftDeal.Deal = leftDeal;
 		
 		var rightDeck = CardFactory.CreateFullUniqueDeck ();
-		RightDeal.Deal = dealer.Deal (rightDeck, 5, CardOwner.Blue);
+		var rightDeal = dealer.Deal (rightDeck, 5, CardOwner.Blue);
+		rightDeal.IsOpen = true;
+		RightDeal.Deal = rightDeal;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
