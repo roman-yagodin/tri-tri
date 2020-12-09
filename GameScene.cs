@@ -5,34 +5,46 @@ public class GameScene : Spatial
 {
 	protected Camera Camera => GetNode<Camera> (nameof (Camera));
 
-	protected Spatial Board => GetNode<Spatial> (nameof (Board));
+	protected Spatial TestBoard => GetNode<Spatial> (nameof (TestBoard));
 
-	protected CardScene Card1 => Board.GetNode<CardScene> (nameof (Card1));
+	protected BoardScene Board => GetNode<BoardScene> (nameof (Board));
 
-	protected CardScene Card2 => Board.GetNode<CardScene> (nameof (Card2));
+	protected CardScene Card1 => TestBoard.GetNode<CardScene> (nameof (Card1));
+
+	protected CardScene Card2 => TestBoard.GetNode<CardScene> (nameof (Card2));
 	
-	protected CardScene Card3 => Board.GetNode<CardScene> (nameof (Card3));
+	protected CardScene Card3 => TestBoard.GetNode<CardScene> (nameof (Card3));
 	
-	protected CardScene Card4 => Board.GetNode<CardScene> (nameof (Card4));
+	protected CardScene Card4 => TestBoard.GetNode<CardScene> (nameof (Card4));
 	
 	protected DealScene LeftDeal => GetNode<DealScene> (nameof (LeftDeal));
 
 	protected DealScene RightDeal => GetNode<DealScene> (nameof (RightDeal));
+
+	IGame _game;
+	IGame Game {
+		get { return _game; }
+		set {
+			_game = value;
+			Bind (_game);
+		}
+	}
+
+	void Bind (IGame game)
+	{
+		if (game == null) {
+			return;
+		}
+
+		LeftDeal.Deal = game.LeftDeal;
+		RightDeal.Deal = game.RightDeal;
+		Board.Board = game.Board;
+	}
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		var dealer = new Dealer ();
-	
-		var leftDeck = CardFactory.CreateFullUniqueDeck ();
-		var leftDeal = dealer.Deal (leftDeck, 5, CardOwner.Red);
-		leftDeal.IsOpen = false;
-		LeftDeal.Deal = leftDeal;
-		
-		var rightDeck = CardFactory.CreateFullUniqueDeck ();
-		var rightDeal = dealer.Deal (rightDeck, 5, CardOwner.Blue);
-		rightDeal.IsOpen = true;
-		RightDeal.Deal = rightDeal;
+		Game = new Game ();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -43,11 +55,27 @@ public class GameScene : Spatial
 	public override void _Input(InputEvent inputEvent)
 	{
 		if (inputEvent.IsActionPressed("ui_left")) {
-			Board.Rotate (new Vector3 (0, 1, 0), (float) Math.PI / 16);
+			TestBoard.Rotate (new Vector3 (0, 1, 0), (float) Math.PI / 16);
 		}
 		else if (inputEvent.IsActionPressed("ui_right")) {
-			Board.Rotate (new Vector3 (0, 1, 0), -(float) Math.PI / 16);
+			TestBoard.Rotate (new Vector3 (0, 1, 0), -(float) Math.PI / 16);
 		}
+		else if (inputEvent.IsActionPressed("card1")) {
+			PlayCard (RightDeal, cardIdx: 0, 0, 0);
+		}
+		else if (inputEvent.IsActionPressed("card2")) {
+			PlayCard (RightDeal, cardIdx: 1, 1, 0);
+		}
+		else if (inputEvent.IsActionPressed("card3")) {
+			PlayCard (RightDeal, cardIdx: 2, 2, 0);
+		}
+		else if (inputEvent.IsActionPressed("card4")) {
+			PlayCard (RightDeal, cardIdx: 3, 0, 1);
+		}
+		else if (inputEvent.IsActionPressed("card5")) {
+			PlayCard (RightDeal, cardIdx: 4, 1, 1);
+		}
+		/*
 		else if (inputEvent.IsActionPressed("test_rotate1")) {
 			Card1.Rotate_H ();
 		}
@@ -59,6 +87,17 @@ public class GameScene : Spatial
 		}
 		else if (inputEvent.IsActionPressed("test_rotate4")) {
 			Card4.Rotate_D2 ();
+		}*/
+	}
+
+	void PlayCard (DealScene dealScene, int cardIdx, int boardX, int boardY)
+	{
+		if (Board.Board.CanAddCard (boardX, boardY)) {
+			var cardScene = RightDeal.CardScenes [cardIdx];
+			if (cardScene != null) {
+				dealScene.RemoveCardScene (cardScene);
+				Board.AddCardScene (cardScene, boardX, boardY);
+			}
 		}
 	}
 }

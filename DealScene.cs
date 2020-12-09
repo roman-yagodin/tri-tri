@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public class DealScene : Spatial
 {
@@ -13,6 +14,9 @@ public class DealScene : Spatial
 		}
 	}
 
+	public IList<CardScene> CardScenes { get; set; } 
+
+
 	[Export]
 	public float CardSpacing { get; set; } = 2.5f;
 
@@ -25,6 +29,7 @@ public class DealScene : Spatial
 			return;
 		}
 
+		CardScenes = new List<CardScene> ();
 		var cardSceneRes = ResourceLoader.Load<PackedScene> ("res://CardScene.tscn");
 		var idx = 0;
 		foreach (var card in deal.Cards) {
@@ -38,9 +43,23 @@ public class DealScene : Spatial
 			}
 
 			cardScene.Rotate (new Vector3 (1f, 0f, 0f), Mathf.Deg2Rad (CardRotation));
-			AddChild (cardScene);
+			AddCardScene (cardScene);
 			idx++;
 		}
+	}
+
+	void AddCardScene (CardScene cardScene)
+	{
+		AddChild (cardScene);
+		CardScenes.Add (cardScene);
+	}
+
+	public void RemoveCardScene (CardScene cardScene)
+	{
+		RemoveChild (cardScene);
+		var idx = CardScenes.IndexOf (cardScene);
+		CardScenes [idx] = null;
+		Deal.Cards [idx] = null;
 	}
 
 	// Called when the node enters the scene tree for the first time.
