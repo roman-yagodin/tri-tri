@@ -39,6 +39,8 @@ public class GameScene : Spatial
 		LeftDeal.Deal = game.Player1.Deal;
 		RightDeal.Deal = game.Player2.Deal;
 		Board.Board = game.Board;
+
+		game.Player2.OnPlayCard += Player2_PlayCard;
 	}
 	
 	// Called when the node enters the scene tree for the first time.
@@ -61,19 +63,19 @@ public class GameScene : Spatial
 			TestBoard.Rotate (new Vector3 (0, 1, 0), -(float) Math.PI / 16);
 		}
 		else if (inputEvent.IsActionPressed("card1")) {
-			PlayCard (RightDeal, cardIdx: 0, 0, 0);
+			PlayCard (cardIdx: 0, 0, 0);
 		}
 		else if (inputEvent.IsActionPressed("card2")) {
-			PlayCard (RightDeal, cardIdx: 1, 1, 0);
+			PlayCard (cardIdx: 1, 1, 0);
 		}
 		else if (inputEvent.IsActionPressed("card3")) {
-			PlayCard (RightDeal, cardIdx: 2, 2, 0);
+			PlayCard (cardIdx: 2, 2, 0);
 		}
 		else if (inputEvent.IsActionPressed("card4")) {
-			PlayCard (RightDeal, cardIdx: 3, 0, 1);
+			PlayCard (cardIdx: 3, 0, 1);
 		}
 		else if (inputEvent.IsActionPressed("card5")) {
-			PlayCard (RightDeal, cardIdx: 4, 1, 1);
+			PlayCard (cardIdx: 4, 1, 1);
 		}
 		/*
 		else if (inputEvent.IsActionPressed("test_rotate1")) {
@@ -90,14 +92,15 @@ public class GameScene : Spatial
 		}*/
 	}
 
-	void PlayCard (DealScene dealScene, int cardIdx, int boardX, int boardY)
+	void PlayCard (int cardIdx, int boardX, int boardY)
 	{
-		if (Board.Board.CanPlaceCard (boardX, boardY)) {
-			var cardScene = RightDeal.CardScenes [cardIdx];
-			if (cardScene != null) {
-				dealScene.RemoveCardScene (cardScene);
-				Board.AddCardScene (cardScene, boardX, boardY);
-			}
-		}
+		Game.Player2.PlayCard (cardIdx, Game.Board, boardX, boardY);
+	}
+
+	void Player2_PlayCard (object sender, PlayCardEventArgs args)
+	{
+		var cardScene = RightDeal.CardScenes [args.CardIdx];
+		RightDeal.RemoveCardScene (cardScene);
+		Board.AddCardScene (cardScene, args.X, args.Y);
 	}
 }
