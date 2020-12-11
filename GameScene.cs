@@ -36,8 +36,8 @@ public class GameScene : Spatial
 			return;
 		}
 
-		LeftDeal.Deal = game.LeftDeal;
-		RightDeal.Deal = game.RightDeal;
+		LeftDeal.Deal = game.Player1.Deal;
+		RightDeal.Deal = game.Player2.Deal;
 		Board.Board = game.Board;
 	}
 	

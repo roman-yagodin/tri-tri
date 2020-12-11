@@ -2,30 +2,33 @@ public interface IGame
 {
     IBoard Board { get; set; }
 
-    IDeal LeftDeal { get; set; }
+    IPlayer Player1 { get; set; }
 
-    IDeal RightDeal { get; set; }
+    IPlayer Player2 { get; set; }
 }
 
 public class Game: IGame
 {
     public IBoard Board { get; set; }
 
-    public IDeal LeftDeal { get; set; }
+    public IPlayer Player1 { get; set; }
 
-    public IDeal RightDeal { get; set; }
+    public IPlayer Player2 { get; set; }
 
     public Game ()
     {
         var dealer = new Dealer ();
 
-        var leftDeck = CardFactory.CreateFullUniqueDeck ();
-		LeftDeal = dealer.Deal (leftDeck, 5, CardOwner.Red);
-        LeftDeal.IsOpen = false;
+        Player1 = new Player ();
+        Player2 = new Player ();
 
-		var rightDeck = CardFactory.CreateFullUniqueDeck ();
-		RightDeal = dealer.Deal (rightDeck, 5, CardOwner.Blue);
-        RightDeal.IsOpen = true;
+        var deck1 = CardFactory.CreateFullUniqueDeck ();
+		Player1.Deal = dealer.Deal (deck1, 5, CardOwner.Red);
+        Player1.Deal.IsOpen = false;
+
+		var deck2 = CardFactory.CreateFullUniqueDeck ();
+		Player2.Deal = dealer.Deal (deck2, 5, CardOwner.Blue);
+        Player2.Deal.IsOpen = true;
 
         Board = new Board (3, 3);
     }
