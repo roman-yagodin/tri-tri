@@ -6,7 +6,7 @@ public interface IBoard
 
     ICard [,] Field { get; set; }
 
-    bool CanAddCard (int x, int y);
+    bool CanPlaceCard (int x, int y);
 }
 
 public class Board: IBoard
@@ -22,5 +22,5 @@ public class Board: IBoard
         Field = new ICard [width, height];
     }
 
-    public bool CanAddCard (int x, int y) => Field [x, y] == null;
+    public bool CanPlaceCard (int x, int y) => Field [x, y] == null;
 }

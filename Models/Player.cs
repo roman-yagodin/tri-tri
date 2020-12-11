@@ -20,7 +20,7 @@ public class Player: IPlayer
             return;
         }
 
-        if (!board.CanAddCard (x, y)) {
+        if (!board.CanPlaceCard (x, y)) {
             return;
         }
 

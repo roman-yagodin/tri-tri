@@ -92,7 +92,7 @@ public class GameScene : Spatial
 
 	void PlayCard (DealScene dealScene, int cardIdx, int boardX, int boardY)
 	{
-		if (Board.Board.CanAddCard (boardX, boardY)) {
+		if (Board.Board.CanPlaceCard (boardX, boardY)) {
 			var cardScene = RightDeal.CardScenes [cardIdx];
 			if (cardScene != null) {
 				dealScene.RemoveCardScene (cardScene);
