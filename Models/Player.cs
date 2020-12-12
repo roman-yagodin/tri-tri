@@ -4,6 +4,8 @@ public interface IPlayer
 {
     string Name { get; set; }
 
+    int Score { get; set; }
+
     IDeal Deal { get; set; }
 
     event Action<object, PlayCardEventArgs> OnPlayCard;
@@ -23,6 +25,8 @@ public class PlayCardEventArgs
 public class Player: IPlayer
 {
     public string Name { get; set; }
+
+    public int Score { get; set; }
 
     public IDeal Deal { get; set; }
 
