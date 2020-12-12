@@ -12,6 +12,10 @@ public class BoardScene : Spatial
 		}
 	}
 
+	int BoardSizeN => Board.Field.GetLength (0);
+
+	int BoardSizeM => Board.Field.GetLength (1);
+
 	public CardScene [,] CardScenes { get; set; }
 
 	void Bind (IBoard board)
@@ -20,15 +24,17 @@ public class BoardScene : Spatial
 			return;
 		}
 
-		CardScenes = new CardScene [board.Field.GetLength (0), board.Field.GetLength (1)];
+		CardScenes = new CardScene [BoardSizeN, BoardSizeM];
 	}
 
 	public void AddCardScene (CardScene cardScene, int x, int y)
 	{
-		// TODO: Calculate card translation from card size, board size and grid spacing
-		var cw = 3;
-		var ch = 4;
-		cardScene.Translation = new Vector3 (x * (cw + 1), -y * (ch + 1), 0);
+		cardScene.Translation = new Vector3 (
+			-(Const.CARD_WIDTH + Const.BOARD_GRID_SPACING) * (BoardSizeN - 1 - x * 2) / 2,
+			(Const.CARD_HEIGHT + Const.BOARD_GRID_SPACING) * (BoardSizeM - 1 - y * 2) / 2,
+			0
+		);
+
 		cardScene.Rotation = Vector3.Zero;
 		
 		AddChild (cardScene);
