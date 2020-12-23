@@ -63,19 +63,19 @@ public class GameScene : Spatial
 			TestBoard.Rotate (new Vector3 (0, 1, 0), -(float) Math.PI / 16);
 		}
 		else if (inputEvent.IsActionPressed("card1")) {
-			PlayCard (cardIdx: 0, 0, 0);
+			PlayCard (cardIdx: 0, Game.Board.TryGetRandomEmptyTile ());
 		}
 		else if (inputEvent.IsActionPressed("card2")) {
-			PlayCard (cardIdx: 1, 1, 0);
+			PlayCard (cardIdx: 1, Game.Board.TryGetRandomEmptyTile ());
 		}
 		else if (inputEvent.IsActionPressed("card3")) {
-			PlayCard (cardIdx: 2, 2, 0);
+			PlayCard (cardIdx: 2, Game.Board.TryGetRandomEmptyTile ());
 		}
 		else if (inputEvent.IsActionPressed("card4")) {
-			PlayCard (cardIdx: 3, 0, 1);
+			PlayCard (cardIdx: 3, Game.Board.TryGetRandomEmptyTile ());
 		}
 		else if (inputEvent.IsActionPressed("card5")) {
-			PlayCard (cardIdx: 4, 1, 1);
+			PlayCard (cardIdx: 4, Game.Board.TryGetRandomEmptyTile ());
 		}
 		/*
 		else if (inputEvent.IsActionPressed("test_rotate1")) {
@@ -92,9 +92,9 @@ public class GameScene : Spatial
 		}*/
 	}
 
-	void PlayCard (int cardIdx, int boardX, int boardY)
+	void PlayCard (int cardIdx, Pair boardXY)
 	{
-		Game.Player2.PlayCard (cardIdx, Game.Board, boardX, boardY);
+		Game.Player2.PlayCard (cardIdx, Board.Board, boardXY.X, boardXY.Y);
 	}
 
 	void Player2_PlayCard (object sender, PlayCardEventArgs args)

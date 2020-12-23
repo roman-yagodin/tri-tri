@@ -12,10 +12,6 @@ public class BoardScene : Spatial
 		}
 	}
 
-	int BoardSizeN => Board.Field.GetLength (0);
-
-	int BoardSizeM => Board.Field.GetLength (1);
-
 	public CardScene [,] CardScenes { get; set; }
 
 	void Bind (IBoard board)
@@ -24,14 +20,14 @@ public class BoardScene : Spatial
 			return;
 		}
 
-		CardScenes = new CardScene [BoardSizeN, BoardSizeM];
+		CardScenes = new CardScene [Board.Width, Board.Height];
 	}
 
 	public void AddCardScene (CardScene cardScene, int x, int y)
 	{
 		cardScene.Translation = new Vector3 (
-			-(Const.CARD_WIDTH + Const.BOARD_GRID_SPACING) * (BoardSizeN - 1 - x * 2) / 2,
-			(Const.CARD_HEIGHT + Const.BOARD_GRID_SPACING) * (BoardSizeM - 1 - y * 2) / 2,
+			-(Const.CARD_WIDTH + Const.BOARD_GRID_SPACING) * (Board.Width - 1 - x * 2) / 2,
+			(Const.CARD_HEIGHT + Const.BOARD_GRID_SPACING) * (Board.Height - 1 - y * 2) / 2,
 			0
 		);
 
@@ -39,12 +35,5 @@ public class BoardScene : Spatial
 		
 		AddChild (cardScene);
 		CardScenes [x, y] = cardScene;
-		Board.Field [x, y] = cardScene.Card;
-	}
-
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-		Bind (_board);
 	}
 }
