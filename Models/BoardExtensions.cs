@@ -14,7 +14,7 @@ public static class BoardExtensions
 		while (true) {
 			var i = rnd.Next (board.Width);
 			var j = rnd.Next (board.Height);
-			if (board.Field [i, j] == null) {
+			if (board.Tiles [i, j] == null) {
 				return new Pair { X = i, Y = j};
 			}
 		}

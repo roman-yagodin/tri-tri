@@ -41,12 +41,12 @@ public class Player: IPlayer
 			return;
 		}
 
-		if (!board.CanPlaceCard (x, y)) {
+		if (!board.CanPlaceCardAt (x, y)) {
 			GD.Print ("Cannot place card here!");
 			return;
 		}
 
-		board.Field [x, y] = card;
+		board.Tiles [x, y] = card;
 		Deal.Cards [cardIdx] = null;
 
 		if (OnPlayCard != null) {
