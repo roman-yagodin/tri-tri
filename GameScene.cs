@@ -40,6 +40,7 @@ public class GameScene : Spatial
 		RightDeal.Deal = game.Player2.Deal;
 		Board.Board = game.Board;
 
+		game.Player1.OnPlayCard += Player1_PlayCard;
 		game.Player2.OnPlayCard += Player2_PlayCard;
 	}
 	
@@ -63,19 +64,19 @@ public class GameScene : Spatial
 			TestBoard.Rotate (new Vector3 (0, 1, 0), -(float) Math.PI / 16);
 		}
 		else if (inputEvent.IsActionPressed("card1")) {
-			PlayCard (cardIdx: 0, Game.Board.TryGetRandomEmptyTile ());
+			PlayCard (cardIdx: 0);
 		}
 		else if (inputEvent.IsActionPressed("card2")) {
-			PlayCard (cardIdx: 1, Game.Board.TryGetRandomEmptyTile ());
+			PlayCard (cardIdx: 1);
 		}
 		else if (inputEvent.IsActionPressed("card3")) {
-			PlayCard (cardIdx: 2, Game.Board.TryGetRandomEmptyTile ());
+			PlayCard (cardIdx: 2);
 		}
 		else if (inputEvent.IsActionPressed("card4")) {
-			PlayCard (cardIdx: 3, Game.Board.TryGetRandomEmptyTile ());
+			PlayCard (cardIdx: 3);
 		}
 		else if (inputEvent.IsActionPressed("card5")) {
-			PlayCard (cardIdx: 4, Game.Board.TryGetRandomEmptyTile ());
+			PlayCard (cardIdx: 4);
 		}
 		/*
 		else if (inputEvent.IsActionPressed("test_rotate1")) {
@@ -92,15 +93,30 @@ public class GameScene : Spatial
 		}*/
 	}
 
-	void PlayCard (int cardIdx, Pair boardXY)
+	void PlayCard (int cardIdx)
 	{
-		Game.Player2.PlayCard (cardIdx, Board.Board, boardXY.X, boardXY.Y);
+		Game.Player2.PlayCard (Board.Board, new CardResult { CardIndex = cardIdx, BoardXY = Game.Board.TryGetRandomEmptyTile () });
+		
+		if (Game.IsOver ()) {
+			GD.Print ("Game over!");
+			return;
+		}
+
+		var cr = Game.Player1.AI.ThinkOn (Game.Board, Game.Player1.Deal);
+		Game.Player1.PlayCard (Board.Board, cr);
 	}
 
 	void Player2_PlayCard (object sender, PlayCardEventArgs args)
 	{
 		var cardScene = RightDeal.CardScenes [args.CardIdx];
 		RightDeal.RemoveCardScene (cardScene);
+		Board.AddCardScene (cardScene, args.X, args.Y);
+	}
+
+	void Player1_PlayCard (object sender, PlayCardEventArgs args)
+	{
+		var cardScene = LeftDeal.CardScenes [args.CardIdx];
+		LeftDeal.RemoveCardScene (cardScene);
 		Board.AddCardScene (cardScene, args.X, args.Y);
 	}
 }

@@ -23,8 +23,8 @@ public class Game: IGame
 	{
 		var dealer = new Dealer ();
 
-		Player1 = new Player ();
-		Player2 = new Player ();
+		Player1 = new RandomPlayer ();
+		Player2 = new HumanPlayer ();
 
 		var deck1 = CardFactory.CreateFullUniqueDeck ();
 		Player1.Deal = dealer.Deal (deck1, 5, CardOwner.Red);

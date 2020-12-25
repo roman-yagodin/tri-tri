@@ -9,9 +9,11 @@ public interface IPlayer
 
 	IDeal Deal { get; set; }
 
+	IAI AI { get; set; }
+
 	event Action<object, PlayCardEventArgs> OnPlayCard;
 
-	void PlayCard (int cardIdx, IBoard board, int x, int y);
+	void PlayCard (IBoard board, CardResult cr);
 }
 
 public class PlayCardEventArgs
@@ -23,7 +25,7 @@ public class PlayCardEventArgs
 	public int Y { get; set; }
 }
 
-public class Player: IPlayer
+public abstract class PlayerBase: IPlayer
 {
 	public string Name { get; set; }
 
@@ -31,30 +33,42 @@ public class Player: IPlayer
 
 	public IDeal Deal { get; set; }
 
+	public virtual IAI AI { get; set; }
+
 	public event Action<object, PlayCardEventArgs> OnPlayCard;
 	
-	public void PlayCard (int cardIdx, IBoard board, int x, int y)
+	public virtual void PlayCard (IBoard board, CardResult cr)
 	{
-		var card = Deal.Cards [cardIdx];
+		var card = Deal.Cards [cr.CardIndex];
 		if (card == null) {
 			GD.Print ("No card to play!");
 			return;
 		}
 
-		if (!board.CanPlaceCardAt (x, y)) {
+		if (!board.CanPlaceCardAt (cr.BoardXY.X, cr.BoardXY.Y)) {
 			GD.Print ("Cannot place card here!");
 			return;
 		}
 
-		board.Tiles [x, y] = card;
-		Deal.Cards [cardIdx] = null;
+		board.Tiles [cr.BoardXY.X, cr.BoardXY.Y] = card;
+		Deal.Cards [cr.CardIndex] = null;
 
 		if (OnPlayCard != null) {
 			OnPlayCard (this, new PlayCardEventArgs {
-				CardIdx = cardIdx,
-				X = x,
-				Y = y
+				CardIdx = cr.CardIndex,
+				X = cr.BoardXY.X,
+				Y = cr.BoardXY.Y
 			});
 		}
 	}
+}
+
+public class RandomPlayer: PlayerBase
+{
+	public override IAI AI { get; set; } = new RandomAI ();
+}
+
+public class HumanPlayer: PlayerBase
+{
+
 }
