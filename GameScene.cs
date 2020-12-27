@@ -95,7 +95,7 @@ public class GameScene : Spatial
 
 	void PlayCard (int cardIdx)
 	{
-		Game.Player2.PlayCard (Board.Board, new CardResult { CardIndex = cardIdx, BoardXY = Game.Board.TryGetRandomEmptyTile () });
+		Game.Player2.PlayCard (Board.Board, new CardResult { CardIndex = cardIdx, BoardCoords = Game.Board.TryGetRandomEmptyTile () });
 		
 		if (Game.IsOver ()) {
 			GD.Print ("Game over!");
@@ -110,13 +110,13 @@ public class GameScene : Spatial
 	{
 		var cardScene = RightDeal.CardScenes [args.CardIdx];
 		RightDeal.RemoveCardScene (cardScene);
-		Board.AddCardScene (cardScene, args.X, args.Y);
+		Board.AddCardScene (cardScene, args.BoardCoords.X, args.BoardCoords.Y);
 	}
 
 	void Player1_PlayCard (object sender, PlayCardEventArgs args)
 	{
 		var cardScene = LeftDeal.CardScenes [args.CardIdx];
 		LeftDeal.RemoveCardScene (cardScene);
-		Board.AddCardScene (cardScene, args.X, args.Y);
+		Board.AddCardScene (cardScene, args.BoardCoords.X, args.BoardCoords.Y);
 	}
 }

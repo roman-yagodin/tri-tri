@@ -5,7 +5,7 @@ public struct CardResult
 {
     public int CardIndex;
 
-    public BoardCoords BoardXY;
+    public BoardCoords BoardCoords;
 }
 
 public interface IAI
@@ -19,7 +19,7 @@ public class RandomAI : IAI
     {
         return new CardResult {
             CardIndex = deal.TryGetRandomCardIndex (),
-            BoardXY = board.TryGetRandomEmptyTile ()
+            BoardCoords = board.TryGetRandomEmptyTile ()
         };
     }
 }

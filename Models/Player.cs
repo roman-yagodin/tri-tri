@@ -16,15 +16,6 @@ public interface IPlayer
 	void PlayCard (IBoard board, CardResult cr);
 }
 
-public class PlayCardEventArgs
-{
-	public int CardIdx { get; set; }
-
-	public int X { get; set; }
-
-	public int Y { get; set; }
-}
-
 public abstract class PlayerBase: IPlayer
 {
 	public string Name { get; set; }
@@ -45,19 +36,18 @@ public abstract class PlayerBase: IPlayer
 			return;
 		}
 
-		if (!board.CanPlaceCardAt (cr.BoardXY.X, cr.BoardXY.Y)) {
+		if (!board.CanPlaceCardAt (cr.BoardCoords.X, cr.BoardCoords.Y)) {
 			GD.Print ("Cannot place card here!");
 			return;
 		}
 
-		board.Tiles [cr.BoardXY.X, cr.BoardXY.Y] = card;
+		board.Tiles [cr.BoardCoords.X, cr.BoardCoords.Y] = card;
 		Deal.Cards [cr.CardIndex] = null;
 
 		if (OnPlayCard != null) {
 			OnPlayCard (this, new PlayCardEventArgs {
 				CardIdx = cr.CardIndex,
-				X = cr.BoardXY.X,
-				Y = cr.BoardXY.Y
+				BoardCoords = cr.BoardCoords
 			});
 		}
 	}

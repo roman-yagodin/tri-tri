@@ -27,6 +27,8 @@ public class Board: IBoard
         Tiles = new ICard [width, height];
     }
 
+    public bool CanPlaceCardAt (BoardCoords boardCoords) => CanPlaceCardAt (boardCoords.X, boardCoords.Y);
+
     public bool CanPlaceCardAt (int x, int y) => Tiles [x, y] == null;
     
     public bool IsFull ()
