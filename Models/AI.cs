@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-public struct CardResult
+public struct PlayCardThinkResult
 {
     public int CardIndex;
 
@@ -10,14 +10,14 @@ public struct CardResult
 
 public interface IAI
 {
-    CardResult ThinkOn (IBoard board, IDeal deal);
+    PlayCardThinkResult ThinkOn (IBoard board, IDeal deal);
 }
 
 public class RandomAI : IAI
 {
-    public CardResult ThinkOn (IBoard board, IDeal deal)
+    public PlayCardThinkResult ThinkOn (IBoard board, IDeal deal)
     {
-        return new CardResult {
+        return new PlayCardThinkResult {
             CardIndex = deal.TryGetRandomCardIndex (),
             BoardCoords = board.TryGetRandomEmptyTile ()
         };

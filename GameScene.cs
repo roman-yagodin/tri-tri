@@ -95,7 +95,7 @@ public class GameScene : Spatial
 
 	void PlayCard (int cardIdx)
 	{
-		Game.Player2.PlayCard (Board.Board, new CardResult { CardIndex = cardIdx, BoardCoords = Game.Board.TryGetRandomEmptyTile () });
+		Game.Player2.PlayCard (Board.Board, new PlayCardThinkResult { CardIndex = cardIdx, BoardCoords = Game.Board.TryGetRandomEmptyTile () });
 		
 		if (Game.IsOver ()) {
 			GD.Print ("Game over!");
@@ -108,15 +108,15 @@ public class GameScene : Spatial
 
 	void Player2_PlayCard (object sender, PlayCardEventArgs args)
 	{
-		var cardScene = RightDeal.CardScenes [args.CardIdx];
+		var cardScene = RightDeal.CardScenes [args.PlayCardThinkResult.CardIndex];
 		RightDeal.RemoveCardScene (cardScene);
-		Board.AddCardScene (cardScene, args.BoardCoords.X, args.BoardCoords.Y);
+		Board.AddCardScene (cardScene, args.PlayCardThinkResult.BoardCoords.X, args.PlayCardThinkResult.BoardCoords.Y);
 	}
 
 	void Player1_PlayCard (object sender, PlayCardEventArgs args)
 	{
-		var cardScene = LeftDeal.CardScenes [args.CardIdx];
+		var cardScene = LeftDeal.CardScenes [args.PlayCardThinkResult.CardIndex];
 		LeftDeal.RemoveCardScene (cardScene);
-		Board.AddCardScene (cardScene, args.BoardCoords.X, args.BoardCoords.Y);
+		Board.AddCardScene (cardScene, args.PlayCardThinkResult.BoardCoords.X, args.PlayCardThinkResult.BoardCoords.Y);
 	}
 }

@@ -13,7 +13,7 @@ public interface IPlayer
 
 	event Action<object, PlayCardEventArgs> OnPlayCard;
 
-	void PlayCard (IBoard board, CardResult cr);
+	void PlayCard (IBoard board, PlayCardThinkResult cr);
 }
 
 public abstract class PlayerBase: IPlayer
@@ -28,7 +28,7 @@ public abstract class PlayerBase: IPlayer
 
 	public event Action<object, PlayCardEventArgs> OnPlayCard;
 	
-	public virtual void PlayCard (IBoard board, CardResult cr)
+	public virtual void PlayCard (IBoard board, PlayCardThinkResult cr)
 	{
 		var card = Deal.Cards [cr.CardIndex];
 		if (card == null) {
@@ -46,8 +46,10 @@ public abstract class PlayerBase: IPlayer
 
 		if (OnPlayCard != null) {
 			OnPlayCard (this, new PlayCardEventArgs {
-				CardIdx = cr.CardIndex,
-				BoardCoords = cr.BoardCoords
+				PlayCardThinkResult = new PlayCardThinkResult {
+					CardIndex = cr.CardIndex,
+					BoardCoords = cr.BoardCoords
+				}
 			});
 		}
 	}
