@@ -1,0 +1,25 @@
+@startuml
+
+class AI {
+    ThinkOnPlayCard (Board, Deal): PlayCardThinkResult
+}
+
+class Player {
+    PlayCard ()
+}
+
+class PlayCardThinkResult<<struct>> {
+    CardIndex: int    
+    BoardCoords: BoardCoords
+}
+
+note left of PlayCardThinkResult: Which card\nto play and there?
+
+Game o- Board
+Player o- Deal
+
+Game o-- "2" Player
+
+AI .. PlayCardThinkResult
+
+@enduml
