@@ -4,10 +4,10 @@ using System.Text;
 
 public static class BoardExtensions
 {
-	public static Pair TryGetRandomEmptyTile (this IBoard board)
+	public static BoardCoords TryGetRandomEmptyTile (this IBoard board)
 	{
 		if (board.IsFull ()) {
-			return new Pair { X = -1, Y = -1};
+			return new BoardCoords { X = -1, Y = -1};
 		}
 
 		var rnd = new Random ();
@@ -15,7 +15,7 @@ public static class BoardExtensions
 			var i = rnd.Next (board.Width);
 			var j = rnd.Next (board.Height);
 			if (board.Tiles [i, j] == null) {
-				return new Pair { X = i, Y = j};
+				return new BoardCoords { X = i, Y = j};
 			}
 		}
 	}

@@ -5,7 +5,7 @@ public struct CardResult
 {
     public int CardIndex;
 
-    public Pair BoardXY;
+    public BoardCoords BoardXY;
 }
 
 public interface IAI

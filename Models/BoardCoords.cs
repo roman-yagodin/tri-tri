@@ -1,4 +1,4 @@
-public struct Pair
+public struct BoardCoords
 {
     public int X;
 
