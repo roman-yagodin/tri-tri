@@ -95,14 +95,17 @@ public class GameScene : Spatial
 
 	void PlayCard (int cardIdx)
 	{
-		Game.Player2.PlayCard (Board.Board, new PlayCardThinkResult { CardIndex = cardIdx, BoardCoords = Game.Board.TryGetRandomEmptyTile () });
+		Game.Player2.PlayCard (Board.Board, new PlayCardThinkResult {
+			CardIndex = cardIdx,
+			BoardCoords = Game.Board.TryGetRandomEmptyTile ()
+		});
 		
 		if (Game.IsOver ()) {
 			GD.Print ("Game over!");
 			return;
 		}
 
-		var cr = Game.Player1.AI.ThinkOn (Game.Board, Game.Player1.Deal);
+		var cr = Game.Player1.AI.ThinkOnPlayCard (Game.Board, Game.Player1.Deal);
 		Game.Player1.PlayCard (Board.Board, cr);
 	}
 
