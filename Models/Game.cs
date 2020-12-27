@@ -11,7 +11,7 @@ public interface IGame
 	bool IsOver ();
 }
 
-public class Game: IGame
+public class SampleGame: IGame
 {
 	public IBoard Board { get; set; }
 
@@ -19,7 +19,7 @@ public class Game: IGame
 
 	public IPlayer Player2 { get; set; }
 
-	public Game ()
+	public SampleGame ()
 	{
 		var dealer = new Dealer ();
 

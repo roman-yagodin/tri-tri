@@ -47,7 +47,7 @@ public class GameScene : Spatial
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		Game = new Game ();
+		Game = new SampleGame ();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -64,19 +64,19 @@ public class GameScene : Spatial
 			TestBoard.Rotate (new Vector3 (0, 1, 0), -(float) Math.PI / 16);
 		}
 		else if (inputEvent.IsActionPressed("card1")) {
-			((Game) Game).Player2Turn (cardIdx: 0);
+			((SampleGame) Game).Player2Turn (cardIdx: 0);
 		}
 		else if (inputEvent.IsActionPressed("card2")) {
-			((Game) Game).Player2Turn (cardIdx: 1);
+			((SampleGame) Game).Player2Turn (cardIdx: 1);
 		}
 		else if (inputEvent.IsActionPressed("card3")) {
-			((Game) Game).Player2Turn (cardIdx: 2);
+			((SampleGame) Game).Player2Turn (cardIdx: 2);
 		}
 		else if (inputEvent.IsActionPressed("card4")) {
-			((Game) Game).Player2Turn (cardIdx: 3);
+			((SampleGame) Game).Player2Turn (cardIdx: 3);
 		}
 		else if (inputEvent.IsActionPressed("card5")) {
-			((Game) Game).Player2Turn (cardIdx: 4);
+			((SampleGame) Game).Player2Turn (cardIdx: 4);
 		}
 		/*
 		else if (inputEvent.IsActionPressed("test_rotate1")) {
