@@ -64,19 +64,19 @@ public class GameScene : Spatial
 			TestBoard.Rotate (new Vector3 (0, 1, 0), -(float) Math.PI / 16);
 		}
 		else if (inputEvent.IsActionPressed("card1")) {
-			PlayCard (cardIdx: 0);
+			((Game) Game).Player2Turn (cardIdx: 0);
 		}
 		else if (inputEvent.IsActionPressed("card2")) {
-			PlayCard (cardIdx: 1);
+			((Game) Game).Player2Turn (cardIdx: 1);
 		}
 		else if (inputEvent.IsActionPressed("card3")) {
-			PlayCard (cardIdx: 2);
+			((Game) Game).Player2Turn (cardIdx: 2);
 		}
 		else if (inputEvent.IsActionPressed("card4")) {
-			PlayCard (cardIdx: 3);
+			((Game) Game).Player2Turn (cardIdx: 3);
 		}
 		else if (inputEvent.IsActionPressed("card5")) {
-			PlayCard (cardIdx: 4);
+			((Game) Game).Player2Turn (cardIdx: 4);
 		}
 		/*
 		else if (inputEvent.IsActionPressed("test_rotate1")) {
@@ -91,23 +91,6 @@ public class GameScene : Spatial
 		else if (inputEvent.IsActionPressed("test_rotate4")) {
 			Card4.Rotate_D2 ();
 		}*/
-	}
-
-	void PlayCard (int cardIdx)
-	{
-		Game.Player2.PlayCard (Board.Board, new PlayCardThinkResult {
-			CardIndex = cardIdx,
-			BoardCoords = Game.Board.TryGetRandomEmptyTile ()
-		});
-		
-		if (Game.IsOver ()) {
-			GD.Print ("Game over!");
-			return;
-		}
-
-		var ai = new RandomAI ();
-		var cr = ai.ThinkOnPlayCard (Game.Board, Game.Player1.Deal);
-		Game.Player1.PlayCard (Board.Board, cr);
 	}
 
 	void Player2_PlayCard (object sender, PlayCardEventArgs args)
