@@ -16,7 +16,7 @@ public interface IPlayer
 	void PlayCard (IBoard board, PlayCardThinkResult cr);
 }
 
-public abstract class PlayerBase: IPlayer
+public class Player: IPlayer
 {
 	public string Name { get; set; }
 
@@ -53,14 +53,4 @@ public abstract class PlayerBase: IPlayer
 			});
 		}
 	}
-}
-
-public class RandomPlayer: PlayerBase
-{
-	public override IAI AI { get; set; } = new RandomAI ();
-}
-
-public class HumanPlayer: PlayerBase
-{
-
 }

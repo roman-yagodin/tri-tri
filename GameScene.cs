@@ -105,7 +105,8 @@ public class GameScene : Spatial
 			return;
 		}
 
-		var cr = Game.Player1.AI.ThinkOnPlayCard (Game.Board, Game.Player1.Deal);
+		var ai = new RandomAI ();
+		var cr = ai.ThinkOnPlayCard (Game.Board, Game.Player1.Deal);
 		Game.Player1.PlayCard (Board.Board, cr);
 	}
 
