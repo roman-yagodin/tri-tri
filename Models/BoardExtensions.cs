@@ -4,6 +4,22 @@ using System.Text;
 
 public static class BoardExtensions
 {
+	public static bool CanPlaceCardAt (this IBoard board, BoardCoords boardCoords) => board.CanPlaceCardAt (boardCoords.X, boardCoords.Y);
+
+	public static bool CanPlaceCardAt (this IBoard board, int x, int y) => board.Tiles [x, y] == null;
+
+	public static bool IsFull (this IBoard board)
+	{
+		for (var i = 0; i < board.Width; i++) {
+			for (var j = 0; j < board.Height; j++) {
+				if (board.CanPlaceCardAt (i, j)) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+
 	public static BoardCoords TryGetRandomEmptyTile (this IBoard board)
 	{
 		if (board.IsFull ()) {
