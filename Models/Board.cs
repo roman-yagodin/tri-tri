@@ -80,13 +80,13 @@ public class Board: IBoard
 
 		if (adjCards.Bottom != null && adjCards.Bottom.Owner != card.Owner) {
 			if (adjCards.Bottom.Values [2] < card.Values [2]) {
-				adjCards.Bottom.Rotate (RotateDirection.Vertical);
+				adjCards.Bottom.Rotate (RotateDirection.VerticalBackwards);
 			}
 		}
 
 		if (adjCards.Left != null && adjCards.Left.Owner != card.Owner) {
 			if (adjCards.Left.Values [3] < card.Values [3]) {
-				adjCards.Left.Rotate (RotateDirection.Horizontal);
+				adjCards.Left.Rotate (RotateDirection.HorizontalBackwards);
 			}
 		}
 	}

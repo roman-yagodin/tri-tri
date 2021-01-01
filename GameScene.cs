@@ -121,12 +121,6 @@ public class GameScene : Spatial
 		GD.Print (card.Name + " rotated!");
 
 		var cardScene = Board.GetCardScene (card);
-		
-		if (args.RotateDirection == RotateDirection.Horizontal) {
-			cardScene.Rotate_H ();
-		}
-		else if (args.RotateDirection == RotateDirection.Vertical) {
-			cardScene.Rotate_V ();
-		}
+		cardScene.Rotate (args.RotateDirection);
 	}
 }

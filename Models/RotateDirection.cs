@@ -2,5 +2,9 @@ public enum RotateDirection
 {
     Horizontal,
 
-    Vertical
+    HorizontalBackwards,
+
+    Vertical,
+
+    VerticalBackwards
 }

@@ -113,18 +113,15 @@ public class CardScene : Spatial
 		return anim;	
 	}
 
-	public void Rotate_H ()
+	public void Rotate (RotateDirection rotateDirection)
 	{
 		if (!AnimationPlayer.IsPlaying ()) {
-			AnimationPlayer.Play ("CardRotate_H");
-			Timer.Start ();
-		}
-	}
-	
-	public void Rotate_V ()
-	{
-		if (!AnimationPlayer.IsPlaying ()) {
-			AnimationPlayer.Play ("CardRotate_V");
+			switch (rotateDirection) {
+				case RotateDirection.Horizontal: AnimationPlayer.Play ("CardRotate_H"); break;
+				case RotateDirection.HorizontalBackwards: AnimationPlayer.PlayBackwards ("CardRotate_H"); break;
+				case RotateDirection.Vertical: AnimationPlayer.Play ("CardRotate_V"); break;
+				case RotateDirection.VerticalBackwards: AnimationPlayer.PlayBackwards ("CardRotate_V"); break;
+			}
 			Timer.Start ();
 		}
 	}
