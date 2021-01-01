@@ -29,7 +29,8 @@ public class DealScene : Spatial
 			return;
 		}
 
-		CardScenes = new List<CardScene> ();
+		Reset ();
+
 		var cardSceneRes = ResourceLoader.Load<PackedScene> ("res://CardScene.tscn");
 		var idx = 0;
 		foreach (var card in deal.Cards) {
@@ -46,6 +47,18 @@ public class DealScene : Spatial
 			AddCardScene (cardScene);
 			idx++;
 		}
+	}
+
+	void Reset ()
+	{
+		if (CardScenes != null) {
+			foreach (var cardScene in CardScenes) {
+				if (cardScene != null) {
+					RemoveChild (cardScene);
+				}
+			}
+		}
+		CardScenes = new List<CardScene> ();
 	}
 
 	void AddCardScene (CardScene cardScene)

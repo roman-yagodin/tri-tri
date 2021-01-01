@@ -86,11 +86,10 @@ public class GameScene : Spatial
 		else if (inputEvent.IsActionPressed("card5")) {
 			((SampleGame) Game).Player2Turn (cardIdx: 4);
 		}
-		/*
-		else if (inputEvent.IsActionPressed("test_rotate1")) {
-			Card1.Rotate_H ();
+		else if (inputEvent.IsActionPressed("new_game")) {
+			Game = new SampleGame ();
 		}
-		else if (inputEvent.IsActionPressed("test_rotate2")) {
+		/*else if (inputEvent.IsActionPressed("test_rotate2")) {
 			Card2.Rotate_V ();
 		}
 		else if (inputEvent.IsActionPressed("test_rotate3")) {

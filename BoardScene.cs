@@ -21,6 +21,20 @@ public class BoardScene : Spatial
 			return;
 		}
 
+		Reset ();
+	}
+
+	void Reset ()
+	{
+		if (CardScenes != null) {
+			for (var i = 0; i < Board.Width; i++) {
+				for (var j = 0; j < Board.Height; j++) {
+					if (CardScenes [i, j] != null) {
+						RemoveChild (CardScenes [i, j]);
+					}
+				}
+			}
+		}
 		CardScenes = new CardScene [Board.Width, Board.Height];
 	}
 
