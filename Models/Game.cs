@@ -39,11 +39,15 @@ public class SampleGame: IGame
 
 	public void Player2Turn (int cardIdx)
 	{
-		Player2.PlayCard (Board, new PlayCardThinkResult {
+		var player2PlayedCard = Player2.PlayCard (Board, new PlayCardThinkResult {
 			CardIndex = cardIdx,
 			BoardCoords = Board.TryGetRandomEmptyTile ()
 		});
-		
+
+		if (!player2PlayedCard) {
+			return;
+		}
+
 		if (IsOver ()) {
 			GD.Print ("Game over!");
 			return;

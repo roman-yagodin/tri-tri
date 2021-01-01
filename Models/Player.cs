@@ -13,7 +13,7 @@ public interface IPlayer
 
 	event Action<object, PlayCardEventArgs> OnPlayCard;
 
-	void PlayCard (IBoard board, PlayCardThinkResult cr);
+	bool PlayCard (IBoard board, PlayCardThinkResult cr);
 }
 
 public class Player: IPlayer
@@ -28,17 +28,17 @@ public class Player: IPlayer
 
 	public event Action<object, PlayCardEventArgs> OnPlayCard;
 	
-	public virtual void PlayCard (IBoard board, PlayCardThinkResult cr)
+	public virtual bool PlayCard (IBoard board, PlayCardThinkResult cr)
 	{
 		var card = Deal.Cards [cr.CardIndex];
 		if (card == null) {
 			GD.Print ("No card to play!");
-			return;
+			return false;
 		}
 
 		if (!board.CanPlaceCardAt (cr.BoardCoords.X, cr.BoardCoords.Y)) {
 			GD.Print ("Cannot place card here!");
-			return;
+			return false;
 		}
 
 		board.PlaceCard (card, cr.BoardCoords);
@@ -52,5 +52,7 @@ public class Player: IPlayer
 				}
 			});
 		}
+
+		return true;
 	}
 }
