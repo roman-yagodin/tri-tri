@@ -67,10 +67,10 @@ public class CardScene : Spatial
 		if (card.Owner != CardOwner.Neutral) {
 			var material = new SpatialMaterial ();
 			if (card.Owner == CardOwner.Red) {
-				material.AlbedoColor = new Color (1f, .75f, .75f);
+				material.AlbedoColor = new Color (1f, .33f, .33f);
 			}
 			else if (card.Owner == CardOwner.Blue) {
-				material.AlbedoColor = new Color (.75f, .75f, 1f);
+				material.AlbedoColor = new Color (.33f, .33f, 1f);
 			}
 			Front.SetSurfaceMaterial (0, material);
 		}
