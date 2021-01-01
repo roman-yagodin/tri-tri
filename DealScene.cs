@@ -61,10 +61,4 @@ public class DealScene : Spatial
 		CardScenes [idx] = null;
 		Deal.Cards [idx] = null;
 	}
-
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-		BindDeal (_deal);
-	}
 }

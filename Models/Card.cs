@@ -20,6 +20,10 @@ public interface ICard
 	ICard Clone ();
 	
 	void ToggleOwner ();
+
+	void Rotate (RotateDirection rotateDirection);
+
+	event Action<object, RotateCardEventArgs> OnRotateCard;
 }
 
 public class Card : ICard
@@ -37,6 +41,8 @@ public class Card : ICard
 	public bool IsBlank { get; set; }
 
 	public string GetTextureFilename () => $"res://textures/cards/{TextureName}.png";
+
+	public event Action<object, RotateCardEventArgs> OnRotateCard;
 
 	public Card ()
 	{
@@ -62,6 +68,17 @@ public class Card : ICard
 		}
 		else if (Owner == CardOwner.Blue) {
 			Owner = CardOwner.Red;
+		}
+	}
+
+	public void Rotate (RotateDirection rotateDirection)
+	{
+		ToggleOwner ();
+
+		if (OnRotateCard != null) {
+			OnRotateCard (this, new RotateCardEventArgs {
+				RotateDirection = rotateDirection
+			});
 		}
 	}
 }

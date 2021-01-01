@@ -42,6 +42,14 @@ public class GameScene : Spatial
 
 		game.Player1.OnPlayCard += Player1_PlayCard;
 		game.Player2.OnPlayCard += Player2_PlayCard;
+
+		foreach (var card in game.Player1.Deal.Cards) {
+			card.OnRotateCard += Card_RotateCard;
+		}
+
+		foreach (var card in game.Player2.Deal.Cards) {
+			card.OnRotateCard += Card_RotateCard;
+		}
 	}
 	
 	// Called when the node enters the scene tree for the first time.
@@ -97,13 +105,28 @@ public class GameScene : Spatial
 	{
 		var cardScene = RightDeal.CardScenes [args.PlayCardThinkResult.CardIndex];
 		RightDeal.RemoveCardScene (cardScene);
-		Board.AddCardScene (cardScene, args.PlayCardThinkResult.BoardCoords.X, args.PlayCardThinkResult.BoardCoords.Y);
+		Board.AddCardScene (cardScene, args.PlayCardThinkResult.BoardCoords);
 	}
 
 	void Player1_PlayCard (object sender, PlayCardEventArgs args)
 	{
 		var cardScene = LeftDeal.CardScenes [args.PlayCardThinkResult.CardIndex];
 		LeftDeal.RemoveCardScene (cardScene);
-		Board.AddCardScene (cardScene, args.PlayCardThinkResult.BoardCoords.X, args.PlayCardThinkResult.BoardCoords.Y);
+		Board.AddCardScene (cardScene, args.PlayCardThinkResult.BoardCoords);
+	}
+
+	void Card_RotateCard (object sender, RotateCardEventArgs args)
+	{
+		var card = (ICard) sender;
+		GD.Print (card.Name + " rotated!");
+
+		var cardScene = Board.GetCardScene (card);
+		
+		if (args.RotateDirection == RotateDirection.Horizontal) {
+			cardScene.Rotate_H ();
+		}
+		else if (args.RotateDirection == RotateDirection.Vertical) {
+			cardScene.Rotate_V ();
+		}
 	}
 }

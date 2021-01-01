@@ -41,7 +41,7 @@ public class Player: IPlayer
 			return;
 		}
 
-		board.Tiles [cr.BoardCoords.X, cr.BoardCoords.Y] = card;
+		board.PlaceCard (card, cr.BoardCoords);
 		Deal.Cards [cr.CardIndex] = null;
 
 		if (OnPlayCard != null) {
