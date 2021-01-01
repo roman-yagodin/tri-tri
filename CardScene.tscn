@@ -45,19 +45,19 @@ mesh = SubResource( 2 )
 material/0 = null
 
 [node name="Digits" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.01 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 1.25, 0.01 )
 
 [node name="DigitPlate1" parent="Digits" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 1.75, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
 
 [node name="DigitPlate2" parent="Digits" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1.25, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0, 0 )
 
 [node name="DigitPlate3" parent="Digits" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0.75, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0 )
 
 [node name="DigitPlate4" parent="Digits" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.25, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, 0 )
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0.01 )
