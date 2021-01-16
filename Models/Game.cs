@@ -49,7 +49,7 @@ public class SampleGame: IGame
 		}
 
 		if (IsOver ()) {
-			GD.Print ("Game over!");
+			GD.Print ("Game over! Press N to start new game.");
 			return;
 		}
 
