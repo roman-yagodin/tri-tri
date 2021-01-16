@@ -67,25 +67,25 @@ public class Board: IBoard
 		var adjCards = GetAdjacentCards (boardCoords);
 
 		if (adjCards.Top != null && adjCards.Top.Owner != card.Owner) {
-			if (adjCards.Top.Values [0] < card.Values [0]) {
+			if (adjCards.Top.Values [2] < card.Values [0]) {
 				adjCards.Top.Rotate (RotateDirection.Vertical);
 			}
 		}
 
 		if (adjCards.Right != null && adjCards.Right.Owner != card.Owner) {
-			if (adjCards.Right.Values [1] < card.Values [1]) {
+			if (adjCards.Right.Values [3] < card.Values [1]) {
 				adjCards.Right.Rotate (RotateDirection.Horizontal);
 			}
 		}
 
 		if (adjCards.Bottom != null && adjCards.Bottom.Owner != card.Owner) {
-			if (adjCards.Bottom.Values [2] < card.Values [2]) {
+			if (adjCards.Bottom.Values [0] < card.Values [2]) {
 				adjCards.Bottom.Rotate (RotateDirection.VerticalBackwards);
 			}
 		}
 
 		if (adjCards.Left != null && adjCards.Left.Owner != card.Owner) {
-			if (adjCards.Left.Values [3] < card.Values [3]) {
+			if (adjCards.Left.Values [1] < card.Values [3]) {
 				adjCards.Left.Rotate (RotateDirection.HorizontalBackwards);
 			}
 		}
