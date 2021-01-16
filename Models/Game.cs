@@ -37,13 +37,13 @@ public class SampleGame: IGame
 		Board = new Board (3, 3);
 	}
 
-	public void Player2Turn (int cardIdx)
+	public void PlayerTurn (int cardIdx)
 	{
 		var player2PlayedCard = Player2.PlayCard (Board, new PlayCardThinkResult {
 			CardIndex = cardIdx,
 			BoardCoords = Board.TryGetRandomEmptyTile ()
 		});
-
+		
 		if (!player2PlayedCard) {
 			return;
 		}
@@ -53,6 +53,11 @@ public class SampleGame: IGame
 			return;
 		}
 
+		GD.Print ("Press E to play enemy card!");
+	}
+
+	public void EnemyTurn ()
+	{
 		var ai = new RandomAI ();
 		var cr = ai.ThinkOnPlayCard (Board, Player1.Deal);
 		Player1.PlayCard (Board, cr);

@@ -72,23 +72,28 @@ public class GameScene : Spatial
 			TestBoard.Rotate (new Vector3 (0, 1, 0), -(float) Math.PI / 16);
 		}
 		else if (inputEvent.IsActionPressed("card1")) {
-			((SampleGame) Game).Player2Turn (cardIdx: 0);
+			((SampleGame) Game).PlayerTurn (cardIdx: 0);
 		}
 		else if (inputEvent.IsActionPressed("card2")) {
-			((SampleGame) Game).Player2Turn (cardIdx: 1);
+			((SampleGame) Game).PlayerTurn (cardIdx: 1);
 		}
 		else if (inputEvent.IsActionPressed("card3")) {
-			((SampleGame) Game).Player2Turn (cardIdx: 2);
+			((SampleGame) Game).PlayerTurn (cardIdx: 2);
 		}
 		else if (inputEvent.IsActionPressed("card4")) {
-			((SampleGame) Game).Player2Turn (cardIdx: 3);
+			((SampleGame) Game).PlayerTurn (cardIdx: 3);
 		}
 		else if (inputEvent.IsActionPressed("card5")) {
-			((SampleGame) Game).Player2Turn (cardIdx: 4);
+			((SampleGame) Game).PlayerTurn (cardIdx: 4);
+		}
+		else if (inputEvent.IsActionPressed ("enemy_turn")) {
+			((SampleGame) Game).EnemyTurn ();
 		}
 		else if (inputEvent.IsActionPressed("new_game")) {
 			Game = new SampleGame ();
 		}
+
+
 		/*else if (inputEvent.IsActionPressed("test_rotate2")) {
 			Card2.Rotate_V ();
 		}
