@@ -1,0 +1,34 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Play in Editor",
+            "type": "godot-mono",
+            "mode": "playInEditor",
+            "request": "launch"
+        },
+        {
+            "name": "Launch",
+            "type": "godot-mono",
+            "request": "launch",
+            "mode": "executable",
+            //"executable": "${workspaceRoot}/Godot.exe",
+            "executable": "/mnt/hdd/home/redhound-game/opt/Godot/bin/Godot_v3.2.3-stable_mono_x11.64",
+            "executableArguments": [
+                "--path",
+                //"${workspaceRoot}"
+                "/mnt/hdd/home/redhound-game/Projects/tri-tri"
+            ]
+        },
+        {
+            "name": "Attach",
+            "type": "godot-mono",
+            "request": "attach",
+            "address": "localhost",
+            "port": 23685
+        }
+    ]
+}
