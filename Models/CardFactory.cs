@@ -3,11 +3,11 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 
-public static class CardFactory
+public class CardFactory
 {
-	public static IDictionary<string, ICard> Cards;
+	public IDictionary<string, ICard> Cards;
 
-	static CardFactory ()
+	public CardFactory ()
 	{
 		Cards = new Dictionary<string, ICard> ();
 
@@ -21,12 +21,12 @@ public static class CardFactory
 		AddTemplate ("green_dragon", 3, 7, 6, 4);
 	}
 
-	static void AddTemplate (string cardName, params int [] values)
+	void AddTemplate (string cardName, params int [] values)
 	{
 		Cards.Add (cardName, new Card (cardName, values));
 	}
 
-	public static ICard CreateCard (string cardName)
+	public ICard CreateCard (string cardName)
 	{
 		if (cardName != null && Cards.TryGetValue (cardName, out ICard card)) {
 			return ((Card) card).Clone ();
@@ -34,7 +34,7 @@ public static class CardFactory
 		return null;
 	}
 
-	public static IDeck CreateFullUniqueDeck ()
+	public IDeck CreateFullUniqueDeck ()
 	{
 		return new Deck {
 			Cards = Cards.Values.Select (c => c.Clone ()).ToList ()

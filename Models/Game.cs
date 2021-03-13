@@ -32,11 +32,12 @@ public class SampleGame: IGame
 		Player1 = new Player ();
 		Player2 = new Player ();
 
-		var deck1 = CardFactory.CreateFullUniqueDeck ();
+		var cardFactory = new CardFactory ();
+		var deck1 = cardFactory.CreateFullUniqueDeck ();
 		Player1.Deal = dealer.Deal (deck1, 5, CardOwner.Red);
 		Player1.Deal.IsOpen = false;
 
-		var deck2 = CardFactory.CreateFullUniqueDeck ();
+		var deck2 = cardFactory.CreateFullUniqueDeck ();
 		Player2.Deal = dealer.Deal (deck2, 5, CardOwner.Blue);
 		Player2.Deal.IsOpen = true;
 
