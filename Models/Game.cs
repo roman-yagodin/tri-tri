@@ -45,21 +45,18 @@ public class SampleGame: IGame
 
 	public void PlayerTurn (int cardIdx)
 	{
-		var player2PlayedCard = Player2.PlayCard (Board, new PlayCardThinkResult {
+		var playerPlayedCard = Player2.PlayCard (Board, new PlayCardThinkResult {
 			CardIndex = cardIdx,
 			BoardCoords = Board.TryGetRandomEmptyTile ()
 		});
 		
-		if (!player2PlayedCard) {
-			return;
-		}
-
-		if (IsOver ()) {
-			GD.Print ("Game over! Press N to start new game.");
+		if (!playerPlayedCard) {
 			return;
 		}
 
 		State = GameState.EnemyTurn;
+
+		EndTurn ();
 	}
 
 	public void EnemyTurn ()
@@ -69,6 +66,16 @@ public class SampleGame: IGame
 		Player1.PlayCard (Board, cr);
 
 		State = GameState.PlayerTurn;
+		
+		EndTurn ();
+	}
+
+	void EndTurn ()
+	{
+		if (IsOver ()) {
+			GD.Print ("Game over! Press N to start new game.");
+			State = GameState.GameOver;
+		}
 	}
 
 	public bool IsOver () => Board.IsFull ();

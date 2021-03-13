@@ -113,7 +113,7 @@ public class GameScene : Spatial
 		
 		game.PlayerTurn (cardIdx);
 
-		if (!game.IsOver ()) {
+		if (game.State != GameState.GameOver) {
 			EnemyTurnTimer.Start ();
 		}
 	}
