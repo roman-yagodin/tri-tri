@@ -57,3 +57,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0 )
 
 [node name="Board" parent="." instance=ExtResource( 3 )]
+
+[node name="EnemyTurnTimer" type="Timer" parent="."]
+one_shot = true
+[connection signal="timeout" from="EnemyTurnTimer" to="." method="_on_EnemyTurnTimer_timeout"]

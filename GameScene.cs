@@ -21,6 +21,8 @@ public class GameScene : Spatial
 
 	protected DealScene RightDeal => GetNode<DealScene> (nameof (RightDeal));
 
+	protected Timer EnemyTurnTimer => GetNode<Timer> (nameof (EnemyTurnTimer));
+
 	IGame _game;
 	IGame Game {
 		get { return _game; }
@@ -72,28 +74,23 @@ public class GameScene : Spatial
 			TestBoard.Rotate (new Vector3 (0, 1, 0), -(float) Math.PI / 16);
 		}
 		else if (inputEvent.IsActionPressed("card1")) {
-			((SampleGame) Game).PlayerTurn (cardIdx: 0);
+			PlayerTurn (0);
 		}
 		else if (inputEvent.IsActionPressed("card2")) {
-			((SampleGame) Game).PlayerTurn (cardIdx: 1);
+			PlayerTurn (1);
 		}
 		else if (inputEvent.IsActionPressed("card3")) {
-			((SampleGame) Game).PlayerTurn (cardIdx: 2);
+			PlayerTurn (2);
 		}
 		else if (inputEvent.IsActionPressed("card4")) {
-			((SampleGame) Game).PlayerTurn (cardIdx: 3);
+			PlayerTurn (3);
 		}
 		else if (inputEvent.IsActionPressed("card5")) {
-			((SampleGame) Game).PlayerTurn (cardIdx: 4);
-		}
-		else if (inputEvent.IsActionPressed ("enemy_turn")) {
-			((SampleGame) Game).EnemyTurn ();
+			PlayerTurn (4);
 		}
 		else if (inputEvent.IsActionPressed("new_game")) {
 			Game = new SampleGame ();
 		}
-
-
 		/*else if (inputEvent.IsActionPressed("test_rotate2")) {
 			Card2.Rotate_V ();
 		}
@@ -103,6 +100,27 @@ public class GameScene : Spatial
 		else if (inputEvent.IsActionPressed("test_rotate4")) {
 			Card4.Rotate_D2 ();
 		}*/
+	}
+
+	void PlayerTurn (int cardIdx)
+	{
+		var game = ((SampleGame) Game);
+
+		if (game.State != GameState.PlayerTurn) {
+			GD.Print ("It's not your turn!");
+			return;
+		}
+		
+		game.PlayerTurn (cardIdx);
+
+		if (!game.IsOver ()) {
+			EnemyTurnTimer.Start ();
+		}
+	}
+
+	private void _on_EnemyTurnTimer_timeout()
+	{
+		((SampleGame) Game).EnemyTurn ();
 	}
 
 	void Player2_PlayCard (object sender, PlayCardEventArgs args)
