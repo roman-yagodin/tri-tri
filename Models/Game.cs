@@ -45,6 +45,9 @@ public class SampleGame: IGame
 		Player2.Deal.IsOpen = true;
 
 		Board = new Board (this, 3, 3);
+
+		GD.Print ("---");
+		GD.Print ("Game started!");
 	}
 
 	public void PlayerTurn (int cardIdx)
@@ -79,6 +82,7 @@ public class SampleGame: IGame
 		if (IsOver ()) {
 			CheckResult ();
 
+			GD.Print ("---");
 			GD.Print ("Press N to start new game.");
 
 			State = GameState.GameOver;
@@ -87,6 +91,7 @@ public class SampleGame: IGame
 
 	void CheckResult ()
 	{
+		GD.Print ("---");
 		if (Player2.Score > Player1.Score) {
 			GD.Print ("You win!");
 		}

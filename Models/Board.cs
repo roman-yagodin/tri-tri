@@ -85,6 +85,7 @@ public class Board: IBoard
 		}
 
 		// print player score
+		GD.Print ("---");
 		GD.Print ("Player1 Score: " + Game.Player1.Score);
 		GD.Print ("Player2 Score: " + Game.Player2.Score);
 	}
