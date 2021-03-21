@@ -24,8 +24,8 @@ public class GameScene : Spatial
 	protected Timer EnemyTurnTimer => GetNode<Timer> (nameof (EnemyTurnTimer));
 
 	IGame _game;
-	IGame Game {
-		get { return _game; }
+	SampleGame Game {
+		get { return (SampleGame) _game; }
 		set {
 			_game = value;
 			Bind (_game);
@@ -104,23 +104,21 @@ public class GameScene : Spatial
 
 	void PlayerTurn (int cardIdx)
 	{
-		var game = ((SampleGame) Game);
-
-		if (game.State != GameState.PlayerTurn) {
+		if (Game.State != GameState.PlayerTurn) {
 			GD.Print ("It's not your turn!");
 			return;
 		}
 		
-		game.PlayerTurn (cardIdx);
+		Game.PlayerTurn (cardIdx);
 
-		if (game.State != GameState.GameOver) {
+		if (Game.State != GameState.GameOver) {
 			EnemyTurnTimer.Start ();
 		}
 	}
 
 	private void _on_EnemyTurnTimer_timeout()
 	{
-		((SampleGame) Game).EnemyTurn ();
+		Game.EnemyTurn ();
 	}
 
 	void Player2_PlayCard (object sender, PlayCardEventArgs args)
