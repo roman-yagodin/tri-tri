@@ -88,10 +88,10 @@ public class SampleGame: IGame
 	void CheckResult ()
 	{
 		if (Player2.Score > Player1.Score) {
-			GD.Print ("You lose!");
-		}
-		else if (Player1.Score < Player2.Score) {
 			GD.Print ("You win!");
+		}
+		else if (Player2.Score < Player1.Score) {
+			GD.Print ("You lose!");
 		}
 		else {
 			GD.Print ("Draw");
