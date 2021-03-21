@@ -10,7 +10,9 @@ public interface IBoard
 
 	ICard [,] Tiles { get; set; }
 
-	void PlaceCard (ICard card, BoardCoords boardCoords);
+	IGame Game { get; set; }
+
+	void PlaceCard (ICard card, BoardCoords boardCoords);	
 }
 
 public struct AdjacentCards
@@ -32,8 +34,11 @@ public class Board: IBoard
 	
 	public ICard [,] Tiles { get; set; }
 
-	public Board (int width, int height)
+	public IGame Game { get; set; }
+
+	public Board (IGame game, int width, int height)
 	{
+		Game = game;
 		Tiles = new ICard [width, height];
 	}
 
@@ -64,30 +69,52 @@ public class Board: IBoard
 	{
 		Tiles [boardCoords.X, boardCoords.Y] = card;
 
+		CheckAdjacentCards (card, boardCoords);
+	}
+
+	private void CheckAdjacentCards (ICard card, BoardCoords boardCoords)
+	{
 		var adjCards = GetAdjacentCards (boardCoords);
 
 		if (adjCards.Top != null && adjCards.Top.Owner != card.Owner) {
 			if (adjCards.Top.Values [2] < card.Values [0]) {
-				adjCards.Top.Rotate (RotateDirection.Vertical);
+				RotateCard (adjCards.Top, RotateDirection.Vertical);
 			}
 		}
 
 		if (adjCards.Right != null && adjCards.Right.Owner != card.Owner) {
 			if (adjCards.Right.Values [3] < card.Values [1]) {
-				adjCards.Right.Rotate (RotateDirection.Horizontal);
+				RotateCard (adjCards.Right, RotateDirection.Horizontal);
 			}
 		}
 
 		if (adjCards.Bottom != null && adjCards.Bottom.Owner != card.Owner) {
 			if (adjCards.Bottom.Values [0] < card.Values [2]) {
-				adjCards.Bottom.Rotate (RotateDirection.VerticalBackwards);
+				RotateCard (adjCards.Bottom, RotateDirection.VerticalBackwards);
 			}
 		}
 
 		if (adjCards.Left != null && adjCards.Left.Owner != card.Owner) {
 			if (adjCards.Left.Values [1] < card.Values [3]) {
-				adjCards.Left.Rotate (RotateDirection.HorizontalBackwards);
+				RotateCard (adjCards.Left, RotateDirection.HorizontalBackwards);
 			}
 		}
+	}
+
+	private void RotateCard (ICard card, RotateDirection rotateDirection)
+	{
+		card.Rotate (rotateDirection);
+
+		if (card.Owner == CardOwner.Red) {
+			Game.Player1.Score++;
+			Game.Player2.Score--;
+		}
+		else if (card.Owner == CardOwner.Blue) {
+			Game.Player1.Score--;
+			Game.Player2.Score++;
+		}
+
+		GD.Print ("Player1 Score: " + Game.Player1.Score);
+		GD.Print ("Player2 Score: " + Game.Player2.Score);
 	}
 }

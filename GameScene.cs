@@ -140,8 +140,6 @@ public class GameScene : Spatial
 	void Card_RotateCard (object sender, RotateCardEventArgs args)
 	{
 		var card = (ICard) sender;
-		GD.Print (card.Name + " rotated!");
-
 		var cardScene = Board.GetCardScene (card);
 		cardScene.Rotate (args.RotateDirection);
 	}

@@ -32,6 +32,9 @@ public class SampleGame: IGame
 		Player1 = new Player ();
 		Player2 = new Player ();
 
+		Player1.Score = 5;
+		Player2.Score = 5;
+
 		var cardFactory = new CardFactory ();
 		var deck1 = cardFactory.CreateFullUniqueDeck ();
 		Player1.Deal = dealer.Deal (deck1, 5, CardOwner.Red);
@@ -41,7 +44,7 @@ public class SampleGame: IGame
 		Player2.Deal = dealer.Deal (deck2, 5, CardOwner.Blue);
 		Player2.Deal.IsOpen = true;
 
-		Board = new Board (3, 3);
+		Board = new Board (this, 3, 3);
 	}
 
 	public void PlayerTurn (int cardIdx)
@@ -74,8 +77,24 @@ public class SampleGame: IGame
 	void EndTurn ()
 	{
 		if (IsOver ()) {
-			GD.Print ("Game over! Press N to start new game.");
+			CheckResult ();
+
+			GD.Print ("Press N to start new game.");
+
 			State = GameState.GameOver;
+		}
+	}
+
+	void CheckResult ()
+	{
+		if (Player2.Score > Player1.Score) {
+			GD.Print ("You lose!");
+		}
+		else if (Player1.Score < Player2.Score) {
+			GD.Print ("You win!");
+		}
+		else {
+			GD.Print ("Draw");
 		}
 	}
 
