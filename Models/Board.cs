@@ -69,52 +69,71 @@ public class Board: IBoard
 	{
 		Tiles [boardCoords.X, boardCoords.Y] = card;
 
-		CheckAdjacentCards (card, boardCoords);
+		var cardsToRotate = CheckAdjacentCards (card, boardCoords);
+		foreach (var cardToRotate in cardsToRotate) {
+			cardToRotate.Card.Rotate (cardToRotate.RotateDirection);
+			
+			// adjust player score
+			if (card.Owner == CardOwner.Red) {
+				Game.Player1.Score++;
+				Game.Player2.Score--;
+			}
+			else if (card.Owner == CardOwner.Blue) {
+				Game.Player1.Score--;
+				Game.Player2.Score++;
+			}
+		}
+
+		// print player score
+		GD.Print ("Player1 Score: " + Game.Player1.Score);
+		GD.Print ("Player2 Score: " + Game.Player2.Score);
 	}
 
-	private void CheckAdjacentCards (ICard card, BoardCoords boardCoords)
+	struct CardToRotate
+	{
+		public ICard Card;
+
+		public RotateDirection RotateDirection;
+	}
+
+	private IEnumerable<CardToRotate> CheckAdjacentCards (ICard card, BoardCoords boardCoords)
 	{
 		var adjCards = GetAdjacentCards (boardCoords);
 
 		if (adjCards.Top != null && adjCards.Top.Owner != card.Owner) {
 			if (adjCards.Top.Values [2] < card.Values [0]) {
-				RotateCard (adjCards.Top, RotateDirection.Vertical);
+				yield return new CardToRotate {
+					Card = adjCards.Top,
+					RotateDirection = RotateDirection.Vertical
+				};
 			}
 		}
 
 		if (adjCards.Right != null && adjCards.Right.Owner != card.Owner) {
 			if (adjCards.Right.Values [3] < card.Values [1]) {
-				RotateCard (adjCards.Right, RotateDirection.Horizontal);
+				yield return new CardToRotate {
+					Card = adjCards.Right,
+					RotateDirection = RotateDirection.Horizontal
+				};
 			}
 		}
 
 		if (adjCards.Bottom != null && adjCards.Bottom.Owner != card.Owner) {
 			if (adjCards.Bottom.Values [0] < card.Values [2]) {
-				RotateCard (adjCards.Bottom, RotateDirection.VerticalBackwards);
+				yield return new CardToRotate {
+					Card = adjCards.Bottom,
+					RotateDirection = RotateDirection.VerticalBackwards
+				};
 			}
 		}
 
 		if (adjCards.Left != null && adjCards.Left.Owner != card.Owner) {
 			if (adjCards.Left.Values [1] < card.Values [3]) {
-				RotateCard (adjCards.Left, RotateDirection.HorizontalBackwards);
+				yield return new CardToRotate {
+					Card = adjCards.Left,
+					RotateDirection = RotateDirection.HorizontalBackwards
+				};
 			}
 		}
-	}
-
-	private void RotateCard (ICard card, RotateDirection rotateDirection)
-	{
-		card.Rotate (rotateDirection);
-
-		if (card.Owner == CardOwner.Red) {
-			Game.Player1.Score++;
-			Game.Player2.Score--;
-		}
-		else if (card.Owner == CardOwner.Blue) {
-			Game.Player1.Score--;
-			Game.Player2.Score++;
-		}
-
-		GD.Print ("Player1 Score: " + Game.Player1.Score);
-		GD.Print ("Player2 Score: " + Game.Player2.Score);
 	}
 }
