@@ -38,18 +38,18 @@ public class GameScene : Spatial
 			return;
 		}
 
-		LeftDeal.Deal = game.Player1.Deal;
-		RightDeal.Deal = game.Player2.Deal;
+		LeftDeal.Deal = game.Enemy.Deal;
+		RightDeal.Deal = game.Player.Deal;
 		Board.Board = game.Board;
 
-		game.Player1.OnPlayCard += Player1_PlayCard;
-		game.Player2.OnPlayCard += Player2_PlayCard;
+		game.Enemy.OnPlayCard += Enemy_PlayCard;
+		game.Player.OnPlayCard += Player_PlayCard;
 
-		foreach (var card in game.Player1.Deal.Cards) {
+		foreach (var card in game.Enemy.Deal.Cards) {
 			card.OnRotateCard += Card_RotateCard;
 		}
 
-		foreach (var card in game.Player2.Deal.Cards) {
+		foreach (var card in game.Player.Deal.Cards) {
 			card.OnRotateCard += Card_RotateCard;
 		}
 
@@ -141,14 +141,14 @@ public class GameScene : Spatial
 		Game.EnemyTurn ();
 	}
 
-	void Player2_PlayCard (object sender, PlayCardEventArgs args)
+	void Player_PlayCard (object sender, PlayCardEventArgs args)
 	{
 		var cardScene = RightDeal.CardScenes [args.PlayCardThinkResult.CardIndex];
 		RightDeal.RemoveCardScene (cardScene);
 		Board.AddCardScene (cardScene, args.PlayCardThinkResult.BoardCoords);
 	}
 
-	void Player1_PlayCard (object sender, PlayCardEventArgs args)
+	void Enemy_PlayCard (object sender, PlayCardEventArgs args)
 	{
 		var cardScene = LeftDeal.CardScenes [args.PlayCardThinkResult.CardIndex];
 		LeftDeal.RemoveCardScene (cardScene);

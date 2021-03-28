@@ -5,9 +5,9 @@ public interface IGame
 {
 	IBoard Board { get; set; }
 
-	IPlayer Player1 { get; set; }
+	IPlayer Enemy { get; set; }
 
-	IPlayer Player2 { get; set; }
+	IPlayer Player { get; set; }
 
 	GameState State { get; set; }
 
@@ -20,9 +20,9 @@ public class SampleGame: IGame
 {
 	public IBoard Board { get; set; }
 
-	public IPlayer Player1 { get; set; }
+	public IPlayer Enemy { get; set; }
 
-	public IPlayer Player2 { get; set; }
+	public IPlayer Player { get; set; }
 
 	private GameState _state = GameState.GameOver;
 
@@ -42,20 +42,20 @@ public class SampleGame: IGame
 	{
 		var dealer = new Dealer ();
 
-		Player1 = new Player ();
-		Player2 = new Player ();
+		Enemy = new Player ();
+		Player = new Player ();
 
-		Player1.Score = 5;
-		Player2.Score = 5;
+		Enemy.Score = 5;
+		Player.Score = 5;
 
 		var cardFactory = new CardFactory ();
 		var deck1 = cardFactory.CreateFullUniqueDeck ();
-		Player1.Deal = dealer.Deal (deck1, 5, CardOwner.Red);
-		Player1.Deal.IsOpen = false;
+		Enemy.Deal = dealer.Deal (deck1, 5, CardOwner.Red);
+		Enemy.Deal.IsOpen = false;
 
 		var deck2 = cardFactory.CreateFullUniqueDeck ();
-		Player2.Deal = dealer.Deal (deck2, 5, CardOwner.Blue);
-		Player2.Deal.IsOpen = true;
+		Player.Deal = dealer.Deal (deck2, 5, CardOwner.Blue);
+		Player.Deal.IsOpen = true;
 
 		Board = new Board (this, 3, 3);
 	}
@@ -77,13 +77,13 @@ public class SampleGame: IGame
 			BoardCoords = Board.TryGetRandomEmptyTile ()
 		};
 
-		var canPlayCard = Player2.CanPlayCard (Board, ctr);
+		var canPlayCard = Player.CanPlayCard (Board, ctr);
 		if (!canPlayCard) {
 			State = GameState.WaitForPlayer;
 			return;
 		}
 
-		Player2.PlayCard (Board, ctr);
+		Player.PlayCard (Board, ctr);
 		
 		State = GameState.WaitForEnemy;
 
@@ -95,8 +95,8 @@ public class SampleGame: IGame
 		State = GameState.EnemyTurn;
 
 		var ai = new RandomAI ();
-		var ctr = ai.ThinkOnPlayCard (Board, Player1.Deal);
-		Player1.PlayCard (Board, ctr);
+		var ctr = ai.ThinkOnPlayCard (Board, Enemy.Deal);
+		Enemy.PlayCard (Board, ctr);
 
 		State = GameState.WaitForPlayer;
 		
@@ -118,10 +118,10 @@ public class SampleGame: IGame
 	void CheckResult ()
 	{
 		GD.Print ("---");
-		if (Player2.Score > Player1.Score) {
+		if (Player.Score > Enemy.Score) {
 			GD.Print ("You win!");
 		}
-		else if (Player2.Score < Player1.Score) {
+		else if (Player.Score < Enemy.Score) {
 			GD.Print ("You lose!");
 		}
 		else {

@@ -75,19 +75,19 @@ public class Board: IBoard
 			
 			// adjust player score
 			if (card.Owner == CardOwner.Red) {
-				Game.Player1.Score++;
-				Game.Player2.Score--;
+				Game.Enemy.Score++;
+				Game.Player.Score--;
 			}
 			else if (card.Owner == CardOwner.Blue) {
-				Game.Player1.Score--;
-				Game.Player2.Score++;
+				Game.Enemy.Score--;
+				Game.Player.Score++;
 			}
 		}
 
 		// print player score
 		GD.Print ("---");
-		GD.Print ("Player1 Score: " + Game.Player1.Score);
-		GD.Print ("Player2 Score: " + Game.Player2.Score);
+		GD.Print ("Enemy Score: " + Game.Enemy.Score);
+		GD.Print ("Player Score: " + Game.Player.Score);
 	}
 
 	struct CardToRotate
