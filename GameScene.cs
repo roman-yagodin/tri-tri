@@ -52,12 +52,25 @@ public class GameScene : Spatial
 		foreach (var card in game.Player2.Deal.Cards) {
 			card.OnRotateCard += Card_RotateCard;
 		}
+
+		game.OnStateChanged += Game_StateChanged;
 	}
-	
+
+	private bool _lockPlayerControls;
+
+	void Game_StateChanged (object sender, EventArgs e)
+	{
+		GD.Print (Game.State);
+		if (Game.State == GameState.WaitForPlayer || Game.State == GameState.GameOver) {
+			_lockPlayerControls = false;
+		}
+	}
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		Game = new SampleGame ();
+		Game.Start ();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -67,6 +80,10 @@ public class GameScene : Spatial
 
 	public override void _Input(InputEvent inputEvent)
 	{
+		if (_lockPlayerControls) {
+			return;
+		}
+
 		if (inputEvent.IsActionPressed("ui_left")) {
 			TestBoard.Rotate (new Vector3 (0, 1, 0), (float) Math.PI / 16);
 		}
@@ -74,44 +91,47 @@ public class GameScene : Spatial
 			TestBoard.Rotate (new Vector3 (0, 1, 0), -(float) Math.PI / 16);
 		}
 		else if (inputEvent.IsActionPressed("card1")) {
-			PlayerTurn (0);
+			if (!Game.IsOver ()) {
+				_lockPlayerControls = true;
+				PlayerTurn (0);
+			}
 		}
 		else if (inputEvent.IsActionPressed("card2")) {
-			PlayerTurn (1);
+			if (!Game.IsOver ()) {
+				_lockPlayerControls = true;
+				PlayerTurn (1);
+			}
 		}
 		else if (inputEvent.IsActionPressed("card3")) {
-			PlayerTurn (2);
+			if (!Game.IsOver ()) {
+				_lockPlayerControls = true;
+				PlayerTurn (2);
+			}
 		}
 		else if (inputEvent.IsActionPressed("card4")) {
-			PlayerTurn (3);
+			if (!Game.IsOver ()) {
+				_lockPlayerControls = true;
+				PlayerTurn (3);
+			}
 		}
 		else if (inputEvent.IsActionPressed("card5")) {
-			PlayerTurn (4);
+			if (!Game.IsOver ()) {
+				_lockPlayerControls = true;
+				PlayerTurn (4);
+			}
 		}
 		else if (inputEvent.IsActionPressed("new_game")) {
+			_lockPlayerControls = true;
 			Game = new SampleGame ();
+			Game.Start ();
 		}
-		/*else if (inputEvent.IsActionPressed("test_rotate2")) {
-			Card2.Rotate_V ();
-		}
-		else if (inputEvent.IsActionPressed("test_rotate3")) {
-			Card3.Rotate_D1 ();
-		}
-		else if (inputEvent.IsActionPressed("test_rotate4")) {
-			Card4.Rotate_D2 ();
-		}*/
 	}
 
 	void PlayerTurn (int cardIdx)
 	{
-		if (Game.State != GameState.PlayerTurn) {
-			GD.Print ("It's not your turn!");
-			return;
-		}
-		
 		Game.PlayerTurn (cardIdx);
 
-		if (Game.State != GameState.GameOver) {
+		if (Game.State == GameState.WaitForEnemy) {
 			EnemyTurnTimer.Start ();
 		}
 	}

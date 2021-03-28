@@ -13,7 +13,9 @@ public interface IPlayer
 
 	event Action<object, PlayCardEventArgs> OnPlayCard;
 
-	bool PlayCard (IBoard board, PlayCardThinkResult cr);
+	bool CanPlayCard (IBoard board, PlayCardThinkResult ctr);
+
+	void PlayCard (IBoard board, PlayCardThinkResult ctr);
 }
 
 public class Player: IPlayer
@@ -28,31 +30,35 @@ public class Player: IPlayer
 
 	public event Action<object, PlayCardEventArgs> OnPlayCard;
 	
-	public virtual bool PlayCard (IBoard board, PlayCardThinkResult cr)
+	public virtual bool CanPlayCard (IBoard board, PlayCardThinkResult ctr)
 	{
-		var card = Deal.Cards [cr.CardIndex];
+		var card = Deal.Cards [ctr.CardIndex];
 		if (card == null) {
 			GD.Print ("No card to play!");
 			return false;
 		}
 
-		if (!board.CanPlaceCardAt (cr.BoardCoords.X, cr.BoardCoords.Y)) {
+		if (!board.CanPlaceCardAt (ctr.BoardCoords.X, ctr.BoardCoords.Y)) {
 			GD.Print ("Cannot place card here!");
 			return false;
 		}
 
-		board.PlaceCard (card, cr.BoardCoords);
-		Deal.Cards [cr.CardIndex] = null;
+		return true;
+	}
+
+	public virtual void PlayCard (IBoard board, PlayCardThinkResult ctr)
+	{
+		var card = Deal.Cards [ctr.CardIndex];
+		board.PlaceCard (card, ctr.BoardCoords);
+		Deal.Cards [ctr.CardIndex] = null;
 
 		if (OnPlayCard != null) {
 			OnPlayCard (this, new PlayCardEventArgs {
 				PlayCardThinkResult = new PlayCardThinkResult {
-					CardIndex = cr.CardIndex,
-					BoardCoords = cr.BoardCoords
+					CardIndex = ctr.CardIndex,
+					BoardCoords = ctr.BoardCoords
 				}
 			});
 		}
-
-		return true;
 	}
 }

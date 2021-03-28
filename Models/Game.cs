@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 public interface IGame
@@ -11,6 +12,8 @@ public interface IGame
 	GameState State { get; set; }
 
 	bool IsOver ();
+
+	event Action<object, EventArgs> OnStateChanged;
 }
 
 public class SampleGame: IGame
@@ -21,12 +24,22 @@ public class SampleGame: IGame
 
 	public IPlayer Player2 { get; set; }
 
-	public GameState State { get; set; }
+	private GameState _state = GameState.GameOver;
+
+	public GameState State {
+		get => _state;
+		set {
+			_state = value;
+			if (OnStateChanged != null) {
+				OnStateChanged (this, EventArgs.Empty);
+			}
+		}
+	}
+
+	public event Action<object, EventArgs> OnStateChanged;
 
 	public SampleGame ()
 	{
-		State = GameState.PlayerTurn;
-
 		var dealer = new Dealer ();
 
 		Player1 = new Player ();
@@ -45,34 +58,47 @@ public class SampleGame: IGame
 		Player2.Deal.IsOpen = true;
 
 		Board = new Board (this, 3, 3);
+	}
 
+	public void Start ()
+	{
 		GD.Print ("---");
 		GD.Print ("Game started!");
+
+		State = GameState.WaitForPlayer;
 	}
 
 	public void PlayerTurn (int cardIdx)
 	{
-		var playerPlayedCard = Player2.PlayCard (Board, new PlayCardThinkResult {
+		State = GameState.PlayerTurn;
+
+		var ctr = new PlayCardThinkResult {
 			CardIndex = cardIdx,
 			BoardCoords = Board.TryGetRandomEmptyTile ()
-		});
-		
-		if (!playerPlayedCard) {
+		};
+
+		var canPlayCard = Player2.CanPlayCard (Board, ctr);
+		if (!canPlayCard) {
+			State = GameState.WaitForPlayer;
 			return;
 		}
 
-		State = GameState.EnemyTurn;
+		Player2.PlayCard (Board, ctr);
+		
+		State = GameState.WaitForEnemy;
 
 		EndTurn ();
 	}
 
 	public void EnemyTurn ()
 	{
-		var ai = new RandomAI ();
-		var cr = ai.ThinkOnPlayCard (Board, Player1.Deal);
-		Player1.PlayCard (Board, cr);
+		State = GameState.EnemyTurn;
 
-		State = GameState.PlayerTurn;
+		var ai = new RandomAI ();
+		var ctr = ai.ThinkOnPlayCard (Board, Player1.Deal);
+		Player1.PlayCard (Board, ctr);
+
+		State = GameState.WaitForPlayer;
 		
 		EndTurn ();
 	}
