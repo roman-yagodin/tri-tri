@@ -60,7 +60,7 @@ public class GameScene : Spatial
 
 	void Game_StateChanged (object sender, EventArgs e)
 	{
-		GD.Print (Game.State);
+		GD.Print ("> " + Game.State);
 		if (Game.State == GameState.WaitForPlayer || Game.State == GameState.GameOver) {
 			_lockPlayerControls = false;
 		}
