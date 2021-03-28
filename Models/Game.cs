@@ -62,10 +62,10 @@ public class SampleGame: IGame
 
 	public void Start ()
 	{
-		GD.Print ("---");
-		GD.Print ("Game started!");
-
 		State = GameState.WaitForPlayer;
+
+		GD.Print ("---");
+		GD.Print ("Game started!");	
 	}
 
 	public void PlayerTurn (int cardIdx)
@@ -87,7 +87,7 @@ public class SampleGame: IGame
 		
 		State = GameState.WaitForEnemy;
 
-		EndTurn ();
+		GameOverCheck ();
 	}
 
 	public void EnemyTurn ()
@@ -100,22 +100,19 @@ public class SampleGame: IGame
 
 		State = GameState.WaitForPlayer;
 		
-		EndTurn ();
+		GameOverCheck ();
 	}
 
-	void EndTurn ()
+	void GameOverCheck ()
 	{
 		if (IsOver ()) {
-			CheckResult ();
-
-			GD.Print ("---");
-			GD.Print ("Press N to start new game.");
-
 			State = GameState.GameOver;
+
+			AnalyzeResults ();
 		}
 	}
 
-	void CheckResult ()
+	void AnalyzeResults ()
 	{
 		GD.Print ("---");
 		if (Player.Score > Enemy.Score) {
@@ -125,8 +122,11 @@ public class SampleGame: IGame
 			GD.Print ("You lose!");
 		}
 		else {
-			GD.Print ("Draw");
+			GD.Print ("Draw!");
 		}
+
+		GD.Print ("---");
+		GD.Print ("Press N to start new game.");
 	}
 
 	public bool IsOver () => Board.IsFull ();
