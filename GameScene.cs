@@ -85,11 +85,34 @@ public class GameScene : Spatial
 		}
 
 		if (inputEvent.IsActionPressed("ui_left")) {
-			TestBoard.Rotate (new Vector3 (0, 1, 0), (float) Math.PI / 16);
+			Board.Rotate (new Vector3 (0, 1, 0), (float) Math.PI / 16);
 		}
 		else if (inputEvent.IsActionPressed("ui_right")) {
-			TestBoard.Rotate (new Vector3 (0, 1, 0), -(float) Math.PI / 16);
+			Board.Rotate (new Vector3 (0, 1, 0), -(float) Math.PI / 16);
 		}
+		else if (inputEvent.IsActionPressed("ui_down")) {
+			if (Game.State == GameState.WaitForPlayer) {
+				Game.Player.Deal.SelectNextCard();
+			}
+		}
+		else if (inputEvent.IsActionPressed("ui_up")) {
+			if (Game.State == GameState.WaitForPlayer) {
+				Game.Player.Deal.SelectPrevCard();
+			}
+		}
+		else if (inputEvent.IsActionPressed("ui_accept")) {
+			if (Game.State == GameState.WaitForPlayer) {
+				if (!Game.IsOver ()) {
+					var selectedCard = Game.Player.Deal.SelectedCard;
+					if (selectedCard != null) {
+						var selectedCardIdx = Game.Player.Deal.Cards.IndexOf(selectedCard);
+						_lockPlayerControls = true;
+						PlayerTurn (selectedCardIdx);
+					}
+				}
+			}
+		}
+		/*
 		else if (inputEvent.IsActionPressed("card1")) {
 			if (!Game.IsOver ()) {
 				_lockPlayerControls = true;
@@ -119,7 +142,7 @@ public class GameScene : Spatial
 				_lockPlayerControls = true;
 				PlayerTurn (4);
 			}
-		}
+		}*/
 		else if (inputEvent.IsActionPressed("new_game")) {
 			_lockPlayerControls = true;
 			Game = new SampleGame ();

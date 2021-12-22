@@ -15,6 +15,8 @@ public interface ICard
 
 	bool IsBlank { get; set; }
 
+	bool IsSelectedInDeal { get; set; }
+
 	string GetTextureFilename ();
 
 	ICard Clone ();
@@ -24,6 +26,8 @@ public interface ICard
 	void Rotate (RotateDirection rotateDirection);
 
 	event Action<object, RotateCardEventArgs> OnRotateCard;
+
+	event Action<object, EventArgs> OnIsSelectInDealChanged;
 }
 
 public class Card : ICard
@@ -40,9 +44,24 @@ public class Card : ICard
 
 	public bool IsBlank { get; set; }
 
+	private bool _isSelectedInDeal;
+	public bool IsSelectedInDeal {
+		get => _isSelectedInDeal;
+		set {
+			if (_isSelectedInDeal != value) {
+				_isSelectedInDeal = value;
+				if (OnIsSelectInDealChanged != null) {
+					OnIsSelectInDealChanged(this, EventArgs.Empty);
+				}
+			}
+		}
+	}
+
 	public string GetTextureFilename () => $"res://textures/cards/{TextureName}.png";
 
 	public event Action<object, RotateCardEventArgs> OnRotateCard;
+
+	public event Action<object, EventArgs> OnIsSelectInDealChanged;
 
 	public Card ()
 	{

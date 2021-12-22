@@ -29,13 +29,14 @@ public class DealScene : Spatial
 			return;
 		}
 
-		Reset ();
+		Reset();
 
 		var cardSceneRes = ResourceLoader.Load<PackedScene> ("res://CardScene.tscn");
 		var idx = 0;
 		foreach (var card in deal.Cards) {
 			var cardScene = (CardScene) cardSceneRes.Instance ();
 			cardScene.Card = card;
+			cardScene.Card.OnIsSelectInDealChanged += OnCardIsSelectedInDealChanged;
 			cardScene.Name = "Card" + idx;
 			cardScene.Translation = new Vector3 (0f, (deal.Cards.Count - 1) * CardSpacing / 2f - (idx * CardSpacing), 0f);
 
@@ -47,6 +48,29 @@ public class DealScene : Spatial
 			AddCardScene (cardScene);
 			idx++;
 		}
+	}
+
+	void OnCardIsSelectedInDealChanged(object sender, EventArgs e)
+	{
+		var card = (ICard) sender;
+		var cardSc = GetCardSceneByCard(card);
+		if (cardSc != null) {
+			if (card.IsSelectedInDeal) {
+				cardSc.Translation -= new Vector3 (0.5f, 0f, 0f);
+			}
+			else {
+				cardSc.Translation += new Vector3 (0.5f, 0f, 0f);
+			}
+		}
+	}
+
+	CardScene GetCardSceneByCard (ICard card)
+	{
+		var cardIdx = Deal.Cards.IndexOf(card);
+		if (cardIdx >= 0) {
+			return CardScenes[cardIdx];
+		}
+		return null;
 	}
 
 	void Reset ()
@@ -72,6 +96,11 @@ public class DealScene : Spatial
 		RemoveChild (cardScene);
 		var idx = CardScenes.IndexOf (cardScene);
 		CardScenes [idx] = null;
-		Deal.Cards [idx] = null;
+		var card = Deal.Cards [idx];
+		if (card != null) {
+			card.IsSelectedInDeal = false;
+			card.OnIsSelectInDealChanged -= OnCardIsSelectedInDealChanged;
+			Deal.Cards [idx] = null;
+		}
 	}
 }
