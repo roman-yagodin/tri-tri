@@ -1,22 +1,7 @@
 using System;
 using Godot;
 
-public interface IGame
-{
-	IBoard Board { get; set; }
-
-	IPlayer Enemy { get; set; }
-
-	IPlayer Player { get; set; }
-
-	GameState State { get; set; }
-
-	bool IsOver ();
-
-	event Action<object, EventArgs> OnStateChanged;
-}
-
-public class SampleGame: IGame
+public abstract class AGame
 {
 	public IBoard Board { get; set; }
 
@@ -38,6 +23,28 @@ public class SampleGame: IGame
 
 	public event Action<object, EventArgs> OnStateChanged;
 
+	public abstract void Start();
+
+	public abstract void PlayerTurn (int cardIdx);
+
+	public abstract void EnemyTurn ();
+
+	protected virtual void GameOverCheck ()
+	{
+		if (IsOver ()) {
+			State = GameState.GameOver;
+
+			AnalyzeResults ();
+		}
+	}
+
+	protected abstract void AnalyzeResults();
+
+	public virtual bool IsOver () => Board.IsFull ();
+}
+
+public class SampleGame: AGame
+{
 	public SampleGame ()
 	{
 		var dealer = new Dealer ();
@@ -60,7 +67,7 @@ public class SampleGame: IGame
 		Board = new Board (this, 3, 3);
 	}
 
-	public void Start ()
+	public override void Start ()
 	{
 		State = GameState.WaitForPlayer;
 
@@ -68,7 +75,7 @@ public class SampleGame: IGame
 		GD.Print ("Game started!");	
 	}
 
-	public void PlayerTurn (int cardIdx)
+	public override void PlayerTurn (int cardIdx)
 	{
 		State = GameState.PlayerTurn;
 
@@ -90,7 +97,7 @@ public class SampleGame: IGame
 		GameOverCheck ();
 	}
 
-	public void EnemyTurn ()
+	public override void EnemyTurn ()
 	{
 		State = GameState.EnemyTurn;
 
@@ -103,16 +110,7 @@ public class SampleGame: IGame
 		GameOverCheck ();
 	}
 
-	void GameOverCheck ()
-	{
-		if (IsOver ()) {
-			State = GameState.GameOver;
-
-			AnalyzeResults ();
-		}
-	}
-
-	void AnalyzeResults ()
+	protected override void AnalyzeResults ()
 	{
 		GD.Print ("---");
 		if (Player.Score > Enemy.Score) {
@@ -128,6 +126,4 @@ public class SampleGame: IGame
 		GD.Print ("---");
 		GD.Print ("Press N to start new game.");
 	}
-
-	public bool IsOver () => Board.IsFull ();
 }

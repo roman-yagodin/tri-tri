@@ -13,6 +13,8 @@ public interface IPlayer
 
 	event Action<object, PlayCardEventArgs> OnPlayCard;
 
+	event Action<object, EventArgs> OnScoreChanged;
+
 	bool CanPlayCard (IBoard board, PlayCardThinkResult ctr);
 
 	void PlayCard (IBoard board, PlayCardThinkResult ctr);
@@ -22,13 +24,26 @@ public class Player: IPlayer
 {
 	public string Name { get; set; }
 
-	public int Score { get; set; }
+	private int _score;
+	public int Score {
+		get => _score;
+		set {
+			if (_score != value) {
+				_score = value;
+				if (OnScoreChanged != null) {
+					OnScoreChanged(this, EventArgs.Empty);
+				}
+			}
+		}
+	}
 
 	public IDeal Deal { get; set; }
 
 	public virtual IAI AI { get; set; }
 
 	public event Action<object, PlayCardEventArgs> OnPlayCard;
+
+	public event Action<object, EventArgs> OnScoreChanged;
 	
 	public virtual bool CanPlayCard (IBoard board, PlayCardThinkResult ctr)
 	{

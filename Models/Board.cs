@@ -10,7 +10,7 @@ public interface IBoard
 
 	ICard [,] Tiles { get; set; }
 
-	IGame Game { get; set; }
+	AGame Game { get; set; }
 
 	void PlaceCard (ICard card, BoardCoords boardCoords);	
 }
@@ -34,9 +34,9 @@ public class Board: IBoard
 	
 	public ICard [,] Tiles { get; set; }
 
-	public IGame Game { get; set; }
+	public AGame Game { get; set; }
 
-	public Board (IGame game, int width, int height)
+	public Board (AGame game, int width, int height)
 	{
 		Game = game;
 		Tiles = new ICard [width, height];

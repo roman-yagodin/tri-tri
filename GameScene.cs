@@ -21,9 +21,13 @@ public class GameScene : Spatial
 
 	protected DealScene RightDeal => GetNode<DealScene> (nameof (RightDeal));
 
+	protected DigitPlate Score1 => GetNode<DigitPlate> (nameof (Score1));
+
+	protected DigitPlate Score2 => GetNode<DigitPlate> (nameof (Score2));
+
 	protected Timer EnemyTurnTimer => GetNode<Timer> (nameof (EnemyTurnTimer));
 
-	IGame _game;
+	AGame _game;
 	SampleGame Game {
 		get { return (SampleGame) _game; }
 		set {
@@ -32,7 +36,7 @@ public class GameScene : Spatial
 		}
 	}
 
-	void Bind (IGame game)
+	void Bind (AGame game)
 	{
 		if (game == null) {
 			return;
@@ -54,6 +58,24 @@ public class GameScene : Spatial
 		}
 
 		game.OnStateChanged += Game_StateChanged;
+
+		Score1.Digit = game.Enemy.Score;
+		Score2.Digit = game.Player.Score;
+
+		game.Enemy.OnScoreChanged += OnPlayer1ScoreChanged;
+		game.Player.OnScoreChanged += OnPlayer2ScoreChanged;
+	}
+
+	void OnPlayer1ScoreChanged (object sender, EventArgs e)
+	{
+		var player = (Player)sender;
+		Score1.Digit = player.Score;
+	}
+
+	void OnPlayer2ScoreChanged (object sender, EventArgs e)
+	{
+		var player = (Player)sender;
+		Score2.Digit = player.Score;
 	}
 
 	private bool _lockPlayerControls;
