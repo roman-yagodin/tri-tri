@@ -4,8 +4,8 @@ using System.Linq;
 
 public class BoardScene : Spatial
 {
-	IBoard _board;
-	public IBoard Board {
+	ABoard _board;
+	public ABoard Board {
 		get { return _board; }
 		set {
 			_board = value;
@@ -15,7 +15,7 @@ public class BoardScene : Spatial
 
 	public CardScene [,] CardScenes { get; set; }
 
-	void Bind (IBoard board)
+	void Bind (ABoard board)
 	{
 		if (board == null) {
 			return;
@@ -52,7 +52,7 @@ public class BoardScene : Spatial
 		CardScenes [boardCoords.X, boardCoords.Y] = cardScene;
 	}
 
-	public CardScene GetCardScene (ICard card)
+	public CardScene GetCardScene (ACard card)
 	{
 		for (var i = 0; i < Board.Width; i++) {
 			for (var j = 0; j < Board.Height; j++) {

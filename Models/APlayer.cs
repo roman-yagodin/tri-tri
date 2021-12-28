@@ -1,26 +1,7 @@
 using System;
 using Godot;
 
-public interface IPlayer
-{
-	string Name { get; set; }
-
-	int Score { get; set; }
-
-	IDeal Deal { get; set; }
-
-	IAI AI { get; set; }
-
-	event Action<object, PlayCardEventArgs> OnPlayCard;
-
-	event Action<object, EventArgs> OnScoreChanged;
-
-	bool CanPlayCard (IBoard board, PlayCardThinkResult ctr);
-
-	void PlayCard (IBoard board, PlayCardThinkResult ctr);
-}
-
-public class Player: IPlayer
+public abstract class APlayer
 {
 	public string Name { get; set; }
 
@@ -37,15 +18,15 @@ public class Player: IPlayer
 		}
 	}
 
-	public IDeal Deal { get; set; }
+	public ADeal Deal { get; set; }
 
-	public virtual IAI AI { get; set; }
+	public virtual AAI AI { get; set; }
 
 	public event Action<object, PlayCardEventArgs> OnPlayCard;
 
 	public event Action<object, EventArgs> OnScoreChanged;
 	
-	public virtual bool CanPlayCard (IBoard board, PlayCardThinkResult ctr)
+	public virtual bool CanPlayCard (ABoard board, PlayCardThinkResult ctr)
 	{
 		var card = Deal.Cards [ctr.CardIndex];
 		if (card == null) {
@@ -61,7 +42,7 @@ public class Player: IPlayer
 		return true;
 	}
 
-	public virtual void PlayCard (IBoard board, PlayCardThinkResult ctr)
+	public virtual void PlayCard (ABoard board, PlayCardThinkResult ctr)
 	{
 		var card = Deal.Cards [ctr.CardIndex];
 		board.PlaceCard (card, ctr.BoardCoords);
@@ -76,4 +57,8 @@ public class Player: IPlayer
 			});
 		}
 	}
+}
+
+public class Player: APlayer
+{
 }

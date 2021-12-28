@@ -24,9 +24,9 @@ public class CardScene : Spatial
 
 	CardSampleFactory CardSampleFactory = new CardSampleFactory ();
 
-	ICard _card;
+	ACard _card;
 
-	public ICard Card {
+	public ACard Card {
 		get { return _card; }
 		set {
 			_card = value;
@@ -46,7 +46,7 @@ public class CardScene : Spatial
 		}
 	}
 
-	void BindCard (ICard card)
+	void BindCard (ACard card)
 	{
 		if (card == null) {
 			return;

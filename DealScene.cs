@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 public class DealScene : Spatial
 {
-	IDeal _deal;
+	ADeal _deal;
 
-	public IDeal Deal {
+	public ADeal Deal {
 		get { return _deal; }
 		set {
 			_deal = value;
@@ -23,7 +23,7 @@ public class DealScene : Spatial
 	[Export]
 	public float CardRotation { get; set; } = 1;
 
-	void BindDeal (IDeal deal)
+	void BindDeal (ADeal deal)
 	{
 		if (_deal == null) {
 			return;
@@ -52,7 +52,7 @@ public class DealScene : Spatial
 
 	void OnCardIsSelectedInDealChanged(object sender, EventArgs e)
 	{
-		var card = (ICard) sender;
+		var card = (ACard) sender;
 		var cardSc = GetCardSceneByCard(card);
 		if (cardSc != null) {
 			if (card.IsSelectedInDeal) {
@@ -64,7 +64,7 @@ public class DealScene : Spatial
 		}
 	}
 
-	CardScene GetCardSceneByCard (ICard card)
+	CardScene GetCardSceneByCard (ACard card)
 	{
 		var cardIdx = Deal.Cards.IndexOf(card);
 		if (cardIdx >= 0) {

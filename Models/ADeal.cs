@@ -3,26 +3,13 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 
-public interface IDeal
+public abstract class ADeal
 {
-	IList<ICard> Cards { get; set; }
-
-	bool IsOpen { get; set; }
-
-	ICard SelectedCard { get; }
-
-	void SelectNextCard ();
-
-	void SelectPrevCard ();
-}
-
-public class Deal: IDeal
-{
-	public IList<ICard> Cards { get; set; } = new List<ICard> ();
+	public IList<ACard> Cards { get; set; } = new List<ACard> ();
 
 	public bool IsOpen { get; set; }
 
-	public ICard SelectedCard {
+	public ACard SelectedCard {
 		get => Cards.FirstOrDefault(c => c != null && c.IsSelectedInDeal);
 	}
 
@@ -50,7 +37,7 @@ public class Deal: IDeal
 		}
 	}
 
-	private ICard GetNextCard(ICard card)
+	private ACard GetNextCard(ACard card)
 	{
 		var cardIdx = Cards.IndexOf(card);
 		if (cardIdx < 0) {
@@ -60,7 +47,7 @@ public class Deal: IDeal
 		return tail.FirstOrDefault(c => c != null);
 	}
 
-	private ICard GetPrevCard(ICard card)
+	private ACard GetPrevCard(ACard card)
 	{
 		var cardIdx = Cards.IndexOf(card);
 		if (cardIdx < 0) {
@@ -69,4 +56,29 @@ public class Deal: IDeal
 		var head = Cards.Take(cardIdx);
 		return head.LastOrDefault(c => c != null);
 	}
+
+	public bool IsEmpty ()
+    {
+        return Cards.All (c => c == null);
+    }
+
+    public int TryGetRandomCardIndex ()
+    {
+        if (IsEmpty ()) {
+            return -1;
+        }
+
+        var rnd = new Random ();
+        while (true) {
+            var cardIdx = rnd.Next (Cards.Count);
+            if (Cards [cardIdx] != null) {
+                return cardIdx;
+            }
+        }
+    }
+}
+
+public class Deal: ADeal
+{
+
 }

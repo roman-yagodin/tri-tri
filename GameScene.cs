@@ -28,8 +28,8 @@ public class GameScene : Spatial
 	protected Timer EnemyTurnTimer => GetNode<Timer> (nameof (EnemyTurnTimer));
 
 	AGame _game;
-	SampleGame Game {
-		get { return (SampleGame) _game; }
+	AGame Game {
+		get { return _game; }
 		set {
 			_game = value;
 			Bind (_game);
@@ -202,7 +202,7 @@ public class GameScene : Spatial
 
 	void Card_RotateCard (object sender, RotateCardEventArgs args)
 	{
-		var card = (ICard) sender;
+		var card = (ACard) sender;
 		var cardScene = Board.GetCardScene (card);
 		cardScene.Rotate (args.RotateDirection);
 	}

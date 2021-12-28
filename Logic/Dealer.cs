@@ -3,7 +3,7 @@ using System;
 
 public class Dealer
 {
-	public IDeal Deal (IDeck deck, int numOfCards, CardOwner cardOwner)
+	public ADeal Deal (IDeck deck, int numOfCards, CardOwner cardOwner)
 	{
 		var deal = new Deal ();
 		var cards = deck.Cards;

@@ -7,11 +7,11 @@ using System.Collections.Generic;
 /// </summary>
 public class CardSampleFactory
 {
-	public IDictionary<string, ICard> Cards;
+	public IDictionary<string, ACard> Cards;
 
 	public CardSampleFactory ()
 	{
-		Cards = new Dictionary<string, ICard> ();
+		Cards = new Dictionary<string, ACard> ();
 		
 		var cardFactory = new CardFactory ();
 
@@ -50,9 +50,9 @@ public class CardSampleFactory
 		Cards.Add ("blank", blank);
 	}
 
-	public ICard CreateCard (string cardSampleName)
+	public ACard CreateCard (string cardSampleName)
 	{
-		if (cardSampleName != null && Cards.TryGetValue (cardSampleName, out ICard card)) {
+		if (cardSampleName != null && Cards.TryGetValue (cardSampleName, out ACard card)) {
 			return ((Card) card).Clone ();
 		}
 		return null;

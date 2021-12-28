@@ -5,11 +5,11 @@ using System.Collections.Generic;
 
 public class CardFactory
 {
-	public IDictionary<string, ICard> Cards;
+	public IDictionary<string, ACard> Cards;
 
 	public CardFactory ()
 	{
-		Cards = new Dictionary<string, ICard> ();
+		Cards = new Dictionary<string, ACard> ();
 
 		AddTemplate ("blue_drake", 4, 2, 5, 3);
 		AddTemplate ("brown_drake", 2, 5, 4, 3);
@@ -26,9 +26,9 @@ public class CardFactory
 		Cards.Add (cardName, new Card (cardName, values));
 	}
 
-	public ICard CreateCard (string cardName)
+	public ACard CreateCard (string cardName)
 	{
-		if (cardName != null && Cards.TryGetValue (cardName, out ICard card)) {
+		if (cardName != null && Cards.TryGetValue (cardName, out ACard card)) {
 			return ((Card) card).Clone ();
 		}
 		return null;
