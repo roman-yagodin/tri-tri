@@ -5,7 +5,7 @@ public class TurnIndicator : MeshInstance
 {
     public void Game_StateChanged(object sender, GameStateChangedEventArgs e)
     {
-        if (e.State == GameState.GameOver) {
+        if (e.State.IsGameOver()) {
             this.Visible = false;
         }
         else {

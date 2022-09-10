@@ -16,7 +16,7 @@ public abstract class AGame
 
 	public APlayer Player { get; set; }
 
-	private GameState _state = GameState.GameOver;
+	private GameState _state = GameState.Initial;
 
 	public GameState State {
 		get => _state;
@@ -42,8 +42,6 @@ public abstract class AGame
 	protected virtual void GameOverCheck ()
 	{
 		if (IsOver ()) {
-			State = GameState.GameOver;
-
 			AnalyzeResults ();
 		}
 	}

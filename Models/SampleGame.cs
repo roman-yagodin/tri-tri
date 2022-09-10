@@ -72,12 +72,16 @@ public class SampleGame: AGame
 	{
 		GD.Print ("---");
 		if (Player.Score > Enemy.Score) {
+			State = GameState.GameOverWin;
 			GD.Print ("You win!");
+
 		}
 		else if (Player.Score < Enemy.Score) {
+			State = GameState.GameOverLoose;
 			GD.Print ("You lose!");
 		}
 		else {
+			State = GameState.GameOverDraw;
 			GD.Print ("Draw!");
 		}
 

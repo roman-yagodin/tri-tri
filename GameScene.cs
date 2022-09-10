@@ -29,6 +29,12 @@ public class GameScene : Spatial
 
 	protected TurnIndicator TurnIndicator => GetNode<TurnIndicator> (nameof(TurnIndicator)); 
 
+	protected Sprite3D DrawMessage => GetNode<Sprite3D>(nameof(DrawMessage));
+
+	protected Sprite3D YouWinMessage => GetNode<Sprite3D>(nameof(YouWinMessage));
+
+	protected Sprite3D YouLooseMessage => GetNode<Sprite3D>(nameof(YouLooseMessage));
+
 	AGame _game;
 	AGame Game {
 		get { return _game; }
@@ -87,9 +93,13 @@ public class GameScene : Spatial
 	void Game_StateChanged (object sender, GameStateChangedEventArgs e)
 	{
 		GD.Print ("> " + e.State);
-		if (e.State == GameState.WaitForPlayer || e.State == GameState.GameOver) {
+		if (e.State == GameState.WaitForPlayer || e.State.IsGameOver()) {
 			_lockPlayerControls = false;
 		}
+
+		DrawMessage.Visible = e.State == GameState.GameOverDraw;
+		YouWinMessage.Visible = e.State == GameState.GameOverWin;
+		YouLooseMessage.Visible = e.State == GameState.GameOverLoose;
 	}
 
 	// Called when the node enters the scene tree for the first time.
