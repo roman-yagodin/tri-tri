@@ -1,6 +1,13 @@
 using System;
 using Godot;
 
+public class GameStateChangedEventArgs: EventArgs
+{
+	public GameState State { get; set; }
+
+	public GameState PrevState { get; set; }
+}
+
 public abstract class AGame
 {
 	public ABoard Board { get; set; }
@@ -14,14 +21,17 @@ public abstract class AGame
 	public GameState State {
 		get => _state;
 		set {
-			_state = value;
-			if (OnStateChanged != null) {
-				OnStateChanged (this, EventArgs.Empty);
+			if (_state != value) {
+				var prevState = _state;
+				_state = value;
+				if (OnStateChanged != null) {
+					OnStateChanged (this, new GameStateChangedEventArgs { State = value, PrevState = prevState });
+				}
 			}
 		}
 	}
 
-	public event Action<object, EventArgs> OnStateChanged;
+	public event Action<object, GameStateChangedEventArgs> OnStateChanged;
 
 	public abstract void Start();
 

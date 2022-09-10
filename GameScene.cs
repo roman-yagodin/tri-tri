@@ -27,6 +27,8 @@ public class GameScene : Spatial
 
 	protected Timer EnemyTurnTimer => GetNode<Timer> (nameof (EnemyTurnTimer));
 
+	protected TurnIndicator TurnIndicator => GetNode<TurnIndicator> (nameof(TurnIndicator)); 
+
 	AGame _game;
 	AGame Game {
 		get { return _game; }
@@ -64,6 +66,8 @@ public class GameScene : Spatial
 
 		game.Enemy.OnScoreChanged += OnPlayer1ScoreChanged;
 		game.Player.OnScoreChanged += OnPlayer2ScoreChanged;
+
+		game.OnStateChanged += TurnIndicator.Game_StateChanged;
 	}
 
 	void OnPlayer1ScoreChanged (object sender, EventArgs e)
@@ -80,10 +84,10 @@ public class GameScene : Spatial
 
 	private bool _lockPlayerControls;
 
-	void Game_StateChanged (object sender, EventArgs e)
+	void Game_StateChanged (object sender, GameStateChangedEventArgs e)
 	{
-		GD.Print ("> " + Game.State);
-		if (Game.State == GameState.WaitForPlayer || Game.State == GameState.GameOver) {
+		GD.Print ("> " + e.State);
+		if (e.State == GameState.WaitForPlayer || e.State == GameState.GameOver) {
 			_lockPlayerControls = false;
 		}
 	}
