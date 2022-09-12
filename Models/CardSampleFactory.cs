@@ -50,9 +50,9 @@ public class CardSampleFactory
 
 	public ACard CreateCard (string cardSampleName)
 	{
-		if (cardSampleName != null && Cards.TryGetValue (cardSampleName, out ACard card)) {
+		if (cardSampleName != null && Cards.TryGetValue (cardSampleName, out ACard card))
 			return ((Card) card).Clone ();
-		}
+			
 		return null;
 	}
 }
