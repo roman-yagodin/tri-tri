@@ -3,6 +3,8 @@ global using System;
 global using System.Linq;
 global using System.Collections.Generic;
 
+namespace TriTri;
+
 public class GameScene : Spatial
 {
 	protected Camera Camera => GetNode<Camera> (nameof (Camera));

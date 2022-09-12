@@ -1,3 +1,5 @@
+namespace TriTri;
+
 public abstract class ABoard
 {
 	public int Width => Tiles.GetLength (0);

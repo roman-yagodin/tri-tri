@@ -1,3 +1,5 @@
+namespace TriTri;
+
 struct CardToRotate
 {
     public ACard Card;

@@ -1,3 +1,5 @@
+namespace TriTri;
+
 public class GameStateChangedEventArgs: EventArgs
 {
 	public GameState State { get; set; }

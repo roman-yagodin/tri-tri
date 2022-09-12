@@ -1,3 +1,5 @@
+namespace TriTri;
+
 public abstract class ACard
 {
 	public string Name { get; set; }

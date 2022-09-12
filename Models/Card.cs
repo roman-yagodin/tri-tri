@@ -1,3 +1,5 @@
+namespace TriTri;
+
 public class Card: ACard
 {
 	public Card ()

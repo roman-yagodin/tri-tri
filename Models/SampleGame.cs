@@ -1,3 +1,5 @@
+namespace TriTri;
+
 public class SampleGame: AGame
 {
 	public SampleGame ()

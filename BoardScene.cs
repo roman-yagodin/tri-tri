@@ -1,3 +1,5 @@
+namespace TriTri;
+
 public class BoardScene : Spatial
 {
 	ABoard _board;

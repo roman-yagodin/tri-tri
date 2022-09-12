@@ -1,3 +1,5 @@
+namespace TriTri;
+
 public struct AdjacentCards
 {
 	public ACard Top;

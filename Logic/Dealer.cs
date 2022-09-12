@@ -1,3 +1,5 @@
+namespace TriTri;
+
 public class Dealer
 {
 	public ADeal Deal (IDeck deck, int numOfCards, CardOwner cardOwner)

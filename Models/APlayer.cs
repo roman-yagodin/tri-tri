@@ -1,3 +1,5 @@
+namespace TriTri;
+
 public abstract class APlayer
 {
 	public string Name { get; set; }

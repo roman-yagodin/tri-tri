@@ -1,3 +1,5 @@
+namespace TriTri;
+
 [Tool]
 public class DigitPlate : Spatial
 {

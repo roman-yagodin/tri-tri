@@ -1,3 +1,5 @@
+namespace TriTri;
+
 public abstract class ADeal
 {
 	public IList<ACard> Cards { get; set; } = new List<ACard> ();

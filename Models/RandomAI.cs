@@ -1,3 +1,5 @@
+namespace TriTri;
+
 public class RandomAI : AAI
 {
     public override PlayCardThinkResult ThinkOnPlayCard (ABoard board, ADeal deal)

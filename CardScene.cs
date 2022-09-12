@@ -1,3 +1,5 @@
+namespace TriTri;
+
 public class CardScene : Spatial
 {
 	protected MeshInstance Front => GetNode<MeshInstance> (nameof (Front));

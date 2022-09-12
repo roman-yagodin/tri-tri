@@ -1,3 +1,5 @@
+namespace TriTri;
+
 public static class Const
 {
     public const float CARD_WIDTH = 3;

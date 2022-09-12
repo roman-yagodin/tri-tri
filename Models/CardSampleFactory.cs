@@ -1,3 +1,5 @@
+namespace TriTri;
+
 /// <summary>
 /// Contains pre-configured cards to use in editor
 /// </summary>

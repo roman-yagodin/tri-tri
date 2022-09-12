@@ -1,3 +1,5 @@
+namespace TriTri;
+
 // TODO: Reduce deck to just collection of cards?
 
 public interface IDeck

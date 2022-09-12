@@ -1,3 +1,5 @@
+namespace TriTri;
+
 public class DealScene : Spatial
 {
 	ADeal _deal;

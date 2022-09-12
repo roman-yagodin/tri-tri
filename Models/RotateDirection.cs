@@ -1,3 +1,5 @@
+namespace TriTri;
+
 public enum RotateDirection
 {
     Horizontal,

@@ -1,3 +1,5 @@
+namespace TriTri;
+
 public struct BoardCoords
 {
     public int X;

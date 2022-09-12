@@ -1,3 +1,5 @@
+namespace TriTri;
+
 public class CardFactory
 {
 	public IDictionary<string, ACard> Cards;
