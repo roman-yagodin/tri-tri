@@ -2,17 +2,23 @@ namespace TriTri;
 
 public class CardScene : Spatial
 {
-	protected MeshInstance Front;
+	protected MeshInstance Front => GetNode<MeshInstance> (nameof (Front));
 
-	protected Spatial Digits;
+	protected Spatial Digits => GetNode<Spatial> (nameof (Digits));
 
-	protected DigitPlate DigitPlate1, DigitPlate2, DigitPlate3, DigitPlate4;
+	protected DigitPlate DigitPlate1 => Digits.GetNode<DigitPlate> (nameof (DigitPlate1));
 
-	protected Sprite3D Sprite3D;
+	protected DigitPlate DigitPlate2 => Digits.GetNode<DigitPlate> (nameof (DigitPlate2));
+	
+	protected DigitPlate DigitPlate3 => Digits.GetNode<DigitPlate> (nameof (DigitPlate3));
+	
+	protected DigitPlate DigitPlate4 => Digits.GetNode<DigitPlate> (nameof (DigitPlate4));
 
-	protected AnimationPlayer AnimationPlayer;
+	protected Sprite3D Sprite3D => GetNode<Sprite3D> (nameof (Sprite3D));
 
-	protected Timer Timer;
+	protected AnimationPlayer AnimationPlayer => GetNode<AnimationPlayer> (nameof (AnimationPlayer));
+
+	protected Timer Timer => GetNode<Timer> (nameof (Timer));
 
 	private readonly CardSampleFactory CardSampleFactory = new();
 
@@ -36,23 +42,6 @@ public class CardScene : Spatial
 			_card = CardSampleFactory.CreateCard (_cardSampleName);
 			BindCard (_card);
 		}
-	}
-	
-	public override void _Ready()
-	{
-		// moved to only GetNode<T> once
-		Front = GetNode<MeshInstance> (nameof (Front));
-		Digits = GetNode<Spatial> (nameof (Digits));
-		DigitPlate1 = Digits.GetNode<DigitPlate> (nameof (DigitPlate1));
-		DigitPlate2 = Digits.GetNode<DigitPlate> (nameof (DigitPlate2));
-		DigitPlate3 = Digits.GetNode<DigitPlate> (nameof (DigitPlate3));
-		DigitPlate4 = Digits.GetNode<DigitPlate> (nameof (DigitPlate4));
-		Sprite3D = GetNode<Sprite3D> (nameof (Sprite3D));
-		AnimationPlayer = GetNode<AnimationPlayer> (nameof (AnimationPlayer));
-		Timer = GetNode<Timer> (nameof (Timer));
-
-		UpdateDiagonalRotationAnimation ("CardRotate_D1");
-		UpdateDiagonalRotationAnimation ("CardRotate_D2");
 	}
 
 	private void BindCard (ACard card)
@@ -85,6 +74,13 @@ public class CardScene : Spatial
 			}
 			Front.SetSurfaceMaterial (0, material);
 		}
+	}
+	
+	// Called when the node enters the scene tree for the first time.
+	public override void _Ready()
+	{
+		UpdateDiagonalRotationAnimation ("CardRotate_D1");
+		UpdateDiagonalRotationAnimation ("CardRotate_D2");
 	}
 	
 	private Vector3 GetDiagonalRotationAxis (string animName)
