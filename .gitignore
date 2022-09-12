@@ -2,3 +2,4 @@
 /.import
 mono_crash.*.json
 
+.vscode/settings.json
