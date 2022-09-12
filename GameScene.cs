@@ -7,37 +7,23 @@ namespace TriTri;
 
 public class GameScene : Spatial
 {
-	protected Camera Camera => GetNode<Camera> (nameof (Camera));
+	protected Camera Camera;
 
-	protected Spatial TestBoard => GetNode<Spatial> (nameof (TestBoard));
+	protected Spatial TestBoard;
 
-	protected BoardScene Board => GetNode<BoardScene> (nameof (Board));
+	protected BoardScene Board;
 
-	protected CardScene Card1 => TestBoard.GetNode<CardScene> (nameof (Card1));
-
-	protected CardScene Card2 => TestBoard.GetNode<CardScene> (nameof (Card2));
+	protected CardScene Card1, Card2, Card3, Card4;
 	
-	protected CardScene Card3 => TestBoard.GetNode<CardScene> (nameof (Card3));
-	
-	protected CardScene Card4 => TestBoard.GetNode<CardScene> (nameof (Card4));
-	
-	protected DealScene LeftDeal => GetNode<DealScene> (nameof (LeftDeal));
+	protected DealScene LeftDeal, RightDeal;
 
-	protected DealScene RightDeal => GetNode<DealScene> (nameof (RightDeal));
+	protected DigitPlate Score1, Score2;
 
-	protected DigitPlate Score1 => GetNode<DigitPlate> (nameof (Score1));
+	protected Timer EnemyTurnTimer;
 
-	protected DigitPlate Score2 => GetNode<DigitPlate> (nameof (Score2));
+	protected TurnIndicator TurnIndicator; 
 
-	protected Timer EnemyTurnTimer => GetNode<Timer> (nameof (EnemyTurnTimer));
-
-	protected TurnIndicator TurnIndicator => GetNode<TurnIndicator> (nameof(TurnIndicator)); 
-
-	protected Sprite3D DrawMessage => GetNode<Sprite3D>(nameof(DrawMessage));
-
-	protected Sprite3D YouWinMessage => GetNode<Sprite3D>(nameof(YouWinMessage));
-
-	protected Sprite3D YouLooseMessage => GetNode<Sprite3D>(nameof(YouLooseMessage));
+	protected Sprite3D DrawMessage, YouWinMessage, YouLooseMessage;
 
 	AGame _game;
 	AGame Game {
@@ -105,16 +91,28 @@ public class GameScene : Spatial
 		YouLooseMessage.Visible = e.State == GameState.GameOverLoose;
 	}
 
-	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		// moved these GetNode<T> here as they should only be retrieved once for increased performance
+		Camera = GetNode<Camera> (nameof (Camera));
+		TestBoard = GetNode<Spatial> (nameof (TestBoard));
+		Board = GetNode<BoardScene> (nameof (Board));
+		Card1 = TestBoard.GetNode<CardScene> (nameof (Card1));
+		Card2 = TestBoard.GetNode<CardScene> (nameof (Card2));
+		Card3 = TestBoard.GetNode<CardScene> (nameof (Card3));
+		Card4 = TestBoard.GetNode<CardScene> (nameof (Card4));
+		LeftDeal = GetNode<DealScene> (nameof (LeftDeal));
+		RightDeal = GetNode<DealScene> (nameof (RightDeal));
+		Score1 = GetNode<DigitPlate> (nameof (Score1));
+		Score2 = GetNode<DigitPlate> (nameof (Score2));
+		EnemyTurnTimer = GetNode<Timer> (nameof (EnemyTurnTimer));
+		TurnIndicator = GetNode<TurnIndicator> (nameof(TurnIndicator));
+		DrawMessage = GetNode<Sprite3D>(nameof(DrawMessage));
+		YouWinMessage = GetNode<Sprite3D>(nameof(YouWinMessage));
+		YouLooseMessage = GetNode<Sprite3D>(nameof(YouLooseMessage));
+
 		Game = new SampleGame ();
 		Game.Start ();
-	}
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(float delta)
-	{
 	}
 
 	public override void _Input(InputEvent inputEvent)
