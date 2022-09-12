@@ -18,23 +18,19 @@ public class CardFactory
 		AddTemplate ("green_dragon", 3, 7, 6, 4);
 	}
 
-	void AddTemplate (string cardName, params int [] values)
-	{
+	private void AddTemplate (string cardName, params int [] values) =>
 		Cards.Add (cardName, new Card (cardName, values));
-	}
 
 	public ACard CreateCard (string cardName)
 	{
-		if (cardName != null && Cards.TryGetValue (cardName, out ACard card)) {
+		if (cardName != null && Cards.TryGetValue (cardName, out ACard card))
 			return ((Card) card).Clone ();
-		}
+		
 		return null;
 	}
 
-	public IDeck CreateFullUniqueDeck ()
+	public IDeck CreateFullUniqueDeck () => new Deck 
 	{
-		return new Deck {
-			Cards = Cards.Values.Select (c => c.Clone ()).ToList ()
-		};
-	}
+		Cards = Cards.Values.Select (c => c.Clone ()).ToList ()
+	};
 }
