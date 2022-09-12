@@ -1,6 +1,3 @@
-using System;
-using Godot;
-
 public class SampleGame: AGame
 {
 	public SampleGame ()

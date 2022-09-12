@@ -1,7 +1,3 @@
-using Godot;
-using System;
-using System.Collections.Generic;
-
 public class DealScene : Spatial
 {
 	ADeal _deal;

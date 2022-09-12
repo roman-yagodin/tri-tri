@@ -1,7 +1,3 @@
-using Godot;
-using System;
-using System.Linq;
-
 public class BoardScene : Spatial
 {
 	ABoard _board;

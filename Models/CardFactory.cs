@@ -1,8 +1,3 @@
-using Godot;
-using System;
-using System.Linq;
-using System.Collections.Generic;
-
 public class CardFactory
 {
 	public IDictionary<string, ACard> Cards;

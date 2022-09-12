@@ -1,6 +1,3 @@
-using Godot;
-using System;
-
 public class Dealer
 {
 	public ADeal Deal (IDeck deck, int numOfCards, CardOwner cardOwner)

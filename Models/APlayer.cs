@@ -1,6 +1,3 @@
-using System;
-using Godot;
-
 public abstract class APlayer
 {
 	public string Name { get; set; }

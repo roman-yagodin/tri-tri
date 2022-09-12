@@ -1,6 +1,3 @@
-using System;
-using Godot;
-
 public struct AdjacentCards
 {
 	public ACard Top;

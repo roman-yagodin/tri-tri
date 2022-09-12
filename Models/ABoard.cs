@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using Godot;
-
 public abstract class ABoard
 {
 	public int Width => Tiles.GetLength (0);

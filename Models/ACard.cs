@@ -1,6 +1,3 @@
-using Godot;
-using System;
-
 public abstract class ACard
 {
 	public string Name { get; set; }

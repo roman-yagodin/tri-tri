@@ -1,7 +1,3 @@
-using Godot;
-using System;
-using System.Linq;
-
 public class CardScene : Spatial
 {
 	protected MeshInstance Front => GetNode<MeshInstance> (nameof (Front));

@@ -1,5 +1,7 @@
-using Godot;
-using System;
+global using Godot;
+global using System;
+global using System.Linq;
+global using System.Collections.Generic;
 
 public class GameScene : Spatial
 {

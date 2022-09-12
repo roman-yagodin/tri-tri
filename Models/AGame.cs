@@ -1,6 +1,3 @@
-using System;
-using Godot;
-
 public class GameStateChangedEventArgs: EventArgs
 {
 	public GameState State { get; set; }

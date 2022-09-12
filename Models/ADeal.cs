@@ -1,8 +1,3 @@
-using Godot;
-using System;
-using System.Linq;
-using System.Collections.Generic;
-
 public abstract class ADeal
 {
 	public IList<ACard> Cards { get; set; } = new List<ACard> ();

@@ -1,7 +1,3 @@
-using Godot;
-using System;
-using System.Collections.Generic;
-
 /// <summary>
 /// Contains pre-configured cards to use in editor
 /// </summary>

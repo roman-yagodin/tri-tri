@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-
 public class PlayCardEventArgs
 {
     public PlayCardThinkResult PlayCardThinkResult { get; set; }
