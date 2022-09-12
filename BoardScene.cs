@@ -2,7 +2,7 @@ namespace TriTri;
 
 public class BoardScene : Spatial
 {
-	ABoard _board;
+	private ABoard _board;
 	public ABoard Board {
 		get { return _board; }
 		set {
@@ -13,26 +13,22 @@ public class BoardScene : Spatial
 
 	public CardScene [,] CardScenes { get; set; }
 
-	void Bind (ABoard board)
+	private void Bind (ABoard board)
 	{
-		if (board == null) {
+		if (board == null)
 			return;
-		}
 
 		Reset ();
 	}
 
-	void Reset ()
+	private void Reset ()
 	{
-		if (CardScenes != null) {
-			for (var i = 0; i < Board.Width; i++) {
-				for (var j = 0; j < Board.Height; j++) {
-					if (CardScenes [i, j] != null) {
+		if (CardScenes != null)
+			for (var i = 0; i < Board.Width; i++)
+				for (var j = 0; j < Board.Height; j++)
+					if (CardScenes [i, j] != null)
 						RemoveChild (CardScenes [i, j]);
-					}
-				}
-			}
-		}
+
 		CardScenes = new CardScene [Board.Width, Board.Height];
 	}
 
@@ -52,13 +48,11 @@ public class BoardScene : Spatial
 
 	public CardScene GetCardScene (ACard card)
 	{
-		for (var i = 0; i < Board.Width; i++) {
-			for (var j = 0; j < Board.Height; j++) {
-				if (CardScenes [i, j] != null && CardScenes [i, j].Card == card) {
+		for (var i = 0; i < Board.Width; i++)
+			for (var j = 0; j < Board.Height; j++)
+				if (CardScenes [i, j] != null && CardScenes [i, j].Card == card)
 					return CardScenes [i, j];
-				}
-			}
-		}
+
 		return null;
 	}
 }
