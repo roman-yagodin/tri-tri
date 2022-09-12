@@ -50,9 +50,8 @@ public class GameScene : Spatial
 
 	void Bind (AGame game)
 	{
-		if (game == null) {
+		if (game == null)
 			return;
-		}
 
 		LeftDeal.Deal = game.Enemy.Deal;
 		RightDeal.Deal = game.Player.Deal;
@@ -120,9 +119,8 @@ public class GameScene : Spatial
 
 	public override void _Input(InputEvent inputEvent)
 	{
-		if (_lockPlayerControls) {
+		if (_lockPlayerControls)
 			return;
-		}
 
 		if (inputEvent.IsActionPressed("ui_left")) {
 			Board.Rotate (new Vector3 (0, 1, 0), (float) Math.PI / 16);
@@ -190,7 +188,7 @@ public class GameScene : Spatial
 		}
 	}
 
-	void PlayerTurn (int cardIdx)
+	private void PlayerTurn (int cardIdx)
 	{
 		Game.PlayerTurn (cardIdx);
 
@@ -199,10 +197,7 @@ public class GameScene : Spatial
 		}
 	}
 
-	private void _on_EnemyTurnTimer_timeout()
-	{
-		Game.EnemyTurn ();
-	}
+	private void _on_EnemyTurnTimer_timeout() => Game.EnemyTurn ();
 
 	void Player_PlayCard (object sender, PlayCardEventArgs args)
 	{
