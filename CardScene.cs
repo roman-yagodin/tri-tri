@@ -20,7 +20,7 @@ public class CardScene : Spatial
 
 	protected Timer Timer => GetNode<Timer> (nameof (Timer));
 
-	CardSampleFactory CardSampleFactory = new CardSampleFactory ();
+	private readonly CardSampleFactory CardSampleFactory = new();
 
 	ACard _card;
 
