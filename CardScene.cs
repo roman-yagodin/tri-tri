@@ -22,7 +22,7 @@ public class CardScene : Spatial
 
 	private readonly CardSampleFactory CardSampleFactory = new();
 
-	ACard _card;
+	private ACard _card;
 
 	public ACard Card {
 		get { return _card; }
@@ -32,9 +32,9 @@ public class CardScene : Spatial
 		}
 	}
 
-	string _cardSampleName;
+	private string _cardSampleName;
 
-	[Export]
+	[Export] 
 	public string CardSampleName {
 		get { return _cardSampleName; }
 		set {
@@ -44,7 +44,7 @@ public class CardScene : Spatial
 		}
 	}
 
-	void BindCard (ACard card)
+	private void BindCard (ACard card)
 	{
 		if (card == null) {
 			return;
@@ -83,26 +83,25 @@ public class CardScene : Spatial
 		UpdateDiagonalRotationAnimation ("CardRotate_D2");
 	}
 	
-	Vector3 GetDiagonalRotationAxis (string animName)
+	private Vector3 GetDiagonalRotationAxis (string animName)
 	{
-		if (animName == "CardRotate_D1") {
+		if (animName == "CardRotate_D1")
 			return new Vector3 (3f, 4f, 0).Normalized ();
-		}
-		else if (animName == "CardRotate_D2") {
+		else if (animName == "CardRotate_D2")
 			return new Vector3 (-3f, 4f, 0).Normalized ();
-		}
+		
 		throw new ArgumentException ("Unsupported animation name!");
 	}
 
-	void UpdateDiagonalRotationAnimation (string name)
+	private void UpdateDiagonalRotationAnimation (string name)
 	{
-		if (AnimationPlayer.GetAnimationList ().FirstOrDefault (n => n == name) != null) {
+		if (AnimationPlayer.GetAnimationList ().FirstOrDefault (n => n == name) != null)
 			AnimationPlayer.RemoveAnimation (name);
-		}
+		
 		AnimationPlayer.AddAnimation (name, CreateDiagonalRotationAnimation (Translation, GetDiagonalRotationAxis (name)));
 	}
 
-	Animation CreateDiagonalRotationAnimation (Vector3 translation, Vector3 axis)
+	private Animation CreateDiagonalRotationAnimation (Vector3 translation, Vector3 axis)
 	{
 		var anim = new Animation ();
 		var trackIdx = anim.AddTrack (Animation.TrackType.Transform);
