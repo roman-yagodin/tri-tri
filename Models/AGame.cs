@@ -40,9 +40,8 @@ public abstract class AGame
 
 	protected virtual void GameOverCheck ()
 	{
-		if (IsOver ()) {
+		if (IsOver ())
 			AnalyzeResults ();
-		}
 	}
 
 	protected abstract void AnalyzeResults();

@@ -10,7 +10,7 @@ public abstract class ABoard
 
 	public AGame Game { get; set; }
 
-	AdjacentCards GetAdjacentCards (BoardCoords boardCoords)
+	private AdjacentCards GetAdjacentCards (BoardCoords boardCoords)
 	{
 		var adjCards = new AdjacentCards ();
 

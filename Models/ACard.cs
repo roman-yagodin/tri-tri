@@ -20,9 +20,8 @@ public abstract class ACard
 		set {
 			if (_isSelectedInDeal != value) {
 				_isSelectedInDeal = value;
-				if (OnIsSelectInDealChanged != null) {
+				if (OnIsSelectInDealChanged != null)
 					OnIsSelectInDealChanged(this, EventArgs.Empty);
-				}
 			}
 		}
 	}
@@ -33,19 +32,14 @@ public abstract class ACard
 
 	public event Action<object, EventArgs> OnIsSelectInDealChanged;
 
-	public ACard Clone ()
-	{
-		return (ACard) this.MemberwiseClone ();
-	}
+	public ACard Clone () => (ACard) this.MemberwiseClone ();
 	
 	public void ToggleOwner ()
 	{
-		if (Owner == CardOwner.Red) {
+		if (Owner == CardOwner.Red)
 			Owner = CardOwner.Blue;
-		}
-		else if (Owner == CardOwner.Blue) {
+		else if (Owner == CardOwner.Blue)
 			Owner = CardOwner.Red;
-		}
 	}
 
 	public void Rotate (RotateDirection rotateDirection)
