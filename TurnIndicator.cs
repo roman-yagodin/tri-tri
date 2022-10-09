@@ -13,18 +13,10 @@ public class TurnIndicator : MeshInstance
             // TODO: where are the deals?
             this.Visible = true;
             if (e.State == GameState.WaitForPlayer || e.State == GameState.PlayerTurn) {
-                if (e.PrevState == GameState.WaitForEnemy || e.PrevState == GameState.EnemyTurn) {
-                    this.Transform = Transform.Identity;
-                    this.Translate(new Vector3(11f, 10f, -2f));
-                    this.RotateObjectLocal(new Vector3(0f, 0f, 1f), 90f);
-                }
+                this.Translation = new Vector3(11f, 10f, -2f);
             }
             else if (e.State == GameState.WaitForEnemy || e.State == GameState.EnemyTurn) {
-                if (e.PrevState == GameState.WaitForPlayer || e.PrevState == GameState.PlayerTurn) {
-                    this.Transform = Transform.Identity;
-                    this.Translate(new Vector3(-11f, 10f, -2f));
-                    this.RotateObjectLocal(new Vector3(0f, 0f, 1f), 90f);
-                }
+                this.Translation = new Vector3(-11f, 10f, -2f);
             }
         }
     }
