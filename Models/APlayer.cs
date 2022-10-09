@@ -28,8 +28,8 @@ public abstract class APlayer
 	
 	public virtual bool CanPlayCard (ABoard board, PlayCardThinkResult ctr)
 	{
-		var card = Deal.Cards [ctr.CardIndex];
-		if (card == null) {
+		var slot = Deal.CardSlots[ctr.CardIndex];
+		if (slot.IsEmpty) {
 			GD.Print ("No card to play!");
 			return false;
 		}
@@ -44,9 +44,9 @@ public abstract class APlayer
 
 	public virtual void PlayCard (ABoard board, PlayCardThinkResult ctr)
 	{
-		var card = Deal.Cards [ctr.CardIndex];
+		var card = Deal.CardSlots[ctr.CardIndex].Card;
 		board.PlaceCard (card, ctr.BoardCoords);
-		Deal.Cards [ctr.CardIndex] = null;
+		Deal.CardSlots[ctr.CardIndex].Card = null;
 
 		if (OnPlayCard != null) {
 			OnPlayCard (this, new PlayCardEventArgs {

@@ -33,12 +33,12 @@ public class DealScene : Spatial
 
 		var cardSceneRes = ResourceLoader.Load<PackedScene> ("res://CardScene.tscn");
 		var idx = 0;
-		foreach (var card in deal.Cards) {
+		foreach (var slot in deal.CardSlots) {
 			var cardScene = (CardScene) cardSceneRes.Instance ();
-			cardScene.Card = card;
+			cardScene.Card = slot.Card;
 			cardScene.Card.OnIsSelectInDealChanged += OnCardIsSelectedInDealChanged;
 			cardScene.Name = "Card" + idx;
-			cardScene.Translation = new Vector3 (0f, (deal.Cards.Count - 1) * CardSpacing / 2f - (idx * CardSpacing), 0f);
+			cardScene.Translation = new Vector3 (0f, (deal.CardSlots.Count - 1) * CardSpacing / 2f - (idx * CardSpacing), 0f);
 
 			if (!deal.IsOpen) {
 				cardScene.Rotate (new Vector3 (0, 1, 0), Mathf.Pi);
@@ -66,7 +66,7 @@ public class DealScene : Spatial
 
 	CardScene GetCardSceneByCard (ACard card)
 	{
-		var cardIdx = Deal.Cards.IndexOf(card);
+		var cardIdx = Deal.GetSlotIndex(card);
 		if (cardIdx >= 0) {
 			return CardScenes[cardIdx];
 		}
@@ -87,7 +87,7 @@ public class DealScene : Spatial
 
 	void AddCardScene (CardScene cardScene)
 	{
-		AddChild (cardScene);
+		AddChild(cardScene);
 		CardScenes.Add (cardScene);
 	}
 
@@ -96,11 +96,11 @@ public class DealScene : Spatial
 		RemoveChild (cardScene);
 		var idx = CardScenes.IndexOf (cardScene);
 		CardScenes [idx] = null;
-		var card = Deal.Cards [idx];
+		var card = Deal.CardSlots[idx].Card;
 		if (card != null) {
 			card.IsSelectedInDeal = false;
 			card.OnIsSelectInDealChanged -= OnCardIsSelectedInDealChanged;
-			Deal.Cards [idx] = null;
+			Deal.CardSlots[idx] = null;
 		}
 	}
 }

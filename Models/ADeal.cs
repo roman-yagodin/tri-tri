@@ -5,12 +5,20 @@ using System.Collections.Generic;
 
 public abstract class ADeal
 {
-	public IList<ACard> Cards { get; set; } = new List<ACard> ();
+	public IList<ACardSlot> CardSlots { get; set; } = new List<ACardSlot>();
+
+	// TODO: Must be protected?
+	public IEnumerable<ACard> Cards => CardSlots.Where(s => !s.IsEmpty).Select(s => s.Card);
 
 	public bool IsOpen { get; set; }
 
 	public ACard SelectedCard {
-		get => Cards.FirstOrDefault(c => c != null && c.IsSelectedInDeal);
+		get => CardSlots.FirstOrDefault(s => !s.IsEmpty && s.Card.IsSelectedInDeal)?.Card;
+	}
+
+	public void AddCard(ACard card)
+	{
+		CardSlots.Add(new DealSlot(card));
 	}
 
 	public void SelectNextCard ()
@@ -18,9 +26,7 @@ public abstract class ADeal
 		var nextCard = GetNextCard(SelectedCard);
 		if (nextCard != null) {
 			foreach (var card in Cards) {
-				if (card != null) {
-					card.IsSelectedInDeal = card == nextCard;
-				}
+				card.IsSelectedInDeal = card == nextCard;
 			}
 		}
 	}
@@ -30,49 +36,55 @@ public abstract class ADeal
 		var prevCard = GetPrevCard(SelectedCard);
 		if (prevCard != null) {
 			foreach (var card in Cards) {
-				if (card != null) {
-					card.IsSelectedInDeal = card == prevCard;
-				}
+				card.IsSelectedInDeal = card == prevCard;
 			}
 		}
 	}
 
-	private ACard GetNextCard(ACard card)
+	public int GetSlotIndex(ACard card)
 	{
-		var cardIdx = Cards.IndexOf(card);
-		if (cardIdx < 0) {
-			return Cards.FirstOrDefault(c => c != null);
+		for (var i = 0; i < CardSlots.Count; i++) {
+			if (!CardSlots[i].IsEmpty && CardSlots[i].Card == card) {
+				return i;
+			}
 		}
-		var tail = Cards.Skip(cardIdx + 1);
-		return tail.FirstOrDefault(c => c != null);
+		return -1;
 	}
 
-	private ACard GetPrevCard(ACard card)
+	ACard GetNextCard(ACard card)
 	{
-		var cardIdx = Cards.IndexOf(card);
-		if (cardIdx < 0) {
-			return Cards.LastOrDefault(c => c != null);
+		var idx = GetSlotIndex(card);
+		if (idx < 0) {
+			return CardSlots.FirstOrDefault(s => !s.IsEmpty)?.Card;
 		}
-		var head = Cards.Take(cardIdx);
-		return head.LastOrDefault(c => c != null);
+		var tail = CardSlots.Skip(idx + 1);
+		return tail.FirstOrDefault(s => !s.IsEmpty)?.Card;
 	}
 
-	public bool IsEmpty ()
-    {
-        return Cards.All (c => c == null);
-    }
+	ACard GetPrevCard(ACard card)
+	{
+		var idx = GetSlotIndex(card);
+		if (idx < 0) {
+			return CardSlots.LastOrDefault(s => !s.IsEmpty)?.Card;
+		}
 
-    public int TryGetRandomCardIndex ()
+		var head = CardSlots.Take(idx + 1);
+		return head.LastOrDefault(s => !s.IsEmpty)?.Card;
+	}
+
+	public bool IsEmpty => CardSlots.All(s => s.IsEmpty);
+
+    public int TryGetRandomCardIndex()
     {
-        if (IsEmpty ()) {
+        if (IsEmpty) {
             return -1;
         }
 
-        var rnd = new Random ();
+        var rnd = new Random();
         while (true) {
-            var cardIdx = rnd.Next (Cards.Count);
-            if (Cards [cardIdx] != null) {
-                return cardIdx;
+            var idx = rnd.Next(CardSlots.Count);
+            if (!CardSlots[idx].IsEmpty) {
+                return idx;
             }
         }
     }

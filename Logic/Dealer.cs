@@ -11,10 +11,10 @@ public class Dealer
 		var rnd = new Random ();
 
 		for (var i = 0; i < numOfCards; i++) {
-			var idx = rnd.Next (0, cards.Count);
-			cards [idx].Owner = cardOwner;
-			deal.Cards.Add (cards [idx]);
-			cards.RemoveAt (idx);
+			var idx = rnd.Next(0, cards.Count);
+			cards[idx].Owner = cardOwner;
+			deal.AddCard(cards[idx]);
+			cards.RemoveAt(idx);
 		}
 		
 		return deal;

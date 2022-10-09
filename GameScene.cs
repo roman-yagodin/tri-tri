@@ -141,7 +141,7 @@ public class GameScene : Spatial
 				if (!Game.IsOver ()) {
 					var selectedCard = Game.Player.Deal.SelectedCard;
 					if (selectedCard != null) {
-						var selectedCardIdx = Game.Player.Deal.Cards.IndexOf(selectedCard);
+						var selectedCardIdx = Game.Player.Deal.GetSlotIndex(selectedCard);
 						_lockPlayerControls = true;
 						PlayerTurn (selectedCardIdx);
 					}
