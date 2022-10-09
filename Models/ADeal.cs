@@ -68,7 +68,7 @@ public abstract class ADeal
 			return CardSlots.LastOrDefault(s => !s.IsEmpty)?.Card;
 		}
 
-		var head = CardSlots.Take(idx + 1);
+		var head = CardSlots.Take(idx);
 		return head.LastOrDefault(s => !s.IsEmpty)?.Card;
 	}
 
