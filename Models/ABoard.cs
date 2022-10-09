@@ -8,7 +8,7 @@ public abstract class ABoard
 
 	public int Height => Tiles.GetLength (1);
 	
-	public ACard [,] Tiles { get; set; }
+	public BoardSlot[,] Tiles { get; set; }
 
 	public AGame Game { get; set; }
 
@@ -17,19 +17,19 @@ public abstract class ABoard
 		var adjCards = new AdjacentCards ();
 
 		if (boardCoords.Y > 0) {
-			adjCards.Top = Tiles [boardCoords.X, boardCoords.Y - 1];
+			adjCards.Top = Tiles [boardCoords.X, boardCoords.Y - 1].Card;
 		}
 
 		if (boardCoords.Y < Height - 1) {
-			adjCards.Bottom = Tiles [boardCoords.X, boardCoords.Y + 1];
+			adjCards.Bottom = Tiles [boardCoords.X, boardCoords.Y + 1].Card;
 		}
 
 		if (boardCoords.X > 0) {
-			adjCards.Left = Tiles [boardCoords.X - 1, boardCoords.Y];
+			adjCards.Left = Tiles [boardCoords.X - 1, boardCoords.Y].Card;
 		}
 
 		if (boardCoords.X < Width - 1) {
-			adjCards.Left = Tiles [boardCoords.X + 1, boardCoords.Y];
+			adjCards.Left = Tiles [boardCoords.X + 1, boardCoords.Y].Card;
 		}
 
 		return adjCards;
@@ -37,7 +37,7 @@ public abstract class ABoard
 
 	public void PlaceCard (ACard card, BoardCoords boardCoords)
 	{
-		Tiles [boardCoords.X, boardCoords.Y] = card;
+		Tiles [boardCoords.X, boardCoords.Y].Card = card;
 
 		var cardsToRotate = CheckAdjacentCards (card, boardCoords);
 		foreach (var cardToRotate in cardsToRotate) {
@@ -103,7 +103,7 @@ public abstract class ABoard
 
 	public bool CanPlaceCardAt (BoardCoords boardCoords) => CanPlaceCardAt (boardCoords.X, boardCoords.Y);
 
-	public bool CanPlaceCardAt (int x, int y) => Tiles [x, y] == null;
+	public bool CanPlaceCardAt (int x, int y) => Tiles [x, y].IsEmpty;
 
 	public bool IsFull ()
 	{
@@ -127,7 +127,7 @@ public abstract class ABoard
 		while (true) {
 			var i = rnd.Next (Width);
 			var j = rnd.Next (Height);
-			if (Tiles [i, j] == null) {
+			if (Tiles [i, j].IsEmpty) {
 				return new BoardCoords { X = i, Y = j};
 			}
 		}
@@ -139,6 +139,12 @@ public class Board: ABoard
 	public Board (AGame game, int width, int height)
 	{
 		Game = game;
-		Tiles = new ACard [width, height];
+		
+		Tiles = new BoardSlot[width, height];
+		for (var i = 0; i < Tiles.GetLength(0); i++) {
+			for (var j = 0; j < Tiles.GetLength(1); j++) {
+				Tiles[i, j] = new BoardSlot();
+			}
+		}
 	}
 }

@@ -12,3 +12,6 @@ public class DealSlot: ACardSlot
         Card = card;
     }
 }
+
+public class BoardSlot: ACardSlot
+{}
