@@ -79,6 +79,10 @@ new_game={
  ]
 }
 
+[mono]
+
+project/assembly_name="tri-tri"
+
 [rendering]
 
 quality/driver/driver_name="GLES2"
