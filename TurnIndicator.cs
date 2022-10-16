@@ -9,14 +9,14 @@ public class TurnIndicator : MeshInstance
             this.Visible = false;
         }
         else {
-            // TODO: keep transform as in editor
-            // TODO: where are the deals?
             this.Visible = true;
             if (e.State == GameState.WaitForPlayer || e.State == GameState.PlayerTurn) {
-                this.Translation = new Vector3(11f, 10f, -2f);
+                var dealScene = this.GetParent<GameScene>().GetNode<DealScene>("RightDeal");
+                this.Translation = new Vector3(dealScene.Translation.x + 1, this.Translation.y, this.Translation.z);
             }
             else if (e.State == GameState.WaitForEnemy || e.State == GameState.EnemyTurn) {
-                this.Translation = new Vector3(-11f, 10f, -2f);
+                var dealScene = this.GetParent<GameScene>().GetNode<DealScene>("LeftDeal");
+                this.Translation = new Vector3(dealScene.Translation.x - 1, this.Translation.y, this.Translation.z);
             }
         }
     }
