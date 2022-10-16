@@ -51,7 +51,7 @@ public abstract class ADeal
 		return -1;
 	}
 
-	ACard GetNextCard(ACard card)
+	ACard? GetNextCard(ACard card)
 	{
 		var idx = GetSlotIndex(card);
 		if (idx < 0) {
@@ -61,7 +61,7 @@ public abstract class ADeal
 		return tail.FirstOrDefault(s => !s.IsEmpty)?.Card;
 	}
 
-	ACard GetPrevCard(ACard card)
+	ACard? GetPrevCard(ACard card)
 	{
 		var idx = GetSlotIndex(card);
 		if (idx < 0) {

@@ -12,6 +12,18 @@ public abstract class ABoard
 
 	public AGame Game { get; set; }
 
+	public ABoard (AGame game, int width, int height)
+	{
+		Game = game;
+		
+		Tiles = new BoardSlot[width, height];
+		for (var i = 0; i < Tiles.GetLength(0); i++) {
+			for (var j = 0; j < Tiles.GetLength(1); j++) {
+				Tiles[i, j] = new BoardSlot();
+			}
+		}
+	}
+
 	AdjacentCards GetAdjacentCards (BoardCoords boardCoords)
 	{
 		var adjCards = new AdjacentCards ();
@@ -136,15 +148,7 @@ public abstract class ABoard
 
 public class Board: ABoard
 {
-	public Board (AGame game, int width, int height)
+	public Board (AGame game, int width, int height): base(game, width, height)
 	{
-		Game = game;
-		
-		Tiles = new BoardSlot[width, height];
-		for (var i = 0; i < Tiles.GetLength(0); i++) {
-			for (var j = 0; j < Tiles.GetLength(1); j++) {
-				Tiles[i, j] = new BoardSlot();
-			}
-		}
 	}
 }

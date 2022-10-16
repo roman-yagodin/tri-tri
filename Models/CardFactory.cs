@@ -26,7 +26,7 @@ public class CardFactory
 		Cards.Add (cardName, new Card (cardName, values));
 	}
 
-	public ACard CreateCard (string cardName)
+	public ACard? CreateCard (string? cardName)
 	{
 		if (cardName != null && Cards.TryGetValue (cardName, out ACard card)) {
 			return ((Card) card).Clone ();

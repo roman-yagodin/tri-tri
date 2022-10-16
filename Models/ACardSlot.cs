@@ -1,6 +1,6 @@
 public abstract class ACardSlot
 {
-    public ACard Card { get; set; }
+    public ACard? Card { get; set; }
 
     public bool IsEmpty => Card == null;
 }

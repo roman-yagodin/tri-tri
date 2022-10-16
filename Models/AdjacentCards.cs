@@ -3,11 +3,11 @@ using Godot;
 
 public struct AdjacentCards
 {
-	public ACard Top;
+	public ACard? Top;
 
-	public ACard Right;
+	public ACard? Right;
 	
-	public ACard Bottom;
+	public ACard? Bottom;
 
-	public ACard Left;
+	public ACard? Left;
 }
